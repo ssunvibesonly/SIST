@@ -1,0 +1,23 @@
+package day0616;
+
+public class DataType_09 {
+
+	public static void main(String[] args) {
+		// 묵시적 형변환 : 자동 결정되는 타입
+		// String+int = String
+		// double+int = double
+		// long+short = long
+		// char+int = int
+		
+		char a='a';
+		
+		
+		System.out.println(a);
+		System.out.println(a+2);
+		System.out.println((char)(a+2));//형변환해주고싶은 것들에 대해 괄호처리 꼭 해야 적용됨!
+		
+		System.out.println("Happy"+(5+6));
+
+	}
+
+}
