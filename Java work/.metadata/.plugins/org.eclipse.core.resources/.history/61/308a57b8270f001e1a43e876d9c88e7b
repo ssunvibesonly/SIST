@@ -1,0 +1,24 @@
+package day0619;
+
+import java.util.Scanner;
+
+public class KeyBoardIn_02 {
+
+	public static void main(String[] args) {
+		// Scanner는 문자열이나 숫자를 모두 키보드로 입력받으려 할 때 생성
+		Scanner sc=new Scanner(System.in); //Scanner + ctrl + space바를 통해 Scanner import
+		
+		//변수
+		String name,city;
+		int age;
+		
+		//출력(입력문)
+		System.out.println("이름을 입력해 보세요!");
+		name=sc.nextLine(); //한줄을 문자로 읽어온다(공백 사용 가능)
+		
+		System.out.println("나이를 입력해 보세요!"); //age=sc.nextInt() 숫자를 읽어온다.
+		
+	
+	}
+
+}

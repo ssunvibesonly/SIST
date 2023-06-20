@@ -3,7 +3,7 @@ package day0616;
 public class ParseNum_02 {
 
 	public static void main(String[] args) {
-		// 문자열을 정수로 바꿔주는 것
+		// 형변환 : 문자열을 정수로 바꿔주는 것
 		//String 타입을 int타입으로 변경하려면
 		//Integer.parseInt("10"); 문자열 10이 정수 10로 반환
 		//Double.parseDouble("12.23"); 문자열 12.23이 실수타입으로 변환
