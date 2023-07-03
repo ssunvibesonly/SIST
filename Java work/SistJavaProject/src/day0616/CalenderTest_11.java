@@ -1,3 +1,4 @@
+
 package day0616;
 
 import java.util.Calendar;
@@ -8,7 +9,7 @@ public class CalenderTest_11 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//Date date = new Date();//누군가 만들어 놓은걸 가져쓸 때는 util로 설정, Date 클래스에 있는 모든 메서드를 가져다 쓸 수 있음
+		//Date date = new Date();//Date 클래스에 있는 모든 메서드를 가져다 쓸 수 있음
 		//System.out.println("지금은" + (date.getYear()+1900));
 	
 	

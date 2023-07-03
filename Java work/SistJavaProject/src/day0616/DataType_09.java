@@ -11,7 +11,6 @@ public class DataType_09 {
 		
 		char a='a';
 		
-		
 		System.out.println(a);
 		System.out.println(a+2);
 		System.out.println((char)(a+2));//형변환해주고싶은 것들에 대해 괄호처리 꼭 해야 적용됨!

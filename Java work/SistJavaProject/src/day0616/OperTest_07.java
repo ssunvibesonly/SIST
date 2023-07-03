@@ -4,7 +4,7 @@ public class OperTest_07 {
 
 	public static void main(String[] args) {
 		// 기본자료형_8개
-		// 1. 논리형 : true, flase
+		// 1. 논리형 : true, false
 		boolean b=false; //뭐가 있는지 찾을 때 기본적으로 거짓이라고 두고 찾는다
 		
 		//2. 문자형( '' 홑따옴표로 나타냄)
