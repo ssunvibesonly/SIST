@@ -14,7 +14,7 @@ public class ScannerMyInfo_04 {
 		 * 이름: 홍길동
 		 * 연락처: 010-1234-5678
 		 * 주소: 서울시 강남구*/
-		
+	
 		Scanner sc=new Scanner(System.in);
 		
 		String name,hp,addr;

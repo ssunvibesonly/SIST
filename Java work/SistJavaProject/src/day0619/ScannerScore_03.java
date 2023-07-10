@@ -39,6 +39,10 @@ public class ScannerScore_03 {
 		System.out.println("====================");
 		System.out.println("총점:"+total+"점");
 		System.out.println("평균:"+avg+"점");
+		
+		
+		
+
 	}
 
 }
