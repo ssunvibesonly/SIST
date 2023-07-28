@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/lotto.css">
+    <script src="../js/randomColor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body> <!-- lottoball css만 가져온거임-->
+    <div class="lottoball"></div>
+    <div class="lottoball"></div>
+    <div class="lottoball"></div>
+    <div class="lottoball"></div>
+    <div class="lottoball"></div>
+    <div class="lottoball"></div>
+
+    <h2></h2>
+
+    <script>
+        $("div").each(function(idx){
+            $(this).html(idx+1).css("background-color",randomColor());
+        })
+
+        //마우스 올리면 해당색상으로 rgb 색상을 h2 태그에 출력
+
+        $("div").hover(function(){
+            var getcolor=$(this).css("background-color");
+            $("h2").html(getcolor).css("color",getcolor);
+
+        },function(){//마우스 벗어나면 지우기
+
+            $("h2").empty();
+        })
+        
+    </script>
+</body>
+</html>

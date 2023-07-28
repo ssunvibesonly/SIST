@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+<style>
+    #box{
+        width: 500px;
+        height: 300px;
+        border: 2px solid gray;
+        
+        
+    }
+
+
+
+</style>
+
+
+<script>
+$(function(){
+    $("#btn").click(function(){
+        
+        var sum="";
+
+        sum+="연령대: "+$("input[name='radio']:checked").val()+"<br>";
+        
+
+        var travelength=$("input[name='nara']:checked").length;
+        
+        sum+="여행해본 나라:";
+
+        if(travelength==0){
+                sum+=" 없습니다.<br>"
+        }else{
+            $("input[name='nara']:checked").each(function(idx){
+                
+                sum+="["+$(this).val()+"]&nbsp";
+
+            })
+        }
+
+        sum+="<br>";
+
+        sum+="코로나 백신:"+($("#corona").is(":checked")?"접종":"비접종")+"<br>";
+        
+        var font=$("#sele").val();
+        
+        
+        $("#box").html(sum).css("font-family",font).css("background-color","pink");
+        
+
+    })
+
+})
+</script>
+</head>
+<body>
+    <form>
+    <table class="table table-bordered" style="width: 500px;">
+        <tr>
+            <th style="width: 150px;">당신의 연령대는?</th>
+            <td>
+                <input type="radio" name="age" value="10대">10대
+                <input type="radio" name="age" value="20대">20대
+                <input type="radio" name="age" value="30대">30대
+                <input type="radio" name="age" value="40대">40대
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 150px;">여행해 본 나라는?</th>
+            <td>
+                <input type="checkbox" name="nara" value="일본">일본
+                <input type="checkbox" name="nara" value="미국">미국
+                <input type="checkbox" name="nara" value="독일">독일
+                <input type="checkbox" name="nara" value="체코">체코
+                <input type="checkbox" name="nara" value="대만">대만
+            </td>
+        </tr>
+        <tr>
+            <th 
+            >코로나백신</th>
+            <td>
+                <label><input type="checkbox" id="corona">백신접종</label>
+            </td>
+        </tr>
+        <tr>
+            <th>글씨체</th>
+            <td>
+                <select id="sele">
+                <option>궁서체</option>
+                <option>Dongle</option>
+                <option>Gamja Flower</option>
+                <option>Nanum Pen Script</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="2" align="center">
+                <button type="button" class="btn btn-success" id="btn">전송</button>
+            </td>
+        </tr>
+
+    </table>
+    
+</form>
+<div id="box"></div>
+</body>
+</html>

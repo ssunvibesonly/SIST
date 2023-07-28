@@ -1,0 +1,32 @@
+
+
+#contain{
+    position:absolute;
+    background-color: white;
+    margin-left: 400px;
+    
+}
+
+#namecard{
+    margin-top: 50px;
+    
+}
+
+aside{
+    float: left;
+}
+
+div>ul>li{
+
+    list-style: none;
+}
+
+#myself{
+    margin-top: 30px;
+    margin-left: 300px;
+}
+
+section>h2{
+    background-color: lightpink;
+    width: 150px;
+}

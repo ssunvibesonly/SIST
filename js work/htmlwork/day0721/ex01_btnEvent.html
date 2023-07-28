@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #photo{
+
+            position: absolute; 
+            left: 500px;
+            top: 200px;
+            width: 400px;
+            height: 500px;
+            border: 10px groove gold;
+            
+        }
+
+        #btnRandom{
+
+            margin-left: 400px;
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <input type="image" src="../만화이미지/16.png" id="btnRandom" onclick="clickbtn()">
+    <b>이미지 버튼을 누르면 이미지 바뀝니다.</b>
+    <img src="" id="photo" >
+
+    <script>
+        //배열에 여러개 이미지 넣는다.
+        var imgArr=new Array();
+
+        imgArr.push("../연예인사진/1.jpg");
+        imgArr.push("../Food/7.jpg")
+        imgArr.push("../Food/5.jpg")
+        imgArr.push("../연예인사진/1.jpg")
+        imgArr.push("../flower_ani/redhair17.PNG")
+        imgArr.push("../flower_ani/redhair7.PNG")
+        imgArr.push("../flower_ani/redhair3.PNG")
+        imgArr.push("../flower_ani/redhair2.PNG")
+        imgArr.push("../Food/2.jpg")
+        imgArr.push("../연예인사진/12.jpg")
+
+        //초기이미지를 얻어서 랜덤하게 초기이미지 넣기
+        //0~9사이의 난수값을 얻는다.
+        var idx=parseInt(Math.random()*10
+        );
+        //photo에 경로값을 수정해준다.
+        photo.setAttribute("src",imgArr[idx]);
+        //이벤트...이미지 버튼을 누르면 0~9사이의 난수값을 얻어서 경로 수정
+        function clickbtn(){
+            var idx=parseInt(Math.random()*10);
+
+            photo.setAttribute("src",imgArr[idx]);
+
+        }
+
+
+
+    </script>
+</body>
+</html>

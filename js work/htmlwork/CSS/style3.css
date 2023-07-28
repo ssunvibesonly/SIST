@@ -1,0 +1,23 @@
+#box1{
+
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    background-color: pink;
+    padding: 20px 20px 20px 20px;
+
+}
+
+#box1 h1{
+    
+    font-size: 30pt;
+    color: white;
+    text-align: center;
+}
+
+#box1 p{text-align: center;}
+
+#box1 ul{
+    
+    list-style: none;
+    text-align: center;}

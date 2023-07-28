@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        #out{
+            font-family: "Nanum Pen Script";
+            font-weight: bold;
+            padding: 20px;
+            width: 500px;
+            margin-top: 50px;
+            border: 0px solid black;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+        /* 버튼이벤트 클릭시 3px씩 감소 증가되도록
+            9보다 작아지면 "더이상 줄일 수 없다."후에 종료
+            60보다 커지면 경고 "더이상 커질 수 없다"후에 종료
+            두개의 버튼 클릭시마다 현재 글꼴 사이즈를 fsize에 출력 */
+
+            var fsize=document.getElementById("fsize");
+            var out=document.getElementById("out");
+            var btn1=document.getElementById("btn1");
+            var btn2=document.getElementById("btn2");
+            
+            fsize.innerHTML="현재 글꼴 사이즈는 40px 입니다."
+
+            btn1.onclick=function(){
+
+                var outsize=parseInt(out.style.fontSize); //out을 style로 줬기 때문에 style에서 폰트사이즈를 읽는다.
+                // alert(outsize); => 확인용
+                outsize-=3;
+                
+
+                if(outsize<9){
+                    alert("더이상 줄일 수 없어요");
+
+                    return;
+                }
+
+                out.style.fontSize=outsize+"px"; //px을 붙여줘야 적용이 된다.
+
+                fsize.innerHTML="현재 글꼴 사이즈는 "+outsize+"px 입니다."
+
+
+            }
+
+            btn2.onclick=function(){
+
+            var outsize=parseInt(out.style.fontSize); //out을 style로 줬기 때문에 style에서 폰트사이즈를 읽는다.
+            // alert(outsize); => 확인용
+            outsize+=3;
+
+            if(outsize>=60){
+            alert("더이상 커질 수 없어요");
+            return false;
+        }
+
+            out.style.fontSize=outsize+"px"; //px을 붙여줘야 적용이 된다.
+
+            fsize.innerHTML="현재 글꼴 사이즈는 "+outsize+"px 입니다."      
+
+}
+            //글자색
+
+            document.getElementById("mycolor").onchange=function(){
+
+            //alert(this.value);
+            out.style.color=this.value;
+
+        }
+
+            //배경색
+            document.getElementById("mycolor2").onchange=function(){
+                out.style.backgroundColor=this.value
+            }
+
+                //보더 굵기 : 안되면 꼭 뒤에 px들을 붙여보자!
+                document.getElementById("selwid").onchange=function(){
+
+                out.style.borderWidth=this.value+"px";
+
+}
+
+}   
+
+        
+    </script>
+</head>
+<body>
+    <button type="button" id="btn1">점점 작게</button>
+    <button type="button" id="btn2">점점 크게</button>
+    <hr>
+    <div id="fsize"></div>
+    <b>글자색 선택:</b>
+    <input type="color" value="#ffccff" id="mycolor"> <!--input의 value값이 button의 이름처럼 쓰인다.-->
+    <br>
+    <b>배경색 선택: </b>
+    <input type="color" value="#ccffcc" id="mycolor2">
+    <br>
+    <b>테두리선 굵기 선택:</b>
+    <select id="selwid" style="width: 120px;">
+        <option value="0">없음</option>
+        <option>1</option> <!-- value가 있을 땐 value값을 우선으로 읽고 없을 땐 옵션의 사이값을 읽는다 -->
+        <option>3</option>
+        <option>5</option>
+        <option>7</option>
+        <option>9</option>
+    </select>
+
+    <div id="out" style="font-size: 40px;">
+        오늘은 불타는 금요일입니다!!
+    </div>
+</body>
+</html>

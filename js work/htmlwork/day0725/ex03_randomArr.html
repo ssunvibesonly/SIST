@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <img src="">
+    <img src="">
+    <img src="">
+    <img src="">
+    <img src="">
+
+    <script>
+        //모든 이미지에 같은 이미지 넣고 너비 높이 보더 
+        $("img").attr("src","../만화이미지/01.png").css({
+
+            "width":"100px",
+            "height":"100px",
+            "border":"2px dotted green"
+        })
+
+        //랜덤이미지 5개 배열
+        var imgarr=new Array(5); // ()안에 배열갯수 써도 되고 안서도 된다, 단 push로 넣을 땐 안써준느게 좋다.
+
+        imgarr[0]="../만화이미지/02.png"
+        imgarr[1]="../만화이미지/03.png"
+        imgarr[2]="../만화이미지/04.png"
+        imgarr[3]="../만화이미지/05.png"
+        imgarr[4]="../만화이미지/06.png"
+
+        //img태그에 마우스 올리면 5개의 랜덤이미지 중에서 하나가 선택되고
+        //마우스를 벗어나면 다시 원래의 이미지로 돌아온다.
+
+
+        $("img").hover(function(){
+            
+            curimg=$(this).attr("src");
+            var rnd=(Math.round(Math.random()*4)); //(Math.round()) : round함수는 반올림을 해준다. , random=0~0.99
+            $(this).attr("src",imgarr[rnd]);
+            //alert(rnd);
+
+        },function(){
+
+            $(this).attr("src",curimg);
+        })
+
+    </script>
+</body>
+</html>

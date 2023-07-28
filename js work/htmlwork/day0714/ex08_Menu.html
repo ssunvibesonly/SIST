@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a{
+            text-decoration: none;
+        
+           
+        }
+
+       ul li{
+            list-style: none;
+        }
+        li.main{
+
+            float:left;
+        }
+        li.main>a{ /*selector > : 바로 아래*/
+            font-size: 20pt;
+            font-weight: bold;
+            margin-right: 20px;
+            color: red;
+            display: block;
+            width: 160px;
+        }
+
+        ul.submain{
+
+            font-size: 12pt;
+            margin-top: 20px;
+        }
+
+        ul.submain>li>a{
+            display: block;
+            width: 150px;
+            height: 20px;
+            color: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li class="main">
+                <a href="#">7월 12일</a> <!-- 경로 없으몀 #으로 닫아둠-->
+                <ul class="submain">
+                    <li>
+                        <a href="../day0712/ex_1.html">1번예제</a>
+                    </li>
+                    <li>
+                        <a href="../day0712/ex_2htmlTag.html">2번예제</a>
+                    </li>
+                    <li>
+                        <a href="../day0712/quiz.html">quiz</a>
+                    </li>
+                
+                </ul>
+
+
+            </li>
+        </ul>
+        <ul>
+            <li class="main">
+                <a href="#">7월 13일</a> <!-- 경로 없으몀 #으로 닫아둠-->
+                <ul class="submain">
+                    <li>
+                        <a href="../day0713/ex02_olul.html">olul예제</a>
+                    </li>
+                    <li>
+                        <a href="../day0713/ex03_textStyle.html">textstyle예제</a>
+                    </li>
+                    <li>
+                        <a href="../day0713/ex05_ulMenu.html">ul메뉴</a>
+                    </li>
+                    <li>
+                        <a href="../day0713/ex07_cssClass.html">cssClass예제</a>
+                    </li>
+                
+                </ul>
+
+
+            </li>
+        </ul>
+        <ul>
+            <li class="main">
+                <a href="#">7월 14일</a> <!-- 경로 없으몀 #으로 닫아둠-->
+                <ul class="submain">
+                    <li>
+                        <a href="../day0714/ex03_table.html">table예제1</a>
+                    </li>
+                    <li>
+                        <a href="../day0714/ex04_table.html">table예제2</a>
+                    </li>
+                    <li>
+                        <a href="../day0714/ex05_tableSpan.html">tablespan예제</a>
+                    </li>
+                    <li>
+                        <a href="../day0714/ex07_aTag.html">aTag예제</a>
+                    </li>
+                
+                </ul>
+
+
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

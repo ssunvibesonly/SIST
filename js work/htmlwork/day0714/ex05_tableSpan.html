@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+        .tb1{
+
+            width: 500px;
+            border: 5px inset gray;
+            border-collapse: collapse;
+        }
+
+        .tb1 td{
+
+            border: 1px solid gray;
+            font-family: 'Gamja Flower';
+            font-size: 20pt;
+        }
+
+        .tb1 .line{ /*그냥 .line하고 클래스로 줘도 똑같음!*/
+
+            border-bottom: 5px double red;
+        }
+    </style>
+</head>
+<body>
+    <table class="tb1">
+        <caption><b>[표 span 연습]</b></caption>
+        <tr>
+                <td rowspan="3">
+                    <img src="../flower_ani/s7.JPG" width="200px" height="150px"
+                    >
+                </td>
+            <td>이름: 장순영</td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-111-2222</td>
+
+        </tr>
+        <tr class="line">
+            <td>주소 : 서울시</td>
+        
+        </tr>
+        <tr>
+            <td rowspan="3">
+                <img src="../flower_ani/s5.JPG" width="200px" height="150px"
+                >
+            </td>
+        <td>이름: 강연주</td>
+    </tr>
+    <tr>
+        <td>핸드폰: 010-222-3332</td>
+
+    </tr>
+    <tr>
+        <td>
+            주소: 남한산성
+        </td>
+    </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: black;
+    height:100%;
+
+}
+
+#container{
+
+    position: absolute;
+    margin-left: -400px;
+    width: 900px;
+    height: 100%;
+    background-color: white;
+    left:50%;
+}
+
+aside{
+    float: left;
+    width: 300px;
+    padding: 20px 50px;
+    height: 100%;
+    background-color: aquamarine;
+}
+
+aside>div>img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+
+}
+#main{
+    margin-top: 30px;
+    margin-left: 350px;
+    /*float;right;
+    padding:40px
+    width:600px
+    height:*/
+}
+
+.namecard>h1{
+
+    margin-top: 50px;
+}
+

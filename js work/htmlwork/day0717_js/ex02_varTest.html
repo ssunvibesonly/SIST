@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--let : 변수 / const : 상수 (var로 모든게 통용된다. var만 써도 무방) -->
+    <title>자바스크립트 변수_var(let,const)</title> 
+    <script>
+        var name1="장";
+        var name2="순";
+        var name3="영";
+
+        var name=name1+name2+name3;
+        //스크립트는 헤드단이나 바디단 둘 다 써줄 수 있다
+        //자바스크립트의 출력
+        //html 요소없이 출력(document.writer()) : ()안의 것을 화면에 출력하라
+        document.write("안녕하세요?<br>"+name+"입니다.<br>")
+        document.write('자바스크립트의 시작<br> "자바스크립트 1일차"<br>')
+    </script>
+</head>
+<body>
+    <!--자바스크립트의 출력_3가지
+     1. document.write()
+     2. innerHTML : HTML 요소안에 출력 
+     3. console.log() : 브라우저의 콘솔탭에 출력-->
+        <script>
+            var a;
+            a="변수 연습";
+            a="100";
+
+            document.write(a+1+"<br>");
+
+            //대입연산자
+            var b=10;
+            document.write(b+"<br>"); // <br>태그는 문자열 안에서만 찍어줘야  한다.
+            b+=5;
+            document.write(b+"<br>"); //15
+
+            //증감연산자
+            var b=20;
+            b++;
+            document.write(b+"<br>") //21
+            b++;
+            document.write(b+"<br>")
+        </script>
+
+</body>
+</html>

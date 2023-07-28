@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .tb1{
+
+            width: 400px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+
+        }
+
+        .tb1 td,.tb1 th{
+
+            border:1px solid gray;
+        }
+
+        .tb1 tr th{
+
+            background-color: aquamarine;
+        }
+
+        .tb1 tr td:hover{
+
+            background-color: gray;
+            color: white;
+
+        }
+
+        .tb2{
+
+            width: 400px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+
+        }
+
+        .tb2 tr td{
+
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .tb3{
+            border: 1px solid black;
+            width: 700px;
+            height: 700px;
+
+
+        }
+
+        .tb3 th, .tb3 td{
+
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        .tb3 th{
+            background-color: pink;
+
+        }
+
+        .tb3 th:hover{
+
+            background-color: lightblue;
+        }
+
+
+    </style>
+</head>
+<body>
+    <table border="1" style="width: 300px;">
+
+        <caption><b>[표 1]</b></caption>
+        <tr height="50" bgcolor="aqua"> <!--백그라운드 색깔 한 줄에선 bgcolor로 표현-->
+            <td align="center">하나</td>
+            <td align="right" valign="top">둘</td>
+            <td valign="bottom" bgcolor="gray">셋</td>
+            <!--valign 세로 위치 조정 가능 / 한 줄에서만 먹힘 style에선 안먹힘-->
+    
+        </tr>
+        
+        <tr height="50" align="center">
+            <td colspan="3">세칸 합침</td>
+
+        </tr>
+
+    </table>
+
+        <hr>
+
+<table class="tb1">
+    <caption>[표2]</caption>
+    <tr>
+        <th>사진</th>
+        <th>이름</th>
+        <th>핸드폰</th>
+        <th>주소</th>
+
+    </tr>
+
+    <tr>
+        <td rowspan="3">
+            <img src="../flower_ani/s5.JPG">
+        </td>
+        <td>성신이</td>
+        <td>010-222</td>
+        <td>서울시</td>
+    </tr>
+
+    <tr>
+        <td>민규</td>
+        <td>010-333</td>
+        <td>인천</td>
+    </tr>
+
+    <tr>
+        <td>성현이</td>
+        <td>010-444</td>
+        <td>수원시</td>
+    </tr>
+
+</table>
+
+<hr>
+
+<table class="tb2">
+    <caption><b>[표 문제_span]</b></caption>
+    <tr>
+        <td rowspan="2">1</td>
+        <td colspan="2">2</td>
+        <td>3</td>
+
+    </tr>
+
+    <tr>
+        <td colspan="3">4</td>
+    </tr>
+
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+    </tr>
+
+</table>
+
+<hr>
+
+<table class="tb3">
+    <caption>[표3]</caption>
+    <tr>
+        <th>이름</th>
+        <th>사진</th>
+        <th>신상정보</th>
+    </tr>
+
+    <tr>
+        <td rowspan="6" >이제훈</td>
+        <td rowspan="6">
+            <img src="../myimg/이제훈.png" width="400px" height="400px">
+        </td>
+        <td>나이:40살</td>
+    </tr>
+
+    <tr>
+        <td>핸드폰번호: 알고싶다</td>
+    </tr>
+
+    <tr>
+        <td>주소: 서울시 어딘가</td>
+    </tr>
+
+    <tr>
+        <td>MBTI:ENTP</td>
+    </tr>
+
+    <tr>
+        <td>혈액형: B형</td>
+    </tr>
+
+
+</table>
+    
+
+    
+
+
+</body>
+</html>

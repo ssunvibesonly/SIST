@@ -1,0 +1,31 @@
+div.lottoball{
+
+    float: left;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 30px;
+    font-family:'Noto Sans KR';
+    text-align: center;
+    box-shadow: 5px 5px 5px gray;
+    border-radius: 100px;
+    border: 2px solid palevioletred;
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: pink;
+
+}
+
+hr.c{
+   margin-top: 20px;
+    clear:both;
+}
+
+img{ /*img{} 하면 전체 이미지가 적용받고, img.imga 하면 imga 클래스 적용한 이미지만 적용 받는다.*/
+
+    width: 200px;
+    height: 200px;
+
+}
+

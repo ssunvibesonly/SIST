@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #one{
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function photosmall(){
+
+            var p=document.getElementById("myimg");
+            var w=p.getAttribute("width");
+            console.log(typeof(w)); 
+            //사이즈를 작게하기 위해 width값의 속성을 가져오고 확인해준다.
+            //개발자창에서 w String형태로 확인 가능
+            //String인데 - , * 는 숫자로 계산됨(+만 안됨)
+            w-=10;
+            p.setAttribute("width",w);
+
+        }
+
+        function photolarge(){
+            var p=document.getElementById("myimg");
+            var w=p.getAttribute("width");
+            w=parseInt(w);
+            console.log(typeof(w))
+            w+=10;
+            p.setAttribute("width",w);
+
+        }
+    </script></scrip>
+</head>
+<body>
+    <div id="one">
+        <button type="button" onclick="photosmall()">점점 작게</button>
+        <button type="button" onclick="photolarge()">점점 크게</button>
+    </div>
+    <img src="../만화이미지/01.png" width="200" id="myimg"> <!--top은 absolute줘야 먹음-->
+</body>
+</html>

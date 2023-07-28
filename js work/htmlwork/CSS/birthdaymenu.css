@@ -1,0 +1,62 @@
+div.d{
+
+    background-color: pink;
+    color: white;
+    text-align: center;
+    font-family: 'Noto Sans KR';
+    font-size: 20pt;
+    margin: 30px 100px 30px 100px;
+}
+
+.di{
+    text-align: center;
+    
+}
+
+
+
+p.card{
+
+    font-size: 20pt;
+    font-family: 'Nanum Pen Script';
+    text-align: center;
+    border:2px solid gray;
+ 
+
+}
+
+img{
+
+
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 200px;
+    height: 200px;
+
+}
+
+li{
+
+    text-align: center;
+    border-radius: 100px;
+    background-color: aquamarine;
+    width: 150px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    font-family: 'Gamja Flower';
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    list-style: none;
+    
+    
+}
+
+li:hover{
+
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+

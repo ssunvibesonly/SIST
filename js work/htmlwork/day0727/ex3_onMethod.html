@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!--on() 메서드
+        처음부터 존재하는 요소나 미래에 생겨난 요소에 대해서 모두 이벤트 가능
+        JQuery: $("선택자").click(funvtion(){}) => 현재 있는 개체에만 적용된다.
+
+        on() 사용법
+        $(document).on('행위','선택자',콜백 함수{}) 
+        ex) $(document).on('click',"button",function())
+        : element가 나중에 동적으로 생성된것들도 이벤트가 적용된다.
+        : 행위 - click, change, keyup ...
+    -->
+    <button type="button" id="add">+</button>
+    <!--이전 방식-->
+    <script>
+        $("#add").click(function(){
+            $("body").append("<button id='add'>+</button>")
+        })
+    </script>
+    <!--동적 이벤트 방식 on()-->
+    <script>
+        $(document).on('click',"button[id='add']",function(){ //id를 줬을 경우 button[id='add']로 써도 되고 "#add"해도 같다.
+            $("body").append("<button id='add'>+</button>")
+        })
+    </script>
+</body>
+</html>

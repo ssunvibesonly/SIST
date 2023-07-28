@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/buttonStyle.css">
+    <title>Document</title>
+</head>
+
+<script>
+
+    window.onload=function(){
+
+        var p1= "<img src='../flower_ani/s1.jpg'>";
+        var p2= "<img src='../연예인사진/1.jpg'>";
+
+        var btn1=document.getElementById("btn1");
+        var btn2=document.getElementById("btn2");
+
+        btn1.onclick=function(){
+            var a=confirm("애니메이션 사진을 출력할까요?");
+
+            if(a){
+                result.innerHTML=p1;
+            }else{
+                document.write("취소되었습니다.");
+            }
+        }
+
+        btn2.onclick=function(){
+            var b=confirm("연예인 사진을 출력할까요?");
+
+            if(b){
+                result.innerHTML=p2;
+            }else{
+                document.write("취소되었습니다.")
+            }
+
+        }
+        
+        
+    }
+
+    function btn3(){
+
+        imgArr=["<img src='../flower_ani/s1.jpg'>","<img src='../flower_ani/s2.jpg'>",
+        "<img src='../flower_ani/s3.jpg'>","<img src='../flower_ani/s4.jpg'>","<img src='../flower_ani/s5.jpg'>"]
+
+        var num=prompt("출력할 이미지의 번호를 입력하시오");
+
+       /* if(num>=0 && num<=4){ 
+            imgresult.innerHTML=imgArr[num];
+        }else{
+            alert("존재하지 않는 인덱스 번호 입니다.");
+        }*/
+
+        //존재하지 않는 경우를 써주는 상황이 많다.
+        if(num<0 || num>4){
+            alert("해당번호는 존재하지 않습니다.");
+            
+        }
+        else if(!num){ //null값 나타날 때
+            alert("번호를 입력해주세요");
+
+        }
+        else
+            imgresult.innerHTML=imgArr[num];
+
+  
+
+    }
+    
+
+
+
+</script>
+<body>
+    <!--버튼 2개에 하나는 Food, 하나는 연예인 이라고 쓰고 css 우리가 만든 
+        buttonStyle에서 적용한다.
+    
+        food버튼을 클릭하면 음식사진을 div에 출력하고 연예인을
+        클릭하면 연예인 한명을 출력한다.
+        (단, 2번 모두 음식을 출력할까요? 라고 물어보고 예를 클릭시에만
+        이미지 출력한다.)-->
+
+    <form>
+
+        <!--onclick 사용자 함수로도 해보기
+        사용자 함수 : 반복적으로 사용해야하는 메소드가 있을 경우 따로 만들어서
+        window.onload에서 호출 / 사용자 함수는 바로 호출하기 때문에 id필요 없음-->
+        <button id="btn1" class="btn btn-pink" type="button">애니메이션</button>
+        <button id="btn2" class="btn btn-aqua" type="button">연예인</button>
+
+
+    </form>
+    <div id="result"></div>
+    <hr>
+    <!--문제 2. 이미지 출력이라는 버튼을 하나 만들고.. 클릭 시 
+        propmt로 "출력할 이미지의 인덱스 번호를 입력해주세요
+        0번을 입력하면 0번 이미지가 출력(총 5개의 이미지를 imgArr이라는
+        배열 형태로 넣어놓고, 다양한 폴더의 이미지 5개 배열에 넣어주세요.
+        단, 배열인덱스에 없는 값 입력시 div에 "해당 번호는 없습니다."출력)"-->
+        <!--input은 value값이 이름이고 </input> 필요없다.-->
+        <input class="btn btn-pink" type="button" value="이미지출력" onclick="btn3()">
+     <div id="imgresult"></div>
+</body>
+</html>

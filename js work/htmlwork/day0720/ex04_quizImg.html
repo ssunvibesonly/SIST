@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container div img{
+
+            border: 10px inset gray;
+            margin-top: 20px;
+            margin-left: 20px;
+
+        }
+
+
+
+    </style>
+</head>
+<script>
+    window.onload=function(){
+        var btn1=document.getElementById("btn1");
+        var btn2=document.getElementById("btn2");
+        var btn3=document.getElementById("btn3");
+        var btn4=document.getElementById("btn4");
+        var btn5=document.getElementById("btn5");
+
+        var photo=document.getElementById("img1");
+
+        btn1.onclick=function(){
+
+            photo.setAttribute("src","../연예인사진/13.jpg");
+        }
+        btn2.onclick=function(){
+            photo.setAttribute("src","../연예인사진/20.jpg")
+        }
+
+        btn3.onclick=function(){
+            photo.setAttribute("src","../연예인사진/17.jpg")
+
+        }
+        btn4.onclick=function(){
+            var a=photo.getAttribute("width");
+            a=parseInt(a);
+            a+=10;
+            photo.setAttribute("width",a);
+        }
+
+        btn5.onclick=function(){
+            var b=photo.getAttribute("width");
+            b-=10;
+            photo.setAttribute("width",b);
+            
+
+        }
+
+
+        //아래 부분 문제
+
+        
+        var selimage=document.getElementById("selimage");
+        var picture=document.getElementById("picture");
+        
+        //이 코드 넣은 이유: select 이름과 사진을 동일하게 하기 위해서
+        //alert(selimage.value);
+        var init_img=selimage.value;
+
+        //현재 사진의 src속성을 변경한다.
+        picture.setAttribute("src",init_img);
+
+        //select : select는 onclick말고 onchange
+        selimage.onchange=function(){
+            //console.log(this.value);
+            picture.setAttribute("src",this.value)
+        }
+
+        //모든 이벤트 함수에는 이벤트 발생 객체에 대한 this라는
+        //변수가 기본적으로 존재한다.
+        
+
+        //사진의 src에 this.value 적용
+        
+
+
+    }
+
+
+</script>
+<body>
+    <button type="button" id="btn1">박신혜</button>
+    <button type="button" id="btn2">유아인</button>
+    <button type="button" id="btn3">신민아</button><br><br>
+    <button type="button" id="btn4">점점 크게</button>
+    <button type="button" id="btn5">점점 작게</button>
+    <hr>
+    <img src="../flower_ani/star7.png" width="300" id="img1" border="1">
+    
+    <hr>
+    <div class="container">
+        <div class="buttons">
+            <button type="button" id="btnsmall">점점 작게</button>
+            <button type="button" id="btnlarge">점점 크게</button><br>
+            <b style="margin-left: 20;">사진 선택</b>
+            <select id="selimage">
+                <option value="../연예인사진/11.jpg">고준희</option>
+                <option value="../연예인사진/12.jpg" selected>박보영</option>
+                <option value="../연예인사진/16.jpg">성준</option>
+                <option value="../연예인사진/19.jpg">수지</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <img src="../연예인사진/15.jpg" id="picture" width="300">
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #out{
+            position:absolute;
+            top: 50px;
+            left: 10px;
+            border: 1px solid gray;
+            width: 250px;
+            height: 200px;
+            padding: 20px;
+            background-color: burlywood;
+            font-size: 11pt;
+        }
+    </style>
+    <script>
+        var rnd;
+        var cnt=0;
+
+        window.onload=function(){ //window.onload는 헤드단에다가 값들을 선언할 때 필수!
+
+            rnd=parseInt(Math.random()*100)+1; // 1~100까지의 랜덤 수 
+        }
+
+        function check(su){
+
+
+            //수가 1~100 여기를 벗어나면 함수 종료
+            if(su<=0 || su>100){
+                alert("잘못 입력했어요");
+                return false; //함수 종료(return만 써도 되긴 됨)
+            }
+            
+            //난수 비교 
+            cnt++;
+            if(su>rnd){
+                out.innerHTML=cnt+"회:"+su+"보다 작습니다.<br>";
+            }else if(su<rnd){
+            out.innerHTML+=cnt+"회: "+su+"보다 큽니다.<br>";
+            }else{
+            out.innerHTML+="<h3>축하합니다. 정답은 "+rnd+"입니다.</h3>";
+            imge.src="../flower_ani/s6.JPG";
+        }
+
+        //실패 조건
+        if(cnt>10){
+            out.innerHTML="<h3>다음 기회에...</h3>";
+            imge.src="../flower_ani/s10.jpg";
+        }
+
+        frm.num.value=''; //초기화의 기본
+        frm.num.focus(); //초기화의 기본+ 커서가 계속 자리에 와있는 것
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <form action="#" name="frm" onsubmit="return false"> <!-- form이 전송되려는 성질이 있어서 onsubmit="return false"-->
+        <b>숫자 입력</b>
+        <input type="text" name="num" size="5" onkeydown="if(event.keyCode==13) check(value)"> <!-- keycode 13이 엔터-->
+    </form>
+    <div id="out"></div>
+    <div style="position: absolute; top: 80px; left: 300px;">
+        <img src="" name="imge">
+    </div>    
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/buttonStyle.css">
+    <title>Document</title>
+    <style>
+        #result{
+
+            width: 500px;
+            height: 150px;
+            line-height: 150px;
+            font-size: 22px;
+            text-align: center;
+            border: 2px solid gray;
+            margin-top: 20px;
+            background: url(../flower_ani/s9.JPG) no-repeat right bottom;
+            background-size: 50px 60px;
+
+
+        }
+        #imga{
+
+            border: 5px groove tomato;
+            margin: 30px 150px;
+
+
+
+        }
+    </style>
+    
+    
+    <script>
+        window.onload=function(){ //사용자 정의함수 빼고는 전부 window.onload=function()
+            //div요소값
+            var r=document.getElementById("result");
+
+            //img요소값
+            var photo=document.getElementById("imga");
+
+            //버튼 1 이벤트 btn1.onclick가능 id값이라
+            document.getElementById("btn1").onclick=function(){
+                //사진의 현재 width값
+                var width=photo.getAttribute("width");
+
+                //프롬프트 창에 이미지 너비를 입력해주세요
+                //입력하면 그것이 포토의 너비에 적용
+
+                var inputw=prompt("이미지 너비를 입력하세요",width);
+
+                if(inputw==null)
+                alert("이미지 너비 변경 안할래요!!");
+                else
+                photo.setAttribute("width",inputw);
+
+
+            }
+        
+            //이벤트 2버튼을 누르면 prompt창에 연예인 사진 1~20사이의 사진 번호를 입력해주세요
+            //(ex. 취소 시 경고창에 지금 사진이 좋아요 안바꿀래요 출력)
+            //21번을 누르면 1~20까지 밖에 없다구요.. 함수 종료(return, return false(가장 정확))
+            //1이라고 누르면 현재 사진이 1로 바뀐다.
+            btn2.onclick=function(){
+
+                var num=prompt("연예인 사진 1~20사이의 사진 번호를 입력하세요")
+                var imgpath="../연예인사진/"+num+".jpg";
+
+               /* if(num==null){
+                    alert("지금 사진이 좋아요 안바꿀래요");
+                    return;
+                }else if(num<1 || num>20){
+                    alert("1~20까지 밖에 사진이 없다구요");
+                    return;
+                }else{
+                    photo.setAttribute("src",imgpath);
+                }*/
+
+                //if는 무조건 else if, else를 가져온다는 생각을 버리자!
+                //null값 같이 if로 끊어줘야 하는 경우들이 많다.
+               if(num==null){ 
+                alert("지금 사진이 좋아요 안바꿀래요");
+                    return;
+               }
+
+               if(num<1 || num>20){
+                    alert("1~20까지 밖에 사진이 없다구요");
+                    return;
+                }
+                //경로 구하기
+                var imgpath="../연예인사진/"+num+".jpg";
+                //이미지 변경
+                photo.setAttribute("src",imgpath);
+            
+        }
+            //버튼3
+            document.getElementById("btn3").onclick=function(){
+                
+                //innerText와 innerHTML의 차이
+                //innerText : text를 넣는다.(태그가 노출)
+                //innerHTML : html을 넣는다.(태그가 적용)
+
+                var name=prompt("당신의 이름은?");
+
+                if(name==null){
+                    document.getElementById("result").innerText="<u>취소를 눌렀네요</u>";
+                }else{
+                    r.innerHTML="<u>당신의 이름은 "+name+"이군요</u>"
+                }
+
+
+
+            }
+
+            
+    }
+    </script>
+</head>
+<body>
+    <button type="button" class="btn btn-pink" id="btn1">이벤트#1</button>
+    <button type="button" class="btn btn-aqua" id="btn2">이벤트#2</button>
+    <button type="button" class="btn btn-lightyellow" id="btn3">이벤트#3</button>
+
+    <div id="result">테스트</div>
+    <img src="../만화이미지/05.png" width="250" id="imga">
+</body>
+</html>

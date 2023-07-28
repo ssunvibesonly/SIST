@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <script>
+        //결과 출력버튼을 누르면 자바 오라클 JQuery 점수 출력하고 총점, 평균도 출력
+        //이름 입력 안했을 시 alert로 경고메세지
+        //3과목의 점수가 숫자가 아닐 경우 alert로 경고메세지
+        //div에 결과출력 시 css로 style도 꾸며준다. 
+        $(function(){
+
+            //버튼 이벤트
+            $("#btn").click(function(){
+                
+                var name=$("#name").val();
+                var java=$("#java").val();
+                var oracle=$("#oracle").val();
+                var jquery=$("#jquery").val();
+
+                // 연결된 것이 아니기 때문에 if if 끊어준다.
+
+                if(name.length==0){ //이름이 null값일 때
+                alert("이름을 입력해주세요");
+                $("#name").focus(); //마우스 커서 자동 지정시 .focus()
+                return;
+            }
+                if(isNaN(java) || java.length==0){ // isNaN: is not a number : 숫자가 아니라면
+                    alert("자바 점수는 숫자로만 입력해주세요.")
+                    $("#java").focus(); //순수한 input 창만을 의미하기 때문에 ID로 가져온다. (input창에 커서가 가는거니까!)
+                    return;
+                }
+
+                if(isNaN(oracle) || oracle.length==0){ // isNaN: is not a number
+                    alert("오라클 점수는 숫자로만 입력해주세요.")
+                    $("#oracle").focus();
+                    return;
+                }
+
+                if(isNaN(jquery) || jquery.length==0){ // isNaN: is not a number
+                    alert("JQuery 점수는 숫자로만 입력해주세요.")
+                    $("#jquery").focus();
+                    return;
+                }
+
+                //총점
+                //숫자를 입력해도 문자형으로 받아오기 때문에 연산을 해주기 위해 parseInt() or Number()을 해준다.
+                var sum=parseInt(java)+parseInt(oracle)+parseInt(jquery);
+                
+                //평균
+                var avg=sum/3.0;
+
+                //출력
+                var s="이름: "+name+"<br>"
+                s+="자바 점수: "+java+"<br>"
+                s+="오라클 점수: "+oracle+"<br>"
+                s+="JQuery 점수: "+jquery+"<br>"
+                s+="총점: "+sum+"<br>"
+                s+="평균: "+avg+"<br>"
+
+                $("#result").html(s).css({
+                    "font-size":"15pt",
+                    "font-family" : "Nanum Pen Script",
+                    "background-color" : "pink"
+
+                })
+                
+            })
+                
+
+
+        })
+    </script>
+</head>
+<body>
+    <table class="table table-bordered" style="width: 420px;">
+        <tr>
+            <th width="120">학생명</th>
+            <td width="300">
+                <input type="text" id="name" style="width: 100px;">
+            </td>
+        </tr>
+        <tr>
+            <th width="120">자바 점수</th>
+            <td width="300">
+                <input type="text" id="java" style="width: 100px;">
+            </td>
+        </tr>
+        <tr>
+            <th width="120">오라클 점수</th>
+            <td width="300">
+                <input type="text" id="oracle" style="width: 100px;">
+            </td>
+        </tr>
+        <tr>
+            <th width="120">JQuery 점수</th>
+            <td width="300">
+                <input type="text" id="jquery" style="width: 100px;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="btn" type="button" class="btn btn-outline-success">결과 출력</button>
+            </td>
+        </tr>
+        <tr height="100">
+            <td colspan="2" align="center"> <!--colspan : 컬럼(열)을 합침 / rowspan : 카디널리티(행)을 합침-->
+                <div id="result">결과 출력</div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
