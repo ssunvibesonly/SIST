@@ -13,7 +13,7 @@
 <h3>oneInclude.jsp를 include하기</h3>
 <jsp:include page="oneInclude.jsp">
 	<jsp:param value="안녕 오늘은 월요일이야!" name="msg"/>
-	<jsp:param value="../만화이미지/18.png" name="imgname"/>
+	<jsp:param value="../image/만화이미지/18.png" name="imgname"/>
 	</jsp:include>
 </body>
 </html>
