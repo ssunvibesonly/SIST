@@ -36,18 +36,40 @@
 					alert("xml파일을 찾을 수 없어요")
 				},500:function(){
 					alert("서버 오류...코드를 다시 한 번 보세요")
-					
-					
-					
-					
-					
-					
+						
 					
 					
 				}
 			}
 		})
 	});
+	
+			$("#btn2").click(function(){
+			$("#result").empty();
+			
+			//JSON 읽기
+			$.ajax({
+			type:"get",
+			url:"data1.json",
+			dataType:"json",
+			success:function(data){
+				
+				ㅁ
+				
+				$("#result").append(s);
+					
+			},
+			statusCode:{
+				404:function(){ 
+					alert("json파일을 찾을 수 없어요");
+				},
+				500:function(){
+					alert("서버오류..코드 다시 보기")
+				}
+			}		
+			})		
+					
+			});	
 </script>
 </body>
 </html>
