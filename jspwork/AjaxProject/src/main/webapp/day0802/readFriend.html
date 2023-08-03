@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<button type="button" class="btn btn-info" id="btn1">friend.json 출력</button>
+<div id="result"></div>
+
+<script>
+	$("#btn1").click(function(){
+		$("#result").empty();
+		var sum="";
+		
+		$.ajax({
+			type:"get",
+			url:"friendToJson.jsp",
+			dataType:"json",
+			success:function(json){
+				sum+="<table class='table table-bordered' style='width:700px; text-align:center;'>"
+				sum+="<tr><th>번호</th><th>이름</th><th>핸드폰번호</th><th>주소</th><th>가입일</th></tr>"
+				$.each(json,function(idx,ele){
+					sum+="<tr>"
+					sum+="<td>"+ele.num+"</td>";
+					sum+="<td>"+ele.fname+"</td>";
+					sum+="<td>"+ele.fhp+"</td>";
+					sum+="<td>"+ele.faddr+"</td>";
+					sum+="<td>"+ele.gaipday+"</td>";
+					sum+="</tr>";
+					
+					
+				})
+				sum+="</table>"
+				$("#result").append(sum);
+			}
+			
+		})
+		
+	})
+	
+</script>
+</body>
+</html>

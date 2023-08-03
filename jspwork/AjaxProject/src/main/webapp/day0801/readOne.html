@@ -28,7 +28,7 @@
 			url:"data1.xml",
 			dataType: "xml",
 			success:function(data){
-				var len=$(data).length;
+				var len=$(data).length; //불러오는 파일의 갯수
 				//alert(len+"개");
 				s="City: "+$(data).find("name").attr("city")+"<br>"
 				s+="Nama: "+$(data).find("name").text()+"<br>"
@@ -66,7 +66,7 @@
 			$("#result").empty();
 			
 			//xml여러개 읽기
-			//$(selector).each(index,elements))
+			//$(selector).each(function(index,elements)){}
 			var s="";
 			
 			$.ajax({
