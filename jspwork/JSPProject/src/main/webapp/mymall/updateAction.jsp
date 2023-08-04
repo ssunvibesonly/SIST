@@ -11,27 +11,29 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 </head>
+<body>
 <%
-
 	request.setCharacterEncoding("utf-8");
 
-	String sang=request.getParameter("sang");
+	String no=request.getParameter("num");
+	String name=request.getParameter("sang");
 	String photo=request.getParameter("photo");
 	String price=request.getParameter("price");
 	String ipgo=request.getParameter("ipgo");
 	
 	MallDto dto=new MallDto();
-	dto.setSang(sang);
+	
+	dto.setNo(no);
+	dto.setSang(name);
 	dto.setPhoto(photo);
 	dto.setPrice(price);
 	dto.setIpgo(ipgo);
 	
 	MallDao dao=new MallDao();
-	dao.insertMall(dto);
+	dao.updateAdd(dto);
 	
 	response.sendRedirect("list.jsp");
-%>
-<body>
 
+%>
 </body>
 </html>

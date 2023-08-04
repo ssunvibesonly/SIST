@@ -61,7 +61,7 @@ function funcdel(num){
 				<td>
 					<button type="button" class="btn btn-warning btn-sm"
 					onclick="location.href='updateForm.jsp?num=<%=dto.getNum()%>'">수정</button>
-
+					<!-- 인자값 num(변수)을 dto.getNum()시퀀스 값으로 받아온 후 , updateForm에 getParameter로 불러줌 -->
 					<button type="button" class="btn btn-danger btn-sm"
 					onclick="funcdel(<%=dto.getNum()%>)">삭제</button>
 					

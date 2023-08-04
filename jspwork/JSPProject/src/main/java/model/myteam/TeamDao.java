@@ -1,3 +1,5 @@
+
+
 package model.myteam;
 
 import java.sql.Connection;
@@ -123,7 +125,7 @@ public class TeamDao {
 			pstmt.setString(1, num);
 			rs=pstmt.executeQuery();
 			
-			if(rs.next())
+			if(rs.next())//while문은 select에서 출력해야하는만큼 반복하기 때문에 while을 쓰고, update에서는 수정하는 값 하나씩만 받아오면 되므로 if
 			{
 				dto.setNum(rs.getString("num"));
 				dto.setName(rs.getString("tname"));
