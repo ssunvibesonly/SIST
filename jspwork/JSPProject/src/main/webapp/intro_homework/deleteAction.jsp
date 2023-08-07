@@ -1,5 +1,4 @@
-<%@page import="model.myteam.TeamDao"%>
-<%@page import="model.myteam.TeamDto"%>
+<%@page import="model.intro.IntroDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,25 +10,17 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
 <%
- String name=request.getParameter("name");
- String driver=request.getParameter("driver");
- String addr=request.getParameter("addr");
- String num=request.getParameter("num");
- 
- TeamDto dto=new TeamDto();
- 
- dto.setName(name);
- dto.setDriver(driver==null?"없음":"있음");
- dto.setAddr(addr);
- dto.setNum(num);
- 
- TeamDao dao=new TeamDao();
- dao.updateMyTeam(dto);
- 
- response.sendRedirect("list.jsp");
+String num=request.getParameter("num");
+
+IntroDao dao=new IntroDao();
+dao.deleteAct(num);
+
+response.sendRedirect("list_intro.jsp");
+
 
 %>
+<body>
+
 </body>
 </html>

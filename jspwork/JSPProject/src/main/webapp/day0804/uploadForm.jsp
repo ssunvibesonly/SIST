@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="uploadAction.jsp" method="post" enctype="multipart/form-data">
+<form action="uploadAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일업로드에서 enctype="multipart/form-data 써줘야함 -->
 	<table class="table table-bordered" style="width:500px">
 		<tr>
 			<th width="100">이름</th>

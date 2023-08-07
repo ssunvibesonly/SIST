@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import model.intro.IntroDto;
 import model.myteam.TeamDto;
 import oracle.db.DBConnect_2;
 
@@ -164,7 +165,8 @@ public class MallDao {
 			}
 			
 		}
-			
+		
+		
 }
 			
 
