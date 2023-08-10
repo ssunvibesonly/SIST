@@ -101,7 +101,7 @@
 						s+="<tr height='150'><td><pre>"+data.story+"</pre></td></tr>"
 						s+="<tr><td align='right'>"
 						s+="<button type='button' class='btn btn-default'>글쓰기</button>";
-						s+="<button type='button' class='btn btn-default'>목록</button>";
+						s+="<button type='button' class='btn btn-default' id='back'>목록</button>";
 						s+="<button type='button' class='btn btn-default' id='mod' num="+data.num+">수정</button>";
 						s+="<button type='button' class='btn btn-default' id='del' num="+data.num+">삭제</button>";
 						s+="</td></tr></table>";
@@ -171,7 +171,7 @@
 			})
 		})
 		//수정 완료
-		$(document).on("click","#ubtnadd",function(){
+		$("#ubtnadd").click(function(){
 			
 			var unum=$("#unum").val();
 			//alert(unum);
@@ -189,17 +189,27 @@
 				data:data,
 				success:function(data){
 					$("div.updateForm").hide();
-					list(); //$("div.detailForm").show();로 수정사항을 띄우고 싶으면 updateBoard에 JSOObJECT를 생성해줘야 한다.
+					
+					list();//$("div.detailForm").show();로 수정사항을 띄우고 싶으면 updateBoard에 JSOObJECT를 생성해줘야 한다.
+					$("div.list").show(); 
 				}
 				
 			})
 			
-			
-			
-		} )
+		})
 		
+		//목록
+		$(document).on("click","#back",function(){
+			list();
+			$("div.detail").hide();
+			$("div.list").show();
 			
 		})
+		
+		})
+		
+			
+		
 		
 	//출력하는 사용자 함수
 	function list(){
