@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class DBConnect_2 {
 
 	//driver,url,계정 비밀번호
-	static final String MYSQL_URL="jdbc:derby:C:/Users/wlwlg/.p2/pool/plugins/com.quantum.derby_3.3.10/data/quantum";
+	static final String MYSQL_URL="jdbc:mysql://localhost:3306/coffee?serverTimezone=Asia/Seoul";
 	
 	//driver
 	String driver="com.mysql.cj.jdbc.Driver";
@@ -33,12 +33,12 @@ public class DBConnect_2 {
 		Connection conn=null;
 		try {
 			
-			conn=DriverManager.getConnection(MYSQL_URL,"goyoung" , "a1234");
+			conn=DriverManager.getConnection(MYSQL_URL,"goyoung" , "1234");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("오라클 연결 실패: url,계정,비번 확인 요함!!"+e.getMessage());
+			System.out.println("mysql 연결 실패: url,계정,비번 확인 요함!!"+e.getMessage());
 		}
 		return conn;
 	}
