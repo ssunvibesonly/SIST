@@ -39,7 +39,7 @@ SimpleGuestDTO dto=dao.getData(num);
 				</td>
 				<th width="100" style="background-color:lightpink">비밀번호</th>
 				<td>
-					<input type="password" name="pass" class="form-control" required="required" style="width:120px;">
+					<input type="password" name="pass" class="form-control" value=<%=dto.getPass() %> style="width:120px;">
 				</td>
 			</tr>
 			<tr>

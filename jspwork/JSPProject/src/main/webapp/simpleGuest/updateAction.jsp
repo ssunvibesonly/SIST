@@ -31,7 +31,7 @@ if(dao.isEqualPass(num, pass)){
 	
 	response.sendRedirect("guestList.jsp");
 }else{//틀리면 자바 스크립트로 경고 후 이전 화면으로 이동
-	%>
+%>
 	<script>
 		alert("비밀번호가 틀렸습니다.");
 		history.back(); //이전페이지로 돌아간다.

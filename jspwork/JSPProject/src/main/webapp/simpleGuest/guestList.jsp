@@ -47,7 +47,7 @@ function funcdel(number){
 <div style="margin:50px; 100px;">
 <button type="button" onclick="location.href='insertForm.jsp'" class="btn btn-success"
 style="margin-left:970px">글쓰기</button>
-<br><br>
+<br><br> 
 <div align="center">
 <form>
 	
