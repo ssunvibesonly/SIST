@@ -27,10 +27,13 @@
 		
 		response.sendRedirect("loginMain.jsp");
 		
-	}else{
+	}else{%>
+		<script>
+		alert("ID와 PW가 일치하지 않습니다.");
+		history.back();
+		</script>
 		
-		
-	}
+	<%}
 	
 %>
 <body>

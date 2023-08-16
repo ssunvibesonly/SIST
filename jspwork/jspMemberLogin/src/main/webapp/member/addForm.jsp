@@ -69,7 +69,7 @@ $(function(){
   			</tr>
   				<td colspan="2" align="center">
   					<button type="submit" class="btn btn-success" style="width:150px;"
-  					id="btnGaip">회원가입</button>
+  					id="btnGaip" onclick="funcsuccess()">회원가입</button>
   					<button type="button" class="btn btn-warning" onclick="location.href='memberList.jsp'">회원 목록</button>
   				
   				</td>
@@ -83,6 +83,13 @@ $(function(){
 	  window.open("idcheck.jsp","e","left=400px; top=100px;,width=400px,height=250px;");
   }
   
+  function funcsuccess(){
+		var y=alert("회원가입이 완료되었습니다!");
+		if(y){
+			location.href='loginForm.jsp';
+		}
+		
+	}
   </script>
 </body>
 </html>

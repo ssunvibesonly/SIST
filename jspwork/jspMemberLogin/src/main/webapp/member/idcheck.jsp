@@ -22,7 +22,7 @@
 			<form action="idcheck.jsp" method="post" class="form-inline">
 				<b>아이디를 입력해주세요.</b><br>
 				<input type="text" name="id" class="form-control" style="width:120px">
-				 <input type="hidden" name="key"><!-- value는 그냥 형식상 써주신 것이다. -->
+				 <input type="hidden" name="key" value="yes"><!-- value는 그냥 형식상 써주신 것이다. -->
 				<button type="submit" class="btn btn-outline-info"
 				style="margin-left:10px;">중복체크</button>
 			</form>

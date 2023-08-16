@@ -13,7 +13,13 @@
 <%
 	String loginok=(String)session.getAttribute("loginok");
 
-	if(loginok==null || loginok.equals(""))
+	if(loginok==null || loginok.equals("")){ //로그인이냐 로그아웃이냐를 나누기위해 페이지만 가져오는 것이므로 jsp:include%>
+		
+		<jsp:include page="loginForm.jsp"/> 
+	<% }else{%>
+		
+		<jsp:include page="memberList.jsp"/>
+	<% }
 %>
 </body>
 </html>

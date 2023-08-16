@@ -24,7 +24,7 @@ boolean flag=db.isLogin(id, pass);
 if(flag){
 	//로그인 중인지 알 수 있는 세션 저장
 	session.setAttribute("loginok", "yes");
-	//아이디세션 저장
+	//아이디 세션 저장
 	session.setAttribute("idok", id);//request로 받은 id값
 	//체크값 세션 저장...체크하면 값이 on,안하면 null로 넘어옴
 	session.setAttribute("saveok", save);
@@ -40,7 +40,7 @@ if(flag){
 	
 	
 <% }
-
+	
 
 %>
 </body>

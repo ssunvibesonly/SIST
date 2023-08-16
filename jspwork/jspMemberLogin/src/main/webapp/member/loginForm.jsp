@@ -10,6 +10,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+String myid=(String)session.getAttribute("idok");
+String saveid=(String)session.getAttribute("saveok");
+
+boolean save=true;
+
+if(saveid==null){
+	myid="";
+	save=false;
+	
+}
+
+%>
 
 
 
@@ -22,6 +35,8 @@
   		<button type="submit" class="btn btn-success btn-lg"
   		style="width:200px;">로그인</button>
   	</form>
+  	
+  	
   </div>
 </body>
 </html>

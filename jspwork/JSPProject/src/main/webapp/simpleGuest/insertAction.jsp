@@ -27,7 +27,7 @@ response.sendRedirect("guestList.jsp");
 %>
 
 <!-- 자바 빈즈로 변경하려면? (단순하게 폼에 넣어주기만 할 때 사용한다. 삼항연산자와 같은 조건문이나 multi 들어갈 땐 따로 해줘야 한다)
-	useBean은 new로 객체를 생성하는 것과 같다 -->
+	useBean은 new로 객체를 생성하는 것과 같다 / DTO에 있는 객체명이랑 태그에 있는 name명이 같아야 사용 가능 -->
 
 <%
 	request.setCharacterEncoding("utf-8");

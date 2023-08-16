@@ -113,7 +113,7 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from spmember where num=? and pass=?";
+		String sql="select * from spmember where id=? and pass=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -134,4 +134,85 @@ public class MemberDAO {
 		return flag;
 		
 	}
+	//num의 dto
+	public MemberDTO getDta(String num) {
+		MemberDTO dto=new MemberDTO();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from spmember where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNum(rs.getString("num"));
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString("name"));
+				dto.setHp(rs.getString("hp"));
+				dto.setImage(rs.getString("photo"));
+				dto.setGaip(rs.getTimestamp("gaip"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return dto;
+	}
+	//update..name,hp,photo
+	public void updateMember(MemberDTO dto) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update spmember set pass=?,name=?,hp=?,photo=? where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, dto.getPass());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getHp());
+			pstmt.setString(4, dto.getImage());
+			pstmt.setString(5, dto.getNum());
+			
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+		
+	}
+	//삭제
+	public void delMember(String num) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from spmember where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 }
