@@ -13,7 +13,7 @@ public class ajaxBoardDao {
 
 	DBConnect_2 db=new DBConnect_2();
 	
-	//삽입
+	//조회
 	public Vector<ajaxBoardDto> getAllDatas(){
 		
 		Vector<ajaxBoardDto> list=new Vector<ajaxBoardDto>();

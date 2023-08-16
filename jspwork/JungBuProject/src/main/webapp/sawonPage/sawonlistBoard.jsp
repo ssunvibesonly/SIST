@@ -1,20 +1,35 @@
-<%@page import="model.memberSawon.memberSawonDto"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.memberSawon.memberAdminDto"%>
+<%@page import="model.memberSawon.memberAdminDao"%>
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Insert title here</title>
-</head>
-<body>
+
 <%
-Vector<memberSawonDto> dto=new Vector<memberSawonDto>();
+memberAdminDao dao=new memberAdminDao();
+Vector<memberAdminDto>list=dao.getAllCommute();
+SimpleDateFormat sdftime=new SimpleDateFormat("h:mm a");
+SimpleDateFormat sdfday=new SimpleDateFormat("yyyy-MM-dd");
+JSONArray arr=new JSONArray();
+
+for(memberAdminDto dto:list){
+	JSONObject ob=new JSONObject();
+	
+	ob.put("num2",dto.getNum2());
+	ob.put("workday",sdfday.format(dto.getWorkday()));
+	ob.put("id2",dto.getId2());
+	ob.put("position2",dto.getPosition2());
+	ob.put("department2",dto.getDepartment2());
+	ob.put("go",sdftime.format(dto.getGo()));
+	ob.put("bye",sdftime.format(dto.getBye()));
+	ob.put("worktime",dto.getWorktime());
+	
+	arr.add(ob);
+}
+
 
 %>
-</body>
-</html>
+
+<%=arr.toString()%>
