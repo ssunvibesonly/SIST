@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.memberSawon.memberAdminDto"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.memberSawon.memberAdminDao"%>
@@ -36,7 +37,11 @@ margin-top: 10px;
 <body>
 <%
 	String success = (String) session.getAttribute("adminLogin");	
-	String id = (String)session.getAttribute("id");	
+	String id = (String)session.getAttribute("id");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+	memberAdminDao dao = new memberAdminDao();
+	Vector<memberAdminDto> list = dao.selectMember();
 %>
 
 <br>
@@ -45,6 +50,9 @@ margin-top: 10px;
 <%
 	if(success==null|| success.equals("")){
 		%>
+		<script>
+			alert("로그인이 필요합니다!");
+		</script>
 		<div class="btnLogin">
 			<button type="button" class="btn btn-outline-info" onclick="location.href='loginForm.jsp'">로그인</button>
 		</div>
@@ -63,8 +71,8 @@ margin-top: 10px;
       <a class="navbar-brand" href="#">SJProject</a>
     </div>
     <ul class="nav navbar-nav" >
-      <li><a href="adminForm.jsp">Home</a></li>
-      <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">사원관리<span class="caret"></span></a>
+      <li class="active"><a href="adminForm.jsp">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">사원관리<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="sawonInfo.jsp">사원정보</a></li>
           <li><a href="#">업무일지</a></li>
@@ -83,8 +91,57 @@ margin-top: 10px;
   </div>
 </nav>
 <div class="container">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>
+
+<%
+	if(success==null|| success.equals("")){
+		%>
+		 <h3>Navbar With Dropdown</h3>
+  		<p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>
+		<% 
+	}else{
+%>		<table class="table table-bordered">
+			  	<tr>
+			  		<th>번호</th>
+			  		<th>아이디</th>
+			  		<th>비밀번호</th>
+			  		<th>직급</th>
+			  		<th>이름</th>
+			  		<th>부서</th>
+			  		<th>주소</th>
+			  		<th>핸드폰</th>
+			  		<th>입사일</th>
+			  		<th>퇴사일</th>
+			  		<th>수정/삭제</th>
+			  	</tr>
+			  	<%
+			  		for(int i=0; i<list.size(); i++){
+			  			memberAdminDto dto = list.get(i);
+			  		%>
+			  		<tr>
+			  			<td><%=i+1 %></td>
+			  			<td><%=dto.getId() %></td>
+			  			<td><%=dto.getPass() %></td>
+			  			<td><%=dto.getPosition() %></td>
+			  			<td><%=dto.getName() %></td>
+			  			<td><%=dto.getDepartment() %></td>
+			  			<td><%=dto.getAddr() %></td>
+			  			<td><%=dto.getHp()%></td>
+			  			<td><%=sdf.format(dto.getHiredate())%></td>
+			  			<td>
+			  				<%=dto.getFiredate()==null?"":sdf.format(dto.getFiredate())%>
+			  			</td>
+			  			<td>
+			  				<input type="button" value="수정" class="btn btn-warning" onclick="location.href='adminUpdateForm.jsp?num=<%=dto.getNum()%>'">
+			  				<input type="button" value="삭제" class="btn btn-danger" onclick="location.href='admindelete.jsp?num=<%=dto.getNum()%>'">
+			  				
+			  			</td>
+			  		</tr>
+			  		<%
+			  		}
+			  	%>
+			  </table>
+<%} %>
+ 
 </div>
 </body>
 </html>

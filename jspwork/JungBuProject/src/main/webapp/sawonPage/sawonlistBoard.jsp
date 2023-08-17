@@ -1,3 +1,5 @@
+<%@page import="model.commute.commuteDao"%>
+<%@page import="model.commute.commuteDto"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -8,28 +10,23 @@
     pageEncoding="UTF-8"%>
 
 <%
-memberAdminDao dao=new memberAdminDao();
-Vector<memberAdminDto>list=dao.getAllCommute();
-SimpleDateFormat sdftime=new SimpleDateFormat("h:mm a");
+String id = request.getParameter("id");
 SimpleDateFormat sdfday=new SimpleDateFormat("yyyy-MM-dd");
-JSONArray arr=new JSONArray();
+SimpleDateFormat sdftime=new SimpleDateFormat("h:mm a");
 
-for(memberAdminDto dto:list){
-	JSONObject ob=new JSONObject();
-	
-	ob.put("num2",dto.getNum2());
-	ob.put("workday",sdfday.format(dto.getWorkday()));
-	ob.put("id2",dto.getId2());
-	ob.put("position2",dto.getPosition2());
-	ob.put("department2",dto.getDepartment2());
-	ob.put("go",sdftime.format(dto.getGo()));
-	ob.put("bye",sdftime.format(dto.getBye()));
-	ob.put("worktime",dto.getWorktime());
-	
-	arr.add(ob);
-}
 
+memberAdminDao dao=new memberAdminDao();
+memberAdminDto dto=dao.selectOne(id);
+
+
+commuteDto dtocomm=new commuteDto();
+
+dtocomm.setId2(id);
+dtocomm.setPosition2(dto.getPosition());
+dtocomm.setName2(dto.getName());
+dtocomm.setDepartment2(dto.getDepartment());
+
+commuteDao daocomm=new commuteDao();
+daocomm.insertComm(dtocomm);
 
 %>
-
-<%=arr.toString()%>
