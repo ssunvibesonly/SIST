@@ -20,7 +20,7 @@
 	
 	if(radio.equals("admin")){
 		if(id.equals("admin")&&pass.equals("admin")){
-			session.setAttribute("adminLogin", "success");
+			session.setAttribute("adminLogin", "success"); //로그인을 성공했음을 알려주는 세션 오ㅐ? 세션시간을 유지하고자
 			session.setAttribute("id", id);
 			session.setMaxInactiveInterval(60*60*1);//세션 1시간유지
 			response.sendRedirect("adminForm.jsp");

@@ -1,4 +1,4 @@
-<%@page import="model.memberSawon.memberAdminDao"%>
+-<%@page import="model.memberSawon.memberAdminDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -112,7 +112,7 @@ function list(){
                   s+="<td>"+ele.bye+"</td></tr>";
 
                   
-                  //ajax로 출퇴근 클릭시 값넘기는 것만 하면됌!
+                 
                })
             
             s+="</table>";
