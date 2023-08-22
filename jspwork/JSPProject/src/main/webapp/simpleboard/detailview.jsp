@@ -39,7 +39,7 @@ span.day{color:#ccc; font-size:0.8em}
 		<tr>
 		<td>
 			<b>작성자: <%=dto.getWriter() %></b><br>
-			<span class="day"><%=dto.getWriteday() %>
+			<span class="day"><%=sdf.format(dto.getWriteday()) %>
 			&nbsp;&nbsp;&nbsp;조회:<%=dto.getReadcount() %>
 			</span>
 		</td>

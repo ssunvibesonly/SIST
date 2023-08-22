@@ -31,10 +31,10 @@
 	dto.setPass(multi.getParameter("pass"));
 	dto.setName(multi.getParameter("name"));
 	dto.setHp(multi.getParameter("hp"));
-	dto.setImage(multi.getFilesystemName("image"));
 	
 	//dto.setImage(multi.getFilesystemName("uploadImage"))
 	String photo=multi.getFilesystemName("uploadImage");
+
 	
 	if(photo==null)
 		dto.setImage("../image/noimage.PNG"); //사진이 없는 경우
