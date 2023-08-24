@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.dto.MemberDto;
 import mysql.db.DBConnect_2;
@@ -111,6 +113,169 @@ public class MemberDao {
 			db.dbClose(pstmt, conn);
 		}
 		
-				
 	}
+	
+	//전체 멤버 목록
+	public List<MemberDto> getAllMembers(){
+		List<MemberDto> list=new ArrayList<MemberDto>();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from member";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberDto dto=new MemberDto();
+				
+				dto.setNum(rs.getString("num"));
+				dto.setName(rs.getString("name"));
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setHp(rs.getString("hp"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setEmail(rs.getString("email"));
+				dto.setGaipday(rs.getTimestamp("gaipday"));
+				
+				list.add(dto);
+				
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+		
+	}
+	//멤버 삭제
+	public void deleteMember(String num) {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from member where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+	
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	//업데이트 조회
+	public MemberDto seleUpMember(String num) {
+		MemberDto dto=new MemberDto();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from member where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setNum(rs.getString("num"));
+				dto.setName(rs.getString("name"));
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setHp(rs.getString("hp"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setEmail(rs.getString("email"));
+				dto.setGaipday(rs.getTimestamp("gaipday"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return dto;
+		
+	}
+	//업데이트 수정
+	public void updateMember(MemberDto dto) {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update member set name=?,pass=?,hp=?,addr=?,email=? where num=? ";
+		
+		try {
+			
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getPass());
+			pstmt.setString(3, dto.getHp());
+			pstmt.setString(4, dto.getAddr());
+			pstmt.setString(5, dto.getEmail());
+			pstmt.setString(6, dto.getNum());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+		
+	}
+	//Id,PW 확인
+	
+	public boolean isIdPass(String id, String pass) {
+		
+		boolean flag=false;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from member where id=? and pass=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pass);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				flag=true;
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return flag;
+		
+	}
+	
 }

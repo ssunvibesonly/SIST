@@ -1,5 +1,5 @@
-<%@page import="data.dto.MemberDto"%>
 <%@page import="data.dao.MemberDao"%>
+<%@page import="data.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,13 +11,15 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
 <%
-//세션 제거
-session.removeAttribute("loginok");
+String num=request.getParameter("num");
 
-//로그인 메인으로 
-response.sendRedirect("../index.jsp?main=login/loginmain.jsp");
+MemberDao dao=new MemberDao();
+dao.deleteMember(num);
+
+response.sendRedirect("../index.jsp?main=member/memberlist.jsp");
 %>
+<body>
+
 </body>
 </html>
