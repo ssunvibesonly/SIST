@@ -20,6 +20,17 @@ margin-top:130px;
 
 
 </style>
+<%
+//세션값 얻기
+String saveok=(String)session.getAttribute("saveok");
+
+String myid="";
+if(saveok!=null){
+	myid=(String)session.getAttribute("myid");
+}
+
+
+%>
 </head>
 <body>
 
@@ -28,9 +39,9 @@ margin-top:130px;
   	<form action="login/loginaction.jsp" method="post">
   	<h2>루피월드 로그인</h2><br>
   		<input type="text" name="id" style="width:200px;"
-  		class="form-control" placeholder="로그인 아이디" required="required" ><br>
+  		class="form-control" placeholder="로그인 아이디" required="required" value="<%=myid %>" ><br>
   		<input type="password" name="pass" style="width:200px" class="form-control" placeholder="로그인 비밀번호" required="required"><br>
-  		<label><input type="checkbox" name="savecheck" >아이디 저장</label><br><br> <!-- //value값이 없으면 null이나 on으로 나옴 -->
+  		<label><input type="checkbox" name="cbsave" <%=saveok==null?"":"checked" %> >아이디 저장</label><br><br> <!-- //value값이 없으면 null이나 on으로 나옴 -->
   		<button type="submit" class="btn btn-success btn-lg"
   		style="width:200px;">로그인</button>
   	</form>

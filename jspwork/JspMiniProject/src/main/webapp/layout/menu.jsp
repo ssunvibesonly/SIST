@@ -8,6 +8,8 @@
 <%
    //절대경로잡기
    String root = request.getContextPath();
+   String myid=(String)session.getAttribute("myid");
+   String loginok=(String)session.getAttribute("loginok");
 %>
 
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
@@ -36,7 +38,19 @@
                      <li><a href="<%=root%>/index.jsp?main=login/loginform.jsp"><i class="icon-wrench"></i> 로그인</a></li>
                      <li><a href="<%=root%>/index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i> 회원가입</a></li>
                      <li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp"><i class="icon-gift"></i> 나의 정보</a></li>
-                     <li><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
+                     <li class="memlist"><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
+                     <%if(loginok!=null&&myid.equals("admin")){%>
+                    	 <script>
+                       	 $(".memlist").show();
+                       	 
+                       	 </script>
+                    	 
+                    <% }else{%>
+                    	
+                    	<script>
+                     	$(".memlist").hide();
+                     	</script>
+                    <% }%>
                   </ul>
                </li>
                <li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">방명록</a></li>

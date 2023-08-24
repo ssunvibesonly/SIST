@@ -14,15 +14,21 @@
 <title>Insert title here</title>
 </head>
 <%
+String loginok=(String)session.getAttribute("loginok");
+String myid=(String)session.getAttribute("myid");
+
 MemberDao dao=new MemberDao();
+MemberDto a=new MemberDto();
 List<MemberDto> list=dao.getAllMembers();
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+
 
 %>
 <body>
 
-<table class="table table-bordered" style="width:1000px;">
 <% for(MemberDto dto:list){%>
+<form id="info">
+<table class="table table-bordered" style="width:1000px;">
 <tr>
 	<td rowspan="7" style="width: 350px;">
 	<img src="img/rupy5.png">
@@ -57,14 +63,12 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	<td><%=dto.getAddr() %></td>
 
 	</tr>
-
+	
+	<br>
+	</table>
 	<%}%>
-
-
-
-
-</table>
-<br>
+	<br>
+</form>
 
 </body>
 </html>
