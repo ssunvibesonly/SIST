@@ -23,11 +23,12 @@ margin-left:40px;
 //절대경로잡기 /실행 시 프로젝트명 나오면 되고, 필요한곳에 복붙해서 사용하면 됌
 
 String root=request.getContextPath();
-
+//아이디얻기
 String myid=(String)session.getAttribute("myid");
+//로그인 세션
 String loginok=(String)session.getAttribute("loginok");
 
-
+//dao에서 이름 받기
 MemberDao dao=new MemberDao();
 String name=dao.getName(myid);
 

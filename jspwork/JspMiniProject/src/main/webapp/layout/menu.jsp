@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,8 +9,14 @@
 <%
    //절대경로잡기
    String root = request.getContextPath();
+
+	//아이디얻기
    String myid=(String)session.getAttribute("myid");
+   
+   //로그인 세션
    String loginok=(String)session.getAttribute("loginok");
+   
+ 
 %>
 
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
@@ -19,8 +26,8 @@
   
  <link rel="stylesheet" type="text/css" href="<%=root %>/menu/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="<%=root %>/menu/css/menu.css">   
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" src="<%=root %>/menu/js/jquery.js"></script>
+<script type="text/javascript" src="<%=root %>/menu/js/function.js"></script>
 </head>
 
 <body>
@@ -35,7 +42,7 @@
                <li class="parent">
                   <a href="#">About 회원</a>
                   <ul class="sub-menu">
-                     <li><a href="<%=root%>/index.jsp?main=login/loginform.jsp"><i class="icon-wrench"></i> 로그인</a></li>
+                     
                      <li><a href="<%=root%>/index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i> 회원가입</a></li>
                      <li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp"><i class="icon-gift"></i> 나의 정보</a></li>
                      <li class="memlist"><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
@@ -53,15 +60,15 @@
                     <% }%>
                   </ul>
                </li>
-               <li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">방명록</a></li>
+               <li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">회원 방명록</a></li>
                <li class="parent">
                   <a href="#">고객의 소리</a>
                   <ul class="sub-menu">
-                     <li><a href="<%=root%>/index.jsp?main=board/boardlist.jsp">회원게시판</a></li>
+                     <li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">회원게시판</a></li>
                      <li><a href="#">스마트 게시판</a></li>
                   </ul>
                </li>
-               <li><a href=href="#">찾아오시는 길</a></li>
+               <li><a href="<%=root%>/index.jsp?main=load/map.jsp">찾아오시는 길</a></li>
             </ul>
          </nav>
          <div class="clear"></div>

@@ -33,8 +33,8 @@ if(flag){
 	
 }else{%>
 	<script>
-	alert("ID 또는 PW가 잘못 되었습니다.");</script>
-	history.back();
+	alert("ID 또는 PW가 잘못 되었습니다.");
+	history.back();</script>
 <% }
 
 
