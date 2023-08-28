@@ -37,7 +37,6 @@
 		String currentPage=multi.getParameter("currentPage");
 		
 		//dao
-			
 		guestDao dao=new guestDao();
 		
 		//기존의 포토 가져오기

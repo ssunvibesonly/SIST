@@ -61,7 +61,7 @@ top:300px;
 String root=request.getContextPath();
 String mainPage="layout/main.jsp"; //기본페이지
 
-//url을 통해서 main값을 얻어서 메인 웹페이지에 출력
+//url을 통해서 main값을 얻어서 메인 웹페이지에 출력 (main을 통해서 나와야 하는 것들)
 if(request.getParameter("main")!=null)
 {
 	mainPage=request.getParameter("main");

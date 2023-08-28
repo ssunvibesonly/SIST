@@ -1,3 +1,6 @@
+<%@page import="java.util.Vector"%>
+<%@page import="data.dto.AnswerDto"%>
+<%@page import="data.dao.AnswerDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.guestDto"%>
@@ -13,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
 <style>
 	span.day{
 	
@@ -24,6 +28,108 @@
 </style>
 <title>Insert title here</title>
 </head>
+<script>
+$(function(){
+	
+	//추천수증가
+	$("span.likes").click(function(){
+	
+		var num=$(this).attr("num");
+		var tag=$(this);
+		//alert(num);
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"guest/Ajaxlikes.jsp",
+			data:{"num":num},
+			success:function(data){
+				
+				//alert(data.chu);
+				$(tag).next().text(data.chu); //tag.next().text(data.chu);
+				tag.next().next().animate({"font-size":"20px"},1000,function(){
+					$(this).css("font-size","0px");
+				})
+
+				}
+			
+		});
+		
+	});
+	//댓글부분은 무조건 안보이게 처리
+	$("div.answer").hide();
+	
+	$("span.answer").click(function(){
+
+		$(this).prev().toggle();
+		/* $(this).parent().find("div.answer").toggle(); */
+		
+	})	
+	
+	$(".del").click(function(){
+		var s=$(this).attr("idx");
+		
+		var y=confirm("삭제하시겠습니까?")
+		
+		if(y){
+
+			$.ajax({
+				type:"get",
+				dataType:"html",
+				url:"guest/answerdelete.jsp",
+				data:{"idx":s},
+				success:function(data){
+					location.reload();
+				} 
+			})
+			
+			alert("삭제되었습니다.");
+	
+		}else{
+			alert("취소되었습니다.");
+		}
+		
+
+	})
+	
+	$("i.mod").click(function(){
+		$(this).next().modal("show");
+		var idx=$(this).attr("idx");
+		var content=$(this).next().find(".content").text();
+		
+		$(".content").change(function(){
+			content=$(this).val();
+			
+		})
+		
+		$(".btn-edit").click(function(){
+			
+			$.ajax({
+				type:"post",
+				dataType:"html",
+				url:"guest/updatesel.jsp",
+				data:{"idx":idx,"content":content},
+				success:function(){
+					
+					location.reload();
+					
+				}
+				
+				
+			})
+			
+			
+			
+		})
+
+	})
+
+})
+
+
+
+</script>
+
 <%
 //로그인 상태 확인 후 입력폼을 나타낼것_회원만 보이게
 String loginok=(String)session.getAttribute("loginok");
@@ -69,7 +175,7 @@ else
    //각 페이지 필요한 게시글 가져오기
    
    List<guestDto> list=dao.getList(startNum, perPage);
-   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
    
    //마지막 페이지 남은 한개글 지우면 빈페이지만 남는다.(해결책)이전페이지로 간다.
    if(list.size()==0&&currentPage!=1){
@@ -146,11 +252,115 @@ if(loginok!=null){%>
 			</tr>
 			
 			<!-- 댓글 추천 -->
+			<!-- 추천 수 클릭시 추천숫자 옆에 하트 커졌다 사라지게 animate-->
 			<tr>
 			  <td>
-			  	<span class="answer" style="cursor:pointer;" num=<%=dto.getNum() %>>댓글0</span>
+			  <%
+			  //각 방명록에 달린 댓글 목록 가녀오기
+			  AnswerDao adao=new AnswerDao();
+			  List<AnswerDto> alist=adao.getAllAnswers(dto.getNum());
+			  
+			  %>
+			  <div class="answer">
+			  	<%
+			  	if(loginok!=null){
+			  		%>
+			  		<div class="answerform">
+			  			<form action="guest/answerinsert.jsp" method="post">
+			  				<table class="table table-bordered" style="width:500px">
+			  					<tr>
+			  						<td>
+			  							<textarea style="width:500px; height:80px;" name="content" required="required"
+			  							class="form-control"></textarea>
+			  						</td>
+			  						<td>
+			  							<button type="submit" class="btn btn-info" style="width:80px; height:80px;">등록</button>
+			  							<!-- hidden값 3개 -->
+			  							<input type="hidden" name="num" value="<%=dto.getNum() %>">
+			  							<input type="hidden" name="myid" value="<%=myid %>">
+			  							<input type="hidden" name="currentPage" value="<%=currentPage %>">
+			  						</td>
+			  					</tr>
+			  				</table>
+			  			</form>
+			  		</div>
+			  	<%}
+			  	%>
+			  	<div class="answerlist">
+			  		<table class="table" style="width:480px;">
+			  			<%
+			  			for(AnswerDto adto:alist){%>
+			  				<tr>
+			  					<td width="60"><i class="bi bi-person-circle"></i></td>
+			  					<td>
+			  					<%
+			  					//작성자명
+			  					String aname=mdao.getName(adto.getMyid());
+			  					
+			  					%>
+			  					
+			  					<b><%=aname %></b>
+			  					&nbsp;
+			  					<%
+			  					//글쓴이와 댓글쓴이가 같은경우 작성자
+			  					if(dto.getMyid().equals(adto.getMyid())){%>
+			  						<span style="color:red;border: 1px solid red; border-radius: 20px;">작성자</span>
+			  					<%}
+			  					
+			  					%>
+			  					<span style="font-size:9pt; color:gray"><%=sdf.format(adto.getWriteday()) %></span><br>
+			  					<span><%=adto.getContent().replace("\n", "<br>") %></span>
+			  					
+			  					<%
+			  					if(loginok!=null&&adto.getMyid().equals(myid)){%>
+			  						<i class="bi bi-pencil-square mod" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>"></i>
+									<!-- The Modal -->
+									<div class="modal" id="myModal">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									
+									      <!-- Modal Header -->
+									      <div class="modal-header">
+									        <h4 class="modal-title">댓글수정</h4>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+									      </div>
+									
+									      <!-- Modal body -->
+									      <div class="modal-body">
+									        <textarea class="form-control content"><%=adto.getContent() %></textarea>
+									      </div>
+									
+									      <!-- Modal footer -->
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-danger btn-edit" data-bs-dismiss="modal">수정</button>
+									      </div>
+									
+									    </div>
+									  </div>
+									</div>
+			  						
+			  						<i class="bi bi-trash-fill del" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>"></i>
+
+			  					<%}
+			  					
+			  					%>
+		
+			  					</td>
+			  				</tr>
+			  				
+			  				
+			  			<%}
+			  			%>
+			  			
+			  		
+			  		</table>
+			  	</div>
+			  </div>
+			  
+			  	<span class="answer" style="cursor:pointer;" num=<%=dto.getNum() %>>댓글<%=alist.size() %></span>
 			  	<span class="likes" style="margin-left:20px; cursor:pointer;" num=<%=dto.getNum() %>>추천</span>
 			  	<span class="chu"><%=dto.getChu() %></span>
+			  	<i class="bi bi-balloon-heart-fill" style="color:red; font-size:0px;"></i>
 			  </td>
 			</tr>
 		</table>
