@@ -1,3 +1,5 @@
+<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -98,11 +100,26 @@ height:200px;
 
 
 <div align="center" id="info">
-<div id="mv_name"></div>
+<div id="mv_name"><%
+
+String [] mov={"오펜하이머","콘크리트 유토피아","달짝지근해:7510","밀수","엘리멘탈","잠","미션 임파서블: 데드 레코닝 PART ONE","보호자"};
+String sum="";
+%>
+<ul style="text-decoration: none;">
+<%
+for(int i=0;i<mov.length;i++){
+%>
+<li><%=mov[i] %></li>
+<%
+}
+%>
+</ul>
+</div>
 <div id="mv_theater"></div>
 <div id="mv_day"></div>
 <div id="mv_time"></div>
 <div id="select_info"></div>
-</div>
+
+
 </body>
 </html>

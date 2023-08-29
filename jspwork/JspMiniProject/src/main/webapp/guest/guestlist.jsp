@@ -92,7 +92,51 @@ $(function(){
 
 	})
 	
+	//수정 아이콘 누르면 모달로 수정폼을 띄우기(선생님이랑 한거)
 	$("i.mod").click(function(){
+		
+		var idx=$(this).attr("idx");
+		//alert(idx);
+		
+		//댓글 수정폼의 hidden에 idx넣어주기
+		$("#idx").val(idx);
+		
+		//모달창 띄우기
+		$("#myModal").modal();
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"guest/answercontent.jsp",
+			data:{"idx":idx,},
+			success:function(res){
+				$("#idx").val(res.idx);
+				$("#content").val(res.story);
+			}
+		});
+		//모달창의 수정버튼 누르면 수정이 된 후 reload
+		$("#btnupdate").click(function(){
+			
+			var idx=$("#idx").val();
+			var content=$("#content").val();
+			
+			$.ajax({
+				
+				type:"post",
+				dataType:"html",
+				url:"guest/updatesel.jsp",
+				data:{"idx":idx,"content":content},
+				success:function(){
+					location.reload();
+				}
+			
+			})
+			
+		})
+	});
+	
+	
+/* 	$("i.mod").click(function(){
 		$(this).next().modal("show");
 		var idx=$(this).attr("idx");
 		var content=$(this).next().find(".content").text();
@@ -122,7 +166,7 @@ $(function(){
 			
 		})
 
-	})
+	}) */
 
 })
 
@@ -176,6 +220,7 @@ else
    
    List<guestDto> list=dao.getList(startNum, perPage);
    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+   
    
    //마지막 페이지 남은 한개글 지우면 빈페이지만 남는다.(해결책)이전페이지로 간다.
    if(list.size()==0&&currentPage!=1){
@@ -313,33 +358,39 @@ if(loginok!=null){%>
 			  					
 			  					<%
 			  					if(loginok!=null&&adto.getMyid().equals(myid)){%>
-			  						<i class="bi bi-pencil-square mod" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>"></i>
+			  						<i class="bi bi-trash-fill del" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>"></i>
+			  						<i class="bi bi-pencil-square mod" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>" data-bs-toggle="modal" data-bs-target="#myModal"></i>
 									<!-- The Modal -->
 									<div class="modal" id="myModal">
 									  <div class="modal-dialog">
+									  
 									    <div class="modal-content">
 									
 									      <!-- Modal Header -->
 									      <div class="modal-header">
-									        <h4 class="modal-title">댓글수정</h4>
+									        <h4 class="modal-title">댓글 수정</h4>
 									        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 									      </div>
 									
 									      <!-- Modal body -->
 									      <div class="modal-body">
-									        <textarea class="form-control content"><%=adto.getContent() %></textarea>
+									        <div class="updateform">
+									        	<input type="hidden" id="idx">
+									        	<input type="text" id="content">
+									        	<button type="button" class="btn btn-info" id="btnupdate">댓글 수정</button>
+									        </div>
 									      </div>
 									
 									      <!-- Modal footer -->
 									      <div class="modal-footer">
-									        <button type="button" class="btn btn-danger btn-edit" data-bs-dismiss="modal">수정</button>
+									        <button type="button" class="btn btn-danger btn-edit" data-bs-dismiss="modal">닫기</button>
 									      </div>
 									
 									    </div>
 									  </div>
 									</div>
 			  						
-			  						<i class="bi bi-trash-fill del" style="cursor: pointer; margin-left: 50px;" idx="<%=adto.getIdx() %>"></i>
+			  						
 
 			  					<%}
 			  					
