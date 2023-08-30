@@ -53,10 +53,28 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
 			<button type="button" class="btn btn-outline-success"
 			onclick="location.href='index.jsp?main=board/updateform.jsp?num=<%=num%>'">수정</button>
 			<button type="button" class="btn btn-outline-success"
-			onclick="location.href='#'">삭제</button>
+			onclick="funcdel(<%=num%>,<%=currentPage%>)">삭제</button>
 		</td>
 		</tr>
 	</table>
 
 </div>
+<script>
+function funcdel(num,currentPage){
+	
+	/* alert(num);
+	alert(currentPage); */
+	
+	var a=confirm("삭제하려면 [확인]을 눌러주세요");
+	
+	if(a){
+		location.href="board/deleteaction.jsp?num="+num+"&currentPage="+currentPage
+		
+	}
+	
+}
+
+</script>
+
+
 </html>

@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.TreeSet"%>
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.Vector"%>
@@ -14,7 +17,7 @@
 <title>Insert title here</title>
 <script>
 	$(function(){
-		$(".seoul").hide();
+		/* $(".seoul").hide();
 		$(".gyeonggi").hide();
 		$(".incheon").hide();
 		$(".gangwon").hide();
@@ -22,59 +25,78 @@
 		$(".daegu").hide();
 		$(".busan").hide();
 		$(".gyeongsang").hide();
-		$(".jeju").hide();
+		$(".jeju").hide(); */
 
+		$(".loc").hide();
+		
 		$("th.local").click(function(){
-			var name=$(this).text();
+			var name=$(this).attr("value");
 			//alert(name);
-			if(name!='서울'||name==null){
-				$(".seoul").hide();
-			}else{
-				$(".seoul").show();
-			}
-			if(name!='경기'||name==null){
-				$(".gyeonggi").hide();
-			}else{
-				$(".gyeonggi").show();
-			}
-			if(name!='인천'||name==null){
-				$(".incheon").hide();
-			}else{
-				$(".incheon").show();
-			}
-			if(name!='강원'||name==null){
-				$(".gangwon").hide();
-			}else{
-				$(".gangwon").show();
-			}
-			if(name!='대전'||name==null){
-				$(".daejeon").hide();
-			}else{
-				$(".daejeon").show();
-			}
-			if(name!='대구'||name==null){
-				$(".daegu").hide();
-			}else{
-				$(".daegu").show();
-			}
-			if(name!='부산'||name==null){
-				$(".busan").hide();
-			}else{
-				$(".busan").show();
-			}
-			if(name!='경상'||name==null){
-				$(".gyeongsang").hide();
-			}else{
-				$(".gyeongsang").show();
-			}
-			if(name!='제주'||name==null){
-				$(".jeju").hide();
-			}else{
-				$(".jeju").show();
-			}
+			$(".loc").hide();
+			$("."+name).show(); //클래스 호출
 			
 		})
 		
+		$(".btn").hide();
+		
+		$(".datelabel").click(function(){
+			$(".btn").show();
+			
+
+			
+		})
+		
+		/* $("th.local").click(function(){
+		var name=$(this).text();
+		//alert(name);
+		if(name!='서울'||name==null){
+			$(".seoul").hide();
+		}else{
+			$(".seoul").show();
+		}
+		if(name!='경기'||name==null){
+			$(".gyeonggi").hide();
+		}else{
+			$(".gyeonggi").show();
+		}
+		if(name!='인천'||name==null){
+			$(".incheon").hide();
+		}else{
+			$(".incheon").show();
+		}
+		if(name!='강원'||name==null){
+			$(".gangwon").hide();
+		}else{
+			$(".gangwon").show();
+		}
+		if(name!='대전'||name==null){
+			$(".daejeon").hide();
+		}else{
+			$(".daejeon").show();
+		}
+		if(name!='대구'||name==null){
+			$(".daegu").hide();
+		}else{
+			$(".daegu").show();
+		}
+		if(name!='부산'||name==null){
+			$(".busan").hide();
+		}else{
+			$(".busan").show();
+		}
+		if(name!='경상'||name==null){
+			$(".gyeongsang").hide();
+		}else{
+			$(".gyeongsang").show();
+		}
+		if(name!='제주'||name==null){
+			$(".jeju").hide();
+		}else{
+			$(".jeju").show();
+		} 
+		
+	})*/
+	
 		
 		
 	})
@@ -88,7 +110,7 @@ position:absolute;
 top:200px;
 left:200px;
 border:2px solid gray;
-width:343px;
+width:350px;
 height:500px;
 
 }
@@ -97,8 +119,8 @@ height:500px;
 position:absolute;
 border:2px solid gray;
 top:200px;
-left:543px;
-width:345px;
+left:550px;
+width:340px;
 height:500px;
 
 }
@@ -107,18 +129,18 @@ height:500px;
 
 position:absolute;
 border:2px solid gray;
-left:885px;
+left:890px;
 top:200px;
-width:173px;
+width:195px;
 height:500px;
 
 }
 #mv_time{
 position:absolute;
 border:2px solid gray;
-left:1057px;
+left:1085px;
 top:200px;
-width:342px;
+width:340px;
 height:500px;
 
 }
@@ -129,7 +151,7 @@ position:absolute;
 top:150px;
 left:200px;
 text-align:center;
-width:1200px;
+width:1225px;
 }
 
 #select_info{
@@ -145,15 +167,28 @@ height:200px;
 }
 li{list-style: none;}
 
+div.container{
+	overflow: scroll;
+    border:solid 1px green;
+    height: 100px;
+    width: 200px;
+}
+li.date{
+font-size:15pt;
+text-align: center;
+margin-left: -20px; 
+margin-top: -27px;
+cursor: pointer;
+}
 </style>
 </head>
 <body>
 <table class="table table-bordered">
 	<tr>
-		<th style="width:200px;">영화</th>
-		<th style="width:200px;">극장</th>
+		<th style="width:180px;">영화</th>
+		<th style="width:175px;">극장</th>
 		<th style="width:100px;">날짜</th>
-		<th style="width:200px;">시간</th>
+		<th style="width:175px;">시간</th>
 	</tr>
 </table>
 
@@ -185,10 +220,11 @@ for(int i=0;i<mov.length;i++){
 <div id="mv_theater">
 <table class="table table-bordered" style="width:100px;position: absolute;top: 10px;left:10px;">
 <%
-String [] local={"서울","경기","인천","강원","대전","대구","부산","경상","제주"};
+String [] local={"서울","경기","인천","강원","대전","대구","부산","경상","전라"};
+String [] localEng={"seoul","gyeonggi","incheon","gangwon","daejeon","daegu","busan","gyeongsang","jeonla"};
 
 for(int a=0;a<local.length;a++){%>
-	<tr><th class="local" style="cursor: pointer;"><%=local[a] %></th></tr>
+	<tr><th class="local" style="cursor: pointer;" value="<%=localEng[a] %>"><%=local[a] %></th></tr>
  
 <% }%></table><%
 
@@ -200,67 +236,67 @@ String[] daejeon={"논산","당진","대전","대전가오","대전탄방","대�
 String[] daegu={"대구","대구수성","대구스타디움","대구아카데미","대구연경","대구월성","대구죽전"};
 String[] busan={"대연","동래","부산명지","서면","서면삼정타워","아시아드","울산동구","울산삼산"};
 String[] gyeongsang={"거제","경산","고성","구미","김천율곡","김해","김해율하","김해장유","마산","안동","창원"};
-String[] jeju={"광양","광주금남로","광주상무","광주용봉","광주첨단","광주터미널","광주하남","나주","목포","서전주"};%>
+String[] jeonla={"광양","광주금남로","광주상무","광주용봉","광주첨단","광주터미널","광주하남","나주","목포","서전주"};%>
 
-<table class="table table-bordered seoul"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered seoul loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int seo=0;seo<seoul.length;seo++){%>
 	<tr><td><%=seoul[seo] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gyeonggi"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gyeonggi loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int gye=0;gye<gyeonggi.length;gye++){%>
 	<tr><td><%=gyeonggi[gye] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered incheon"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered incheon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int in=0;in<incheon.length;in++){%>
 	<tr><td><%=incheon[in] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gangwon"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gangwon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int gang=0;gang<gangwon.length;gang++){%>
 	<tr><td><%=gangwon[gang] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered daejeon"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered daejeon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int dae=0;dae<daejeon.length;dae++){%>
 	<tr><td><%=daejeon[dae] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered daegu"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered daegu loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int daeg=0;daeg<daegu.length;daeg++){%>
 	<tr><td><%=daegu[daeg] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered busan"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered busan loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int bu=0;bu<busan.length;bu++){%>
 	<tr><td><%=busan[bu] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gyeongsang"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gyeongsang loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
 for(int gs=0;gs<gyeongsang.length;gs++){%>
 	<tr><td><%=gyeongsang[gs] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered jeju" style="position: absolute;left: 120px;width:200px;top:10px;"><% 
-for(int je=0;je<jeju.length;je++){%>
-	<tr><td><%=jeju[je] %></td></tr>
+<table class="table table-bordered jeonla loc" style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+for(int jeon=0;jeon<jeonla.length;jeon++){%>
+	<tr><td><%=jeonla[jeon] %></td></tr>
 <%}
 
 %>
@@ -268,27 +304,63 @@ for(int je=0;je<jeju.length;je++){%>
 </table>
 
 </div>
-<div id="mv_day"></div>
-<div id="mv_time">
+<div id="mv_day" class="container">
+<ul>
+	<li style="color: gray; margin-top: 10px;margin-left: 35px;"><b>2023</b></li>
+	<li><b style="font-size: 40pt;text-align: center;margin-left: 35px;">9</b></li><br>
 <%
-String [] time={"7:00","10:30","12:40","14:00","14:40","15:20","16:00","17:10","18:20","19:00","19:50","21:00","22:10","23:40"}; //랜덤으로 돌려서 sort
+for(int i=1;i<=30;i++){%>
+	<span style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;">
+	<%=i%7==1?"금":i%7==2?"토":i%7==3?"일":i%7==4?"월":i%7==5?"화":i%7==6?"수":"목"%></span>
+	<lable class="datelabel"><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" class="date"><b><%= i%></b></li></lable>
+	<br>
 
+<% 
+
+}
+%>
+</ul>
+</div>
+<div id="mv_time" class="mytime" >
+<%
+String [] time={"07:00","10:30","12:40","14:00","14:40","15:20","16:00","17:10","18:20","19:00","19:50","21:00","22:10","23:40"}; //랜덤으로 돌려서 sort
+
+// 랜덤한 값 선택을 위한 Random 객체 생성
+Random random = new Random();
+
+//선택한 랜덤 값들을 저장할 리스트 생성
 List<String> timelist=new ArrayList<String>();
 
-for(String tl:time){
-	timelist.add(tl);
+for(String t:time){
+timelist.add(t);
 }
-Random rand=new Random();
-int random=rand.nextInt(timelist.size());
-System.out.println(timelist.get(random));
 
+int num = random.nextInt(timelist.size()+1);
 
+int idx;
 
+TreeSet<String> treeSet = new TreeSet<>();
+for(int i=0; i<num; i++){
+idx=random.nextInt(timelist.size());
+treeSet.add(timelist.get(idx));
+}
+
+Iterator iter = treeSet.iterator();//iterator-> 오름차순 treeset메서드
 %>
-<b><%=timelist.get(random) %></b>
-
+<div style="position: absolute;top:10px;left: 10px;">
+<%
+while(iter.hasNext()){
+ %>
+  <input style="margin-bottom: 10px;" type="button" value="<%=iter.next()%>" class="btn btn-outline-success">
+  <%
+}%>
+</div>
 </div>
 <div id="select_info"></div>
+
+
+
+
 
 
 </body>

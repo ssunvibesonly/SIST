@@ -13,6 +13,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<script>
+$(function(){
+	
+	//전체 선택 클릭시 체크값 얻어서 모든 체크값 전달하기
+	$(".alldelcheck").click(function(){
+		
+		//전체 체크값 얻기
+		var chk=$(this).is(":checked");
+		console.log(chk);
+		
+		//전체 체크값을 글 앞의 체크에 일괄 전달하기
+		$(".delcheck").prop("checked",chk); //prop은 이벤트 속성으로 자바스크립트의 값을 전달
+		
+	});
+	$("#btndel").click(function(){
+		
+		//체크된 길이
+		var len=$(".delcheck:checked").length;
+		//alert(len);
+		
+		if(len==0){
+			alert("최소 1개 이상 체크해 주세요")
+			
+		}else{
+			
+			var a=confirm(len+"개의 글을 삭제하려면 [확인]을 눌러주세요");
+			
+			if(a){
+				
+				//체크된 곳의 value값 얻기(num)
+				var n="";
+				$(".delcheck:checked").each(function(idx){
+					
+					n+=$(this).val()+",";
+
+				})
+				//마지막 컴마를 제거하기
+				n=n.substring(0,n.length-1);
+				
+				console.log(n);
+				
+				//삭제파일로 전송
+				location.href="board/alldelete.jsp?nums="+n;
+				
+			}
+			
+		}
+		
+	})
+	
+});
+
+</script>
 <style>
 a:link,a:visited{
 text-decoration: none;
@@ -102,7 +155,7 @@ else
 						SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
 						for(SmartDto dto:list){%>
 							<tr>
-								<td align="center"><%=no-- %></td>
+								<td align="center"><input type="checkbox" value="<%=dto.getNum() %>" class="delcheck"><%=no-- %></td>
 								<td>
 									<a href="index.jsp?main=board/contentView.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>"><%=dto.getSubject() %></a>
 								</td>
@@ -115,7 +168,18 @@ else
 						
 					}
 					%>
-					
+					<tr>
+						<td colspan="5">
+							<input type="checkbox" class="alldelcheck">전체 선택
+							<span style="float: right;">
+								<button type="button" class="btn btn-danger" onclick=""
+								style="width:80px;" id="btndel">삭제</button>
+								<button type="button" class="btn btn-info" style="width:80px;" 
+								onclick="location.href='index.jsp?main=board/smartform.jsp'">글쓰기</button>
+
+							</span>
+						</td>
+					</tr>
 			</table>
 	
 	</div>
