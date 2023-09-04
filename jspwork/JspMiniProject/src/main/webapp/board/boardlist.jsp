@@ -1,3 +1,4 @@
+<%@page import="data.dao.SmartAnswerDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.SmartDto"%>
 <%@page import="data.dto.guestDto"%>
@@ -127,7 +128,15 @@ else
    //각 페이지 필요한 게시글 가져오기
    
    List<SmartDto> list=dao.getPagingList(startNum, perPage);
-
+   
+   //댓글 dao
+	SmartAnswerDao adao=new SmartAnswerDao();
+   for(SmartDto dto:list){
+	   
+	   //댓글 변수에 댓글 총 갯수 넣기
+	   int acount=adao.getAllSmartAnswers(dto.getNum()).size();
+	   dto.setAnswerCount(acount);
+   }
 %>
 <body>
 	<div style="margin:30px 30px;width:800px;">
@@ -158,6 +167,16 @@ else
 								<td align="center"><input type="checkbox" value="<%=dto.getNum() %>" class="delcheck"><%=no-- %></td>
 								<td>
 									<a href="index.jsp?main=board/contentView.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>"><%=dto.getSubject() %></a>
+									
+									<!-- 댓글 갯수 출력 -->
+									<%
+									if(dto.getAnswerCount()>0){%>
+									<a href="index.jsp?main=board/contentView.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>#alist"
+									style="color: red;">[<%=dto.getAnswerCount() %>]</a>	
+									<%}
+									
+									%>
+									
 								</td>
 								<td><%=dto.getWriter() %></td>
 								<td align="center"><%=sdf.format(dto.getWriteday()) %></td>

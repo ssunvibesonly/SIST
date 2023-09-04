@@ -69,6 +69,24 @@
                   </ul>
                </li>
                <li><a href="<%=root%>/index.jsp?main=load/map.jsp">찾아오시는 길</a></li>
+                <li class="parent">
+                  <a href="#">쇼핑몰</a>
+                  <ul class="sub-menu">
+                     
+                   
+                    
+                     <%if(loginok!=null&&myid.equals("admin")){%>
+                    	
+                    	  <li><a href="<%=root%>/index.jsp?main=shop/addform.jsp"><i class="icon-gift"></i>상품등록</a></li>
+                    	  <li><a href="<%=root%>/index.jsp?main=shop/shoplist.jsp"><i class="icon-gift"></i>상품 목록</a></li>
+                     
+                    	 
+                    <% }else{%>
+                    	
+                  
+                    	 <li><a href="<%=root%>/index.jsp?main=shop/shoplist.jsp"><i class="icon-gift"></i>상품 목록</a></li>
+                
+                    <% }%>
             </ul>
          </nav>
          <div class="clear"></div>
