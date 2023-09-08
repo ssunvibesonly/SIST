@@ -27,23 +27,18 @@
 }
 
 .header{
-	position: absolute;
 	width: 100%;
 	height: 100%;
 }
 
 .main{
-	position: absolute;
 	width: 100%;
 	height: 100%;
-	top: 176px;
 }
 
 .footer{
-	position: relative;
 	width: 100%;
 	height: 100%;
-	top:1580px;
 }
 </style>
 <body background="color: black;">
@@ -56,8 +51,9 @@
 		<jsp:include page="<%=mainPage %>"/>
 	</div>
 	
+	<footer>
 	<div class="layout footer">
 		<jsp:include page="layout/footer.jsp"/>
-	</div>
+	</div></footer>
 </body>
 </html>

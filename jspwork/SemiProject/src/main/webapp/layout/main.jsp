@@ -1,3 +1,6 @@
+<%@page import="Dto.MovieDto"%>
+<%@page import="java.util.List"%>
+<%@page import="Dao.MovieDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,18 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <link
-	href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Cute+Font&family=Diphylleia&family=Dongle:wght@300&family=Hi+Melody&family=Nanum+Brush+Script&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Cute+Font&family=Diphylleia&family=Dongle:wght@300&family=Hi+Melody&family=Nanum+Brush+Script&display=swap"
+   rel="stylesheet">
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+   rel="stylesheet">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+   src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <title>main</title>
 <%
 // 절대경로잡기
@@ -208,6 +211,10 @@ h5, h6 {
 	background-color: white;
 }
 
+#swiper-btn1>a {
+	color: black;
+}
+
 #swiper-btn2 {
 	margin-top: 2px;
 	background-color: #DF3E49;
@@ -220,7 +227,7 @@ h5, h6 {
 	left: 13.2%;
 	width: 73.6%;
 	top: 54%;
-	height: 42%;
+	height: 45%;
 }
 
 .special_special {
@@ -289,6 +296,10 @@ h5, h6 {
     display: none;  /* 초기에는 숨김 */
 }
 
+.fixedbtn1:hover{
+	color: white;
+}
+
 .fixedbtn2 {
     position: fixed;
     width: 60px;
@@ -316,10 +327,17 @@ h5, h6 {
 
 </style>
 <body>
+<%
+MovieDao dao = new MovieDao();
+
+List <MovieDto> list=dao.getAllMovieInfo();
+
+%>
+
 	<!-- 고정 버튼 -->
 	
 	<!-- 예매하기 버튼 -->
-	<a href="#" class="fixedbtn1">예매하기</a>
+	<a href="<%=root%>/index.jsp?main=Movie_reserve/movielist.jsp" class="fixedbtn1">예매하기</a>
 	
 	<!-- 상단바 이동 -->
 	<a href="#" class="fixedbtn2">
@@ -329,10 +347,8 @@ h5, h6 {
 	<script>
 	// 고정 버튼을 가져옵니다.
 	var fixedBtn1 = document.querySelector(".fixedbtn1");
-	fixedBtn1.style.transition = "1s";
 
 	var fixedBtn2 = document.querySelector(".fixedbtn2");
-	fixedBtn2.style.transition = "1s";
 
 	// 스크롤 이벤트를 감지하는 함수
 	function handleScroll() {
@@ -344,11 +360,12 @@ h5, h6 {
 
 	    // 스크롤 위치가 헤더 높이보다 큰 경우 버튼을 표시합니다.
 	    if (scrollY > headerHeight) {
-	        fixedBtn1.style.display = "block"; // 버튼을 표시
-	        fixedBtn2.style.display = "block"; // 버튼을 표시
+	        // 버튼을 표시하고 애니메이션 적용
+	        $(fixedBtn1).fadeIn(1000);
+	        $(fixedBtn2).fadeIn(1000);
 	    } else {
-	        fixedBtn1.style.display = "none"; // 버튼을 숨김
-	        fixedBtn2.style.display = "none"; // 버튼을 숨김
+	    	$(fixedBtn1).fadeOut(1000);
+	    	$(fixedBtn2).fadeOut(1000);
 	    }
 	}
 
@@ -394,22 +411,23 @@ h5, h6 {
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<%
-						for (int i = 1; i <= 10; i++) {
+						for (int i = 0; i < 10; i++) {
+						MovieDto dto = list.get(i);
 						%>
 						<div class="1page" align="center">
 							<div style="position: relative; margin-top: 10px;">
 								<!-- position 속성 추가 -->
-								<img src="<%=root%>/image/movie<%=i%>.jpeg"
-									style="width: 200px; height: 240px;"><br>
-								<h5 style="color: white; font-size: 0.85em; margin-top: 15px;"><%=i%>.영화제목
+								<img src="<%=dto.getMv_poster() %>"><br>
+								<h5 style="color: white; font-size: 0.85em; margin-top: 15px;"><%=i+1%>. <%=dto.getMv_title() %>
 								</h5>
-								<h6 style="color: white; font-size: 0.85em;">좋아요
-									99%&nbsp;예매율 56%</h6>
+								
 								<div class="hover-buttons"
 									style="position: absolute; bottom: 43%; left: 50%; transform: translateX(-50%); display: none;">
 									<!-- 상세보기 버튼 -->
 									<button class="swiper-btn btn btn-right" data-movie-id="<%=i%>"
-										id="swiper-btn1">상세보기</button>
+										id="swiper-btn1">
+										<a href="index.jsp?main=/layout/detail.jsp&mv_no=<%=dto.getMv_no() %>">상세보기</a>
+										</button>
 									<!-- 예매하기 버튼 -->
 									<button class="swiper-btn btn btn-right" data-movie-id="<%=i%>"
 										id="swiper-btn2">예매하기</button>
@@ -436,13 +454,16 @@ h5, h6 {
 							});
 						</script>
 						<%
-						if (i % 5 == 0) {
+						 if ((i+1) % 5 == 0) {
 						%>
 					</div>
+					<div class="swiper-slide">
 					<%
 					}
 					}
 					%>
+					</div>
+					</div>
 
 					<div style="width: 100%; height: 450px;"
 						class="special_hall">
@@ -467,10 +488,25 @@ h5, h6 {
 					</div>
 					
 					<script>
+					//슬라이드 페이지 넘어가는 버튼 및 슬라이드 효과 
+					var swiper = new Swiper(".mySwiper", {
+						spaceBetween : 30,
+						centeredSlides : true,
+
+						pagination : {
+							el : ".swiper-pagination",
+							clickable : true,
+						},
+						navigation : {
+							nextEl : ".swiper-button-next",
+							prevEl : ".swiper-button-prev",
+						},
+					});
+					
 					$(document).ready(function() {
 				        // 페이지가 로드될 때 초기 이미지 설정
 				        var defaultText = "SUITE CINEMA"; // 디폴트로 보여줄 텍스트
-				        var defaultImageUrl = "<img src='<%=root%>/image/special1.png'>"; // 디폴트 이미지 경로 설정
+				        var defaultImageUrl = "<img src='<%=root%>/image/special5.png'>"; // 디폴트 이미지 경로 설정
 
 				        // 디폴트 이미지를 special_result 요소에 추가
 				        $(".special_result").html(defaultImageUrl);
@@ -523,8 +559,10 @@ h5, h6 {
 				    });
 					</script>
 				</div>
-			</div>
+			
 		</div>
 	</div>
+
+
 </body>
 </html>

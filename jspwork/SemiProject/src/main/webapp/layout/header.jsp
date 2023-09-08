@@ -130,7 +130,7 @@ span:hover {
 				<li><a
 					href="<%=root %>index.jsp"><img alt=""
 						src="<%=root%>/logoimg/logo.gif"
-						style="width: 16.5%; height: 9%; position: absolute; left: 41.2%; top:6%"></a></li>
+						style="width: 16.5%; height: 9%; position: absolute; left: 41.2%; top:3.3%"></a></li>
 				<li><a
 					href="<%=root%>/index.jsp?main=member/memberloginform.jsp"><img
 						src="<%=root%>/logoimg/1.png" alt=""

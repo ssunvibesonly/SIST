@@ -22,7 +22,7 @@ $(function(){
 	$("a.godetail").click(function(){
 		
 		var num=$(this).attr("shopnum");
-		alert(num);
+		//alert(num);
 		
 		location.href="index.jsp?main=shop/detailPage.jsp?shopnum="+num;
 	})

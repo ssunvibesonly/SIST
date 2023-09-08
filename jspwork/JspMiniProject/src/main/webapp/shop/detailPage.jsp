@@ -18,19 +18,7 @@ width:450px;
 height:520px;
 }
 </style>
-<script>
 
-$(function(){
-	
-	$("#btncart").click(function(){
-		
-		//form태그의 모든 값 가져오기
-		var formdata=$("#frm").serialize();
-		alert(formdata);
-	})
-})
-
-</script>
 </head>
 
 <%
@@ -80,5 +68,42 @@ $(function(){
 		</tr>
 	</table>
 		</form>
+		
+		<script>
+
+$(function(){
+	
+	$("#btncart").click(function(){
+
+		var login="<%=loginok%>";
+		if(login=="null"){
+			alert("로그인을 해주세요")
+			return;
+		}
+		//form태그의 모든 값 가져오기
+		var formdata=$("#frm").serialize();
+		//alert(formdata);
+		
+		//ajax insert
+		$.ajax({
+			type:"post",
+			dataType:"html",
+			data:formdata, //serialize로 다 넘어가게 해뒀다.
+			url:"shop/detailcartinsertprocess.jsp",
+			success:function(){
+				//alert("성공");
+				var a=confirm("장바구니에 추가 하였습니다.\n장바구니로 이동하려면 [확인]을 눌러주세요");
+				
+				if(a){
+					location.href='index.jsp?main=shop/mycart.jsp';
+				}
+			}
+			
+			
+		})
+	})
+})
+
+</script>
 </body>
 </html>

@@ -86,13 +86,13 @@ body {
 String root = request.getContextPath();
 %>
 <body>
-
+	<footer>
 
 	<!-- 푸터 -->
 	<div class="footer_content1">
 		<div class="gwang-go content1">
 			<img src="<%=root%>/image/mack.jpeg" name="mack" id="mack"
-				style="height: 500px;"
+				style="width: 100%; height: 450px; margin-top: 40px;"
 				onclick="location.href='https://www.mcdonalds.co.kr/kor/main.do'">
 		</div>
 		<div class="contents1" align="center">
@@ -119,4 +119,5 @@ String root = request.getContextPath();
 			</h6>
 		</div>
 	</div>
+	</footer>
 </body>

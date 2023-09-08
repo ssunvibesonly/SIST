@@ -21,68 +21,56 @@
 <style>
 
 #mv_name{
-
-position:absolute;
-top:200px;
-left:200px;
+float:left;
 border:2px solid gray;
 width:350px;
 height:500px;
 overflow: scroll;
-background-color:white;
+margin-bottom:20px;
+background-color:#f8f8ff ;
 
 }
 #mv_theater{
 
-position:absolute;
+float:left;
 border:2px solid gray;
-top:200px;
-left:550px;
 width:340px;
 height:500px;
-background-color:white;
+margin-bottom:20px;
+background-color:#f8f8ff;
 
 }
 
 #mv_day{
 
-position:absolute;
 border:2px solid gray;
-left:890px;
-top:200px;
+float:left;
 width:195px;
 height:500px;
-background-color:white;
+margin-bottom:20px;
+background-color:#f8f8ff;
 
 }
 #mv_time{
-position:absolute;
 border:2px solid gray;
-left:1085px;
-top:200px;
+float:left;
 width:340px;
 height:500px;
-background-color:white;
+margin-bottom:20px;
+background-color:#f8f8ff;
 
 }
 
 .table{
 
-position:absolute;
-top:150px;
-left:200px;
 text-align:center;
 width:1225px;
 
 
 }
 
-#select_info{
+div#select_info{
 
-position:absolute;
-border:2px solid gray;
-top:750px;
-left:200px;
 width:1225px;
 height:300px;
 background-color:white;
@@ -97,10 +85,10 @@ div.daycon{
     width: 200px;
 }
 li.date{
-
+margin-left:50px;
+margin-top:-30px;
 font-size:15pt;
-text-align: center;
-margin-left: -10px; 
+text-align: justify;
 cursor: pointer;
 }
 
@@ -110,38 +98,27 @@ li.mvname{
 
 div.poster{
  
- width:200px;
+ margin-top:20px;
+ margin-left:10px;
+ width:250px;
  height:250px;
- position:absolute;
- top:25px;
- left:25px;
 }
 
 div.mvinfo{
-position:absolute;
-top:25px;
-left:250px;
+margin-top:20px;
 width:250px;
 height:100px;
 
 }
 div.clickinfo{
-position:absolute;
-top:25px;
-left:570px;
+margin-top:20px;
+margin-left:30px;
 width:200px;
 height:100px;
-
+float: left;
 }
 
 .loc{cursor: pointer;}
-
-#nextseat{
-
-position: absolute;
-
-right: 100px;
-}
 
 .clickcolor{
 
@@ -166,7 +143,9 @@ List<MovieDto> list=dao.getAllMovieInfo();
       $(".loc").hide();
       
       $("th.local").click(function(){
-         var name=$(this).attr("value");
+         
+    	  $(this).hover();
+    	  var name=$(this).attr("value");
          //alert(name);
          $(".loc").hide();
          $("."+name).show(); //클래스 호출
@@ -236,7 +215,7 @@ List<MovieDto> list=dao.getAllMovieInfo();
         $.ajax({
            type:"get",
            dataType:"json",
-           url:"time.jsp",
+           url:"Movie_reserve/time.jsp",
            success:function(res){
               //alert(res.time);
               var result="";
@@ -244,25 +223,25 @@ List<MovieDto> list=dao.getAllMovieInfo();
               var after="";
               $.each(res, function(idx, item){
                  
-                 
-                 
                  var timeString=item.time;
                  var timeSplit=timeString.split(':');
                  
                  if(timeSplit[0]>=12){
-                    after+="<button type='button' class='btn btn-outline-warning time'  value='"+item.time+"'>"+item.time+"</button>&nbsp;";
+                    after+="&nbsp;&nbsp;<button type='button' class='btn btn-warning time' value='"+item.time+"'>"+item.time+"</button>";
                  }else{
-                    morning+="<button type='button' class='btn btn-outline-warning time'  value='"+item.time+"'>"+item.time+"</button>&nbsp;";
+                    morning+="&nbsp;&nbsp;<button type='button' class='btn btn-warning time'  value='"+item.time+"'>"+item.time+"</button>";
                  }
               });
+              
+              
               if(morning!=""){
-                 result+="<b>오전</b><br>"
+                 result+="<br><b>&nbsp;&nbsp;오전</b><br>"
                     result+=morning
                     result+="<hr>"
               }
               
               if(after!=""){
-                 result+="<b>오후</b><br>"
+                 result+="&nbsp;&nbsp;<b>오후</b><br>"
                      result+=after
               }
               
@@ -292,7 +271,7 @@ List<MovieDto> list=dao.getAllMovieInfo();
          }else{
             $.ajax({
                type:"get",
-               url:"mvPlaceRandom.jsp",
+               url:"Movie_reserve/mvPlaceRandom.jsp",
                dataType:"json",
                success:function(res){
                   $("#mvdate").text("2023.9."+date+"("+day+")"+time);
@@ -321,13 +300,13 @@ List<MovieDto> list=dao.getAllMovieInfo();
          //alert(poster);
          $.ajax({
             type:"post",
-            url:"reserveAction.jsp",
+            url:"Movie_reserve/reserveAction.jsp",
             data:{"poster":poster,"mvtitle":mvtitle,"mvage":mvage,"mvcinema":mvcinema,"mvdate":mvdate,"mvplace":mvplace},
             dataType:"html",
             success:function(){
                //alert("success");
-               url="mvSeat.jsp";
-               location.replace(url);
+               url="index.jsp?main=Movie_reserve/mvSeat.jsp";
+               location.href=url;
             }
          }); 
       
@@ -341,19 +320,19 @@ List<MovieDto> list=dao.getAllMovieInfo();
 
 </head>
 <body>
-<div class="container">
-<table class="table table-bordered" style="width:1225px;">
+<div style="border-top: 1px solid silver; width: 100%;"></div>
+<div class="container" style="height: 950px;"><br>
+<table class="table table-bordered" style="width:1225px;"align="center">
    <tr>
-      <th style="width:280px;">영화</th>
-      <th style="width:280px;">극장</th>
-      <th style="width:150px;">날짜</th>
-      <th style="width:280px;">시간</th>
+      <th style="width:280px;background-color: #fff0f5;">영화</th>
+      <th style="width:280px;background-color: #fff0f5;">극장</th>
+      <th style="width:150px;background-color: #fff0f5;">날짜</th>
+      <th style="width:280px;background-color: #fff0f5;">시간</th>
    </tr>
 </table>
 
-
-<div id="mv_name"><br>
-
+<div class="container" style="margin-left: 25px; margin-top: 25px;" >
+<div id="mv_name" ><br>
 <ul>
 
 <%
@@ -394,14 +373,14 @@ for(int i=0; i<list.size();i++){
 
 </div>
 
-<div id="mv_theater">
-<table class="table table-bordered" style="width:100px;position: absolute;top: 10px;left:10px;">
+<div id="mv_theater"style="float:left;">
+<table class="table table-bordered" style="width:100px;;float: left;margin-left: 10px;margin-top: 10px;margin-right: 10px;">
 <%
 String [] local={"서울","경기","인천","강원","대전","대구","부산","경상","전라"};
 String [] localEng={"seoul","gyeonggi","incheon","gangwon","daejeon","daegu","busan","gyeongsang","jeonla"};
 
 for(int a=0;a<local.length;a++){%>
-   <tr><th class="local" style="cursor: pointer;" value="<%=localEng[a] %>"><%=local[a] %></th></tr>
+   <tr><th class="local" style="cursor: pointer; background-color: #f5f5f5" value="<%=localEng[a] %>"><%=local[a] %></th></tr>
  
 <% }%></table><%
 
@@ -415,63 +394,63 @@ String[] busan={"대연","동래","부산명지","서면","서면삼정타워","
 String[] gyeongsang={"거제","경산","고성","구미","김천율곡","김해","김해율하","김해장유","마산","안동","창원"};
 String[] jeonla={"광양","광주금남로","광주상무","광주용봉","광주첨단","광주터미널","광주하남","나주","목포","서전주"};%>
 
-<table class="table table-bordered seoul loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered seoul loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int seo=0;seo<seoul.length;seo++){%>
    <tr><td class="loca"><%=seoul[seo] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gyeonggi loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gyeonggi loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int gye=0;gye<gyeonggi.length;gye++){%>
    <tr><td class="loca"><%=gyeonggi[gye] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered incheon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered incheon loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int in=0;in<incheon.length;in++){%>
    <tr><td class="loca"><%=incheon[in] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gangwon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gangwon loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int gang=0;gang<gangwon.length;gang++){%>
    <tr><td class="loca"><%=gangwon[gang] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered daejeon loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered daejeon loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int dae=0;dae<daejeon.length;dae++){%>
    <tr><td class="loca"><%=daejeon[dae] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered daegu loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered daegu loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int daeg=0;daeg<daegu.length;daeg++){%>
    <tr><td class="loca"><%=daegu[daeg] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered busan loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered busan loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int bu=0;bu<busan.length;bu++){%>
    <tr><td class="loca"><%=busan[bu] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered gyeongsang loc"style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered gyeongsang loc"style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int gs=0;gs<gyeongsang.length;gs++){%>
    <tr><td class="loca"><%=gyeongsang[gs] %></td></tr>
 <%}
 
 %>
 </table>
-<table class="table table-bordered jeonla loc" style="position: absolute;left: 120px;width:200px;top:10px;"><% 
+<table class="table table-bordered jeonla loc" style="width:200px;margin-left: 10px;margin-top: 10px;"><% 
 for(int jeon=0;jeon<jeonla.length;jeon++){%>
    <tr><td class="loca"><%=jeonla[jeon] %></td></tr>
 <%}
@@ -500,10 +479,9 @@ for(int i=1;i<=30;i++){
    case 0:dayOfweek="목";break;
    
    }%>
-   <li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;"><%=dayOfweek%></li><br>
-   <lable class="datelabel"><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" class="date" value=<%=i %> day="<%=dayOfweek %>">
-         <b><%= i%></b>
-      </li>
+  <br><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" ><%=dayOfweek%></li>
+   <lable class="datelabel"><li style='color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;' class='date' value=<%=i %> day='<%=dayOfweek %>'>
+         <b ><%= i%></b></li>
       </lable>
    
 
@@ -515,42 +493,32 @@ for(int i=1;i<=30;i++){
 
 </div>
 
-<div id="mv_time" class="mvtime" >
-<div style="position: absolute;top:10px;left: 10px;">
-</div>
+<div id="mv_time" class="mvtime" ></div>
 </div>
 
+<div class="container">
+<div id="select_info" class="container" style="clear: both;">
 
-<form action="#" method="post">
-<div id="select_info">
+<div class="poster" id="poster" style="float: left;"></div>
 
-<div class="poster" id="poster"></div>
-
-<div class="mvinfo">
-<span>영화명<b id="mvtitle" class="mvtitle"></b></span>
+<div class="mvinfo" style="float: left;">
+영화명<b id="mvtitle" class="mvtitle"></b>
 <br><br>
-<span>관람연령</span>&nbsp;<img src="" id="mvage">
+관람연령&nbsp;<img src="" id="mvage">
 </div>
 
-<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
-
-<div class="clickinfo">
-<span>극장&nbsp;<b>'3'CINE&nbsp;</b><b id="mvcinema">극장이름</b></span>
-<br><br>
-<span>일시&nbsp;&nbsp;</span><b id="mvdate">날짜</b>
-<br><br>
-<span>상영관&nbsp;&nbsp;<b id="mvplace">상영관</b></span>
-<br><br>
-<span>인원&nbsp;&nbsp;<b>인원</b></span>
+<div class="clickinfo" >
+극장&nbsp;<b>'3'CINE&nbsp;</b><b id="mvcinema">극장이름</b><br><br>
+일시&nbsp;&nbsp;<b id="mvdate">날짜</b><br><br>
+상영관&nbsp;&nbsp;<b id="mvplace">상영관</b><br><br>
+인원&nbsp;&nbsp;<b>인원</b>
 </div>
 
-<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
 <input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
 </div>
-
-</form>
+</div>
 </div>
 </body>
 </html>
