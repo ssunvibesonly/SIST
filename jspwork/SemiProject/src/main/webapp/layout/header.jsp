@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="Dao.MovieDao"%>
+<%@page import="Dto.MovieDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +13,17 @@
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Insert title here</title>
+<title>header</title>
 <%
 //절대경로잡기
 String root = request.getContextPath();
+
+MovieDao dao=new MovieDao();
+MovieDto dto=new MovieDto();
+String search=request.getParameter(dto.getMv_title());
+
+
+
 %>	
 <style type="text/css">
 body{
@@ -41,7 +51,7 @@ a:hover {
 
 .header_content {
     width: 100%;
-    height: 120px;
+    height: 145px;
     background-color: black;
 }
 
@@ -52,7 +62,7 @@ a:hover {
 }
 
 .header_content span {
-	font-size: 10pt;
+	font-size: 11pt;
 	color: white;
 }
 
@@ -70,6 +80,8 @@ a:hover {
 .menu_hover1 {
 	width: 99.9999%;
 	font-size: 14pt;
+	position: relative;
+	z-index: 2;
 }
 
 .menu_hover1:hover {
@@ -123,33 +135,39 @@ span:hover {
 </style>
 </head>
 <body>
+	<header>
 	<!-- 메인 헤더 -->
 	<div class="header_content">
 		<div class="contents" align="center">
 			<ul class="memberInfo_wrap">
 				<li><a
-					href="<%=root %>index.jsp"><img alt=""
-						src="<%=root%>/logoimg/logo.gif"
-						style="width: 16.5%; height: 9%; position: absolute; left: 41.2%; top:3.3%"></a></li>
+					href="<%=root %>/index.jsp?main=layout/main.jsp"><img alt=""
+						src="<%=root%>/logoimg/logo1.gif"
+						style="width: 430px; height: 200px; position: absolute; left: 37.3%; top: -15px;"></a></li>
 				<li><a
-					href="<%=root%>/index.jsp?main=member/memberloginform.jsp"><img
+					href=""><img
+						src="<%=root%>/logoimg/admin.png" alt=""
+						style="width: 22px; height: 22px; position: absolute; left: 74.7%; top: 6%;" /><br>
+					<span style="left: 74%; top: 10%;">Admin</span></a></li>
+				<li><a
+					href="<%=root%>/index.jsp?main=login/loginmain.jsp"><img
 						src="<%=root%>/logoimg/1.png" alt=""
-						style="width: 20px; height: 20px; position: absolute; left: 80%; top: 6%;" /><br>
-					<span style="left: 79.65%; top: 10%;">로그인</span></a></li>
+						style="width: 22px; height: 22px; position: absolute; left: 79%; top: 6%;" /><br>
+					<span style="left: 78.4%; top: 10%;">로그인</span></a></li>
 				<li><a
 					href="<%=root%>/index.jsp?main=member/memberaddform.jsp"><img
 						src="<%=root%>/logoimg/2.png" alt=""
-						style="width: 20px; height: 20px; position: absolute; left: 84.1%; top: 6%;" /><br>
-					<span style="left: 83.5%; top: 10%;">회원가입</span></a></li>
+						style="width: 22px; height: 22px; position: absolute; left: 83.6%; top: 6%;" /><br>
+					<span style="left: 82.6%; top: 10%;">회원가입</span></a></li>
 				<li><a
 					href="<%=root%>/index.jsp?main=member/memebermypage.jsp"><img
 						src="<%=root%>/logoimg/3.png" alt=""
-						style="width: 20px; height: 20px; position: absolute; left: 88.35%; top: 6%;" /><br>
-					<span style="left: 87.5%; top: 10%;">MY INFO</span></a></li>
-				<li><a href=""><img
+						style="width: 22px; height: 22px; position: absolute; left: 88.35%; top: 6%;" /><br>
+					<span style="left: 87.22%; top: 10%;">MY INFO</span></a></li>
+				<li><a href="<%=root%>/index.jsp?main=shop/addform.jsp"><img
 						src="<%=root%>/logoimg/4.png" alt=""
-						style="width: 20px; height: 20px; color: white; position: absolute; left: 92.2%; top: 6%;" /><br>
-					<span style="left: 91.7%; top: 10%;">고객센터</span></a></li>
+						style="width: 22px; height: 22px; color: white; position: absolute; left: 92.75%; top: 6%;" /><br>
+					<span style="left: 91.81%; top: 10%;">고객센터</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -172,10 +190,10 @@ span:hover {
 					<li class="nav-item"><a  href="#"
 						style="position: absolute; left: 40%; top: 10%"><b>극장</b></a></li>
 						
-					<li class="nav-item"><a  href="<%=root %>/index.jsp?main=Movie_reserve/movielist.jsp"
+					<li class="nav-item"><a  href="<%=root%>/index.jsp?main=Movie_reserve/movielist.jsp"
 						style="position: absolute; left: 46%; top: 10%"><b>예매</b></a></li>
 						
-					<li class="nav-item"><a  href="#"
+					<li class="nav-item"><a  href="<%=root %>/index.jsp?main=shop/shoplist.jsp"
 						style="position: absolute; left: 51.7%; top: 10%"><b>스토어</b></a></li>
 						
 					<li class="nav-item"><a  href="#"
@@ -184,16 +202,20 @@ span:hover {
 					<li class="nav-item"><a  href="#"
 						style="position: absolute; left: 64%; top: 10%"><b>혜택</b></a></li>
 					
+					<form method="post" action="index.jsp?main=movieadmin/searchresult.jsp?search="+<%=search%>>
+
 					<li class="nav-item">
-						<form class="form-inline my-2 my-md-0">
-							<input class="form-control" type="text"
-								style="position:absolute; width: 10.2%; height: 60%; right: 10.5%; top: 13.5%;">
-						</form>
+						<input type="hidden" name="mv_name" value="<%=dto.getMv_title() %>">
+						
+						<input type="text" class="form-control" name="search">
+						<input type="image" src="logoimg/search1.png" style="position:absolute; width: 1.4%; height: 55%; right:9%; top: 12.5%;">
+						
 					</li>
-					<li class="nav-item"><a href=""><img
-							src="<%=root%>/logoimg/search1.png" alt=""
-							style="position:absolute; width: 1.4%; height: 55%; right:9%; top: 12.5%;"/></a>
+					<li class="nav-item">
+					
+		
 					</li>
+					</form>
 				</ul>
 			</div>
 		</nav>
@@ -296,5 +318,6 @@ span:hover {
 		    });
 		});
 		</script>
+		</header>
 </body>
 </html>

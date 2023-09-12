@@ -454,12 +454,12 @@ $(function(){
 <div class="container">
 <div id="select_info" class="container" style="clear: both;">
 
-<div class="poster" id="poster" style="float: left;"><%=dto.getRev_poster() %></div>
+<div class="poster" id="poster" style="float: left;" ><%=dto.getRev_poster() %></div>
 
 <div class="mvinfo" style="float: left;">
 영화명<b id="mvtitle" class="mvtitle"><%=dto.getRev_title() %></b>
 <br><br>
-관람연령&nbsp;<img src="<%=dto.getRev_age() %>" id="mvage">
+관람연령&nbsp;<img src="<%=dto.getRev_age() %>" id="mvage" style="width: 40px;">
 </div>
 
 

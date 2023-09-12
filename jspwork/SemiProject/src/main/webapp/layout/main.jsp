@@ -50,8 +50,9 @@ li {
 
 .swiper-slide img {
 	width: 100%;
-	max-width: 175px;
-	height: auto;
+	max-width: 165px;
+	height: 100%;
+	max-height: 250px;
 	border-radius: 10px;
 	margin: 30px 50px 0px 50px;
 }
@@ -85,27 +86,27 @@ li {
 
 .blind {
 	width: 10%;
-	height: 100%;
+	height: 80%;
 	position: absolute;
 	z-index: 1;
-	top: 60%;
+	top: 70%;
 	right: 0%;
 	background-color: black;
 	margin-right: 10px;
 }
 
 #videoname1 {
-	font-size: 25pt;
+	font-size: 23pt;
 	position: absolute;
-	top: 60%;
-	left: 24%;
+	top: 58%;
+	left: 22%;
 }
 
 #videoname2 {
-	font-size: 13pt;
+	font-size: 12pt;
 	position: absolute;
-	top: 70%;
-	left: 24%;
+	top: 66%;
+	left: 22%;
 }
 
 #btnall1 {
@@ -330,7 +331,7 @@ h5, h6 {
 <%
 MovieDao dao = new MovieDao();
 
-List <MovieDto> list=dao.getAllMovieInfo();
+List <MovieDto> list=dao.getAllMovies();
 
 %>
 
@@ -417,8 +418,8 @@ List <MovieDto> list=dao.getAllMovieInfo();
 						<div class="1page" align="center">
 							<div style="position: relative; margin-top: 10px;">
 								<!-- position 속성 추가 -->
-								<img src="<%=dto.getMv_poster() %>"><br>
-								<h5 style="color: white; font-size: 0.85em; margin-top: 15px;"><%=i+1%>. <%=dto.getMv_title() %>
+								<img src="<%=dto.getMv_poster() %>" style="margin-bottom: 17px;"><br>
+								<h5 style="color: white; font-size: 0.85em;"><%=i+1%>. <%=dto.getMv_title() %>
 								</h5>
 								
 								<div class="hover-buttons"
@@ -548,7 +549,7 @@ List <MovieDto> list=dao.getAllMovieInfo();
 				            } else if (text === "4DX") {
 				                imageUrl = "<img src='<%=root%>/image/special7.png'>";
 				            } else if (text === "CINE de CHEF") {
-				                imageUrl = "<img src='<%=root%>/image/special8.png'>";
+				                imageUrl = "<img src='<%=root%>/image/special9.png'>";
 				            }
 
 				            // 이미지를 special_result 요소 내에 추가
