@@ -94,7 +94,7 @@ margin-top: 50px;
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit" class="btn btn-danger" value="상품 등록" onclick="funcselec(); return false;">
-
+				<input type="button" class="btn btn-success" value="상품 목록" onclick="location.href='index.jsp?main=shop/adminlist.jsp'">
 			</td>
 		</tr>
 	</table>

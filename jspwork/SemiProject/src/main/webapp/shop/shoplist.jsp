@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="Dto.ShopDto"%>
 <%@page import="java.util.List"%>
 <%@page import="Dao.ShopDao"%>
@@ -59,7 +60,7 @@ color: white;
       
 		<div align="center">
 			
-				<%
+				<% NumberFormat nf1=NumberFormat.getCurrencyInstance();
 				for(int i=0;i<list.size();i++){
 					ShopDto dto=list.get(i);
 					%>
@@ -69,7 +70,7 @@ color: white;
 					<img src="shopimg/<%=dto.getShop_photo()%>" style="width:200px;height: 300px;"><br>
 					<h4><%=dto.getShop_sangpum() %></h4>
 					<h5><%=dto.getShop_detail() %></h5>
-					<h6><%=dto.getShop_price() %>원</h6>
+					<h6><%=nf1.format(dto.getShop_price()) %>원</h6>
 					</div></a>
 				<%
 				if(i%4==0){
@@ -87,7 +88,7 @@ color: white;
       <h3 class="indexcolor">패키지</h3>
       <div align="center">
 			
-				<%
+				<%NumberFormat nf2=NumberFormat.getCurrencyInstance();
 				for(int i=0;i<list.size();i++){
 					ShopDto dto=list.get(i);
 					if(dto.getShop_category().equals("패키지")){%>
@@ -97,7 +98,7 @@ color: white;
 					<img src="shopimg/<%=dto.getShop_photo()%>" style="width:200px;height: 300px;"><br>
 					<h4><%=dto.getShop_sangpum() %></h4>
 					<h5><%=dto.getShop_detail() %></h5>
-					<h6><%=dto.getShop_price() %>원</h6>
+					<h6><%=nf2.format(dto.getShop_price()) %>원</h6>
 					</div></a>
 
 					<%}
@@ -114,15 +115,89 @@ color: white;
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
       <h3 class="indexcolor">팝콘</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
+		<div align="center">
+			
+				<%NumberFormat nf3=NumberFormat.getCurrencyInstance();
+				for(int i=0;i<list.size();i++){
+					ShopDto dto=list.get(i);
+					if(dto.getShop_category().equals("팝콘")){%>
+					
+					<a shopnum=<%=dto.getShop_num() %> style="cursor: pointer;" class="detailpage"
+					href="#"><div style="float: left;">
+					<img src="shopimg/<%=dto.getShop_photo()%>" style="width:200px;height: 300px;"><br>
+					<h4><%=dto.getShop_sangpum() %></h4>
+					<h5><%=dto.getShop_detail() %></h5>
+					<h6><%=nf3.format(dto.getShop_price()) %>원</h6>
+					</div></a>
+
+					<%}
+				if(i%4==0){
+				%>
+					
+					<br>
+				<%}
+				
+				}
+
+				%>
+		</div>    </div>
      <div id="menu3" class="container tab-pane fade"><br>
       <h3 class="indexcolor">음료</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <div align="center">
+			
+				<%NumberFormat nf4=NumberFormat.getCurrencyInstance();
+				for(int i=0;i<list.size();i++){
+					ShopDto dto=list.get(i);
+					if(dto.getShop_category().equals("음료")){%>
+					
+					<a shopnum=<%=dto.getShop_num() %> style="cursor: pointer;" class="detailpage"
+					href="#"><div style="float: left;">
+					<img src="shopimg/<%=dto.getShop_photo()%>" style="width:200px;height: 300px;"><br>
+					<h4><%=dto.getShop_sangpum() %></h4>
+					<h5><%=dto.getShop_detail() %></h5>
+					<h6><%=nf4.format(dto.getShop_price()) %>원</h6>
+					</div></a>
+
+					<%}
+				if(i%4==0){
+				%>
+					
+					<br>
+				<%}
+				
+				}
+
+				%>
+		</div>
     </div>
      <div id="menu4" class="container tab-pane fade"><br>
       <h3 class="indexcolor">콤보</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <div align="center">
+			
+				<% NumberFormat nf=NumberFormat.getCurrencyInstance();
+				for(int i=0;i<list.size();i++){
+					ShopDto dto=list.get(i);
+					if(dto.getShop_category().equals("콤보")){%>
+					
+					<a shopnum=<%=dto.getShop_num() %> style="cursor: pointer;" class="detailpage"
+					href="#"><div style="float: left;">
+					<img src="shopimg/<%=dto.getShop_photo()%>" style="width:200px;height: 300px;"><br>
+					<h4><%=dto.getShop_sangpum() %></h4>
+					<h5><%=dto.getShop_detail() %></h5>
+					<h6><%=nf.format(dto.getShop_price()) %>원</h6>
+					</div></a>
+
+					<%}
+				if(i%4==0){
+				%>
+					
+					<br>
+				<%}
+				
+				}
+
+				%>
+		</div>
     </div>
   </div>
 </div>
