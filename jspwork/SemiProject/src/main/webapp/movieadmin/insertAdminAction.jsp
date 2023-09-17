@@ -1,4 +1,3 @@
-
 <%@page import="Dto.MovieDto"%>
 <%@page import="Dao.MovieDao"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>

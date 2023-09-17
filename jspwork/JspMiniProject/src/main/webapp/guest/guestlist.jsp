@@ -108,7 +108,7 @@ $(function(){
 			type:"get",
 			dataType:"json",
 			url:"guest/answercontent.jsp",
-			data:{"idx":idx,},
+			data:{"idx":idx,"content",content},
 			success:function(res){
 				$("#idx").val(res.idx);
 				$("#content").val(res.story);

@@ -331,7 +331,7 @@ h5, h6 {
 <%
 MovieDao dao = new MovieDao();
 
-List <MovieDto> list=dao.getAllMovies();
+List <MovieDto> list=dao.getAllMovieInfo();
 
 %>
 
@@ -405,7 +405,7 @@ List <MovieDto> list=dao.getAllMovies();
 					<a href="#" id="futuremovie1"><i class="bi bi-film"></i> 상영예정작</a>
 				</h4>
 				<button type="button" id="btnall1" name="btnall1"
-					class="btn btn-right" onclick="location.href=''">전체보기</button>
+					class="btn btn-right" onclick="location.href='index.jsp?main=movieadmin/movielist.jsp'">전체보기</button>
 			</div>
 			<!-- Swiper -->
 			<div class="swiper mySwiper">
@@ -566,4 +566,58 @@ List <MovieDto> list=dao.getAllMovies();
 
 
 </body>
+</html>
+
+<!-- 네이버 간편로그인 api 
+네이버에서 이름이 필수적으로 불러오게되있고(이름은 호출해야함), 이름이 null이 아닐때 영화 예매권한 주어지게 구현할것-->
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+<%-- <%@ page contentType="text/html;charset=UTF-8" language="java" %> --%>
+<html>
+  <head>
+    <title>네이버로그인</title>
+  </head>
+  <body>
+  <%
+    String clientId = "vCp5t0hGKm51BiLsD6PQ";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "Vpim2RRikz";//애플리케이션 클라이언트 시크릿값";
+    String code = request.getParameter("code");
+    String state = request.getParameter("state");
+    String redirectURI = URLEncoder.encode("http://localhost:8080/SemiProject_MovieCine/index.jsp", "UTF-8");
+    String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
+        + "&client_id=" + clientId
+        + "&client_secret=" + clientSecret
+        + "&redirect_uri=" + redirectURI
+        + "&code=" + code
+        + "&state=" + state;
+    String accessToken = "";
+    String refresh_token = "";
+    try {
+      URL url = new URL(apiURL);
+      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+      con.setRequestMethod("GET");
+      int responseCode = con.getResponseCode();
+      BufferedReader br;
+      if (responseCode == 200) { // 정상 호출
+        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      } else {  // 에러 발생
+        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+      }
+      String inputLine;
+      StringBuilder res = new StringBuilder();
+      while ((inputLine = br.readLine()) != null) {
+        res.append(inputLine);
+      }
+      br.close();
+      if (responseCode == 200) {
+        out.println(res.toString());
+      }
+    } catch (Exception e) {
+      // Exception 로깅
+    }
+  %>
+  </body>
 </html>

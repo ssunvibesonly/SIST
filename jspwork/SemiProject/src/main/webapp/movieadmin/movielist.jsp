@@ -1,5 +1,5 @@
-<%@page import="Dao.MovieDao"%>
 <%@page import="Dto.MovieDto"%>
+<%@page import="Dao.MovieDao"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +12,6 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-
 <style>
 img.photo{
 	width: 200px;
@@ -24,20 +23,8 @@ img.photo{
 </head>
 <body>
 <%
-
-request.setCharacterEncoding("utf-8");
-
-
-//절대경로잡기
-String root=request.getContextPath();
-
 MovieDao dao=new MovieDao();
-String search=request.getParameter("search");
-System.out.println(search);
-List<MovieDto> list=dao.getmovie(search);
-
-System.out.println(list.size()); 
-
+List<MovieDto> list=dao.getAllMovieInfo();
 
 %>
 

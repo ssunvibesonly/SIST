@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 </head>
@@ -19,6 +21,7 @@ ShopDao dao=new ShopDao();
 List<ShopDto> list=dao.getAllData();
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 NumberFormat nf=NumberFormat.getCurrencyInstance();
+ShopDto dto1=new ShopDto();
 %>
 <script>
 $(function(){
@@ -70,6 +73,9 @@ $(function(){
 	})
 	
 })
+
+
+
 function funceachdel(number){
 	
 	var y=confirm("해당 항목을 삭제하시겠습니까?")
@@ -87,6 +93,7 @@ function funceachdel(number){
 <table class="table table-bordered" style="width:1300px;">
 <tr>
 	<th><input type="checkbox" class="allselect" ></th>
+	<th>카테고리</th>
 	<th>상품 사진</th>
 	<th>상품명</th>
 	<th>상품 상세 설명</th>
@@ -100,13 +107,15 @@ function funceachdel(number){
 	%>
 		<tr>
 		<td><input type="checkbox" value=<%=dto.getShop_num() %> class="eachcheck"></td>
-		<td align="center"><img src="shopimg/<%=dto.getShop_photo() %>" style="width:100px;text-align: center;"></td>
-		<td><%=dto.getShop_sangpum() %></td>
-		<td><%=dto.getShop_detail() %></td>
-		<td><%=nf.format(dto.getShop_price()) %></td>
+		<td name="category"><%=dto.getShop_category() %></td>
+		<td align="center"><img src="shopimg/<%=dto.getShop_photo() %>" style="width:100px;text-align: center;"name="photo"></td>
+		<td name="sang"><%=dto.getShop_sangpum() %></td>
+		<td name="detail"><%=dto.getShop_detail() %></td>
+		<td name="price"><%=nf.format(dto.getShop_price()) %></td>
 		<td><%=sdf.format(dto.getShop_ipgoday()) %></td>
 		<td>
-			<input type="submit" value="수정" class="btn btn-warning">
+			<button type="button" value="<%=dto.getShop_num() %>" class="btn btn-warning mod" data-bs-target="#myModal" 
+			data-bs-toggle="modal" name="mod">수정</button>
 			<input type="button" value="삭제" class="btn btn-danger eachdel" onclick="funceachdel(<%=dto.getShop_num()%>)">
 		</td>
 		</tr>
@@ -121,5 +130,6 @@ function funceachdel(number){
 
 </table>
 </div>
+
 </body>
 </html>

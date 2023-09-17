@@ -66,6 +66,7 @@ i.del{cursor: pointer;}
 		//사진 
 		String photo=map.get("photo");
 		
+		
 		//갯수 형변환
 		int cnt=Integer.parseInt(map.get("cnt"));
 		//가격 형변환
@@ -86,6 +87,7 @@ i.del{cursor: pointer;}
 			<td>
 				<div class="sangpum" shopnum="<%= map.get("shopnum") %>">
 				<img alt="" src="shopsave/<%=photo %>" style="width:200px;height: 200px;">
+				
 				</div>
 			</td>
 			<td>

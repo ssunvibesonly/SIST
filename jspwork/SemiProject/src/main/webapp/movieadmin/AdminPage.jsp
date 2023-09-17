@@ -10,13 +10,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 img{
-width: 300px;
-height: 300px;
+width: 200px;
+height: 200px;
 margin-top: 50px; 
 }
 b{
-	font-family: "Dongle";
-	font-size: 30pt;
+   font-family: "Dongle";
+   font-size: 30pt;
 }
 
 div{
@@ -28,7 +28,7 @@ h2{
 margin-left: 700px;
 margin-top:80px;
 font-family: Gaegu;
-font-size:60pt;
+font-size:40pt;
 color:silver;
 font-weight: bold;
 }
@@ -48,17 +48,23 @@ background-color: black;
 <table>
 <tr>
 <td align="center">
-<div style="width: 400px; height: 500px; border: 3px solid gray; cursor: pointer; background-color: white;" onclick="location.href='insertForm.jsp'" align="center">
+<div style="width: 300px; height: 320px; border: 3px solid gray; cursor: pointer; background-color: white;" onclick="location.href='../member/memberlist.jsp'" align="center">
 <img src="../image/memberedit.png">
 <br>
 <b>회원관리</b>
 </div>
 </td>
 <td align="center">
-<div style="width: 400px; height: 500px; border: 3px solid gray; cursor: pointer; background-color: white;" onclick="location.href='adminStart.jsp'" align="center">
+<div style="width: 300px; height: 320px; border: 3px solid gray; cursor: pointer; background-color: white;" onclick="location.href='listAdmin.jsp'" align="center">
 <img src="../image/movieedit.png">
 <br>
 <b>영화관리</b></div>
+</td>
+<td>
+<div style="width: 300px; height: 320px; border: 3px solid gray; cursor: pointer; background-color: white;" onclick="location.href='../shop/adminlist.jsp'" align="center">
+<img src="../image/shopedit.png">
+<br>
+<b>매점관리</b></div>
 </td>
 </tr>
 </table>

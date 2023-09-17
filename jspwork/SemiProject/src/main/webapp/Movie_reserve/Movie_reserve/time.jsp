@@ -37,9 +37,9 @@ JSONArray arr = new JSONArray();
 
 //ob.put(iter.next());
 while(iter.hasNext()){
-   JSONObject ob = new JSONObject();
-   ob.put("time", iter.next());
-   arr.add(ob);
+	JSONObject ob = new JSONObject();
+	ob.put("time", iter.next());
+	arr.add(ob);
 }
 %>
 <%=arr.toString() %>

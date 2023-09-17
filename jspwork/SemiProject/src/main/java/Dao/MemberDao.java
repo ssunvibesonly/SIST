@@ -62,7 +62,7 @@ DBConnect_2 db=new DBConnect_2();
 				
 				if(rs.next())
 				{
-					num=rs.getString("num");
+					num=rs.getString("mem_no");
 				}
 				
 			} catch (SQLException e) {
@@ -209,6 +209,35 @@ DBConnect_2 db=new DBConnect_2();
 				db.dbClose(rs, pstmt, conn);
 			}
 			return name;	
+		}
+		
+		public String getPh(String id)
+		{
+			String ph="";
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from member_table where mem_id=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next())
+				{					
+					ph=rs.getString("mem_ph");	
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			return ph;	
 		}
 		
 		//num의 dto

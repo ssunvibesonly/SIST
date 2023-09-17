@@ -18,6 +18,9 @@
 //절대경로잡기
 String root = request.getContextPath();
 
+String loginok=(String)session.getAttribute("loginok");
+String myid=(String)session.getAttribute("myid");
+
 MovieDao dao=new MovieDao();
 MovieDto dto=new MovieDto();
 String search=request.getParameter(dto.getMv_title());
@@ -133,6 +136,40 @@ span:hover {
 	color: #E58484;
 }
 </style>
+<script>
+
+$(function(){
+	
+	$("#searchbtn").click(function(){
+		
+		var search=$("#search").val();
+		alert(search);
+		if(search==""){
+			
+			alert("검색어를 입력해주세요");
+			
+			return;
+		}
+		location.href="index.jsp?main=movieadmin/searchresult.jsp?search="+search;
+		
+	})
+	
+	$("#search").keypress(function(e){
+		
+		var keycode=e.keyCode;
+		
+		var search=$("#search").val();
+		
+		if(keycode==13){
+
+			location.href="index.jsp?main=movieadmin/searchresult.jsp?search="+search;
+			
+		}
+
+	})
+	
+})
+</script>
 </head>
 <body>
 	<header>
@@ -144,11 +181,16 @@ span:hover {
 					href="<%=root %>/index.jsp?main=layout/main.jsp"><img alt=""
 						src="<%=root%>/logoimg/logo1.gif"
 						style="width: 430px; height: 200px; position: absolute; left: 37.3%; top: -15px;"></a></li>
-				<li><a
-					href=""><img
-						src="<%=root%>/logoimg/admin.png" alt=""
-						style="width: 22px; height: 22px; position: absolute; left: 74.7%; top: 6%;" /><br>
-					<span style="left: 74%; top: 10%;">Admin</span></a></li>
+				
+				
+				<% if (myid!=null&&myid.equals("admin")&&loginok!=null) { %>
+            <li><a
+               href="<%=root%>/index.jsp?main=shop/addform.jsp"><img
+                  src="<%=root%>/logoimg/admin.png" alt=""
+                  style="width: 22px; height: 22px; position: absolute; left: 74.7%; top: 6%;" /><br>
+               <span style="left: 74%; top: 10%;">Admin</span></a></li>
+               <%}%>
+               
 				<li><a
 					href="<%=root%>/index.jsp?main=login/loginmain.jsp"><img
 						src="<%=root%>/logoimg/1.png" alt=""
@@ -164,10 +206,10 @@ span:hover {
 						src="<%=root%>/logoimg/3.png" alt=""
 						style="width: 22px; height: 22px; position: absolute; left: 88.35%; top: 6%;" /><br>
 					<span style="left: 87.22%; top: 10%;">MY INFO</span></a></li>
-				<li><a href="<%=root%>/index.jsp?main=shop/addform.jsp"><img
+				<li><a href="<%=root%>/index.jsp?main=shop/myCart.jsp"><img
 						src="<%=root%>/logoimg/4.png" alt=""
 						style="width: 22px; height: 22px; color: white; position: absolute; left: 92.75%; top: 6%;" /><br>
-					<span style="left: 91.81%; top: 10%;">고객센터</span></a></li>
+					<span style="left: 91.81%; top: 10%;">장바구니</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -201,21 +243,15 @@ span:hover {
 						
 					<li class="nav-item"><a  href="#"
 						style="position: absolute; left: 64%; top: 10%"><b>혜택</b></a></li>
-					
-					<form method="post" action="index.jsp?main=movieadmin/searchresult.jsp?search="+<%=search%>>
+			
+					<li class="nav-item">
+						<input type="text" class="form-control" name="search" id="search"style="position:absolute; width: 10.5%; height: 72%; right: 15%; top: 13.5%;">
+						&nbsp;&nbsp;<input type="button" class="btn btn-success" id="searchbtn"style="position:absolute; width: 60px; height: 30px; right:11%; top: 10%;" value="검색">
+						
+					</li>
+					<li class="nav-item">
 
-					<li class="nav-item">
-						<input type="hidden" name="mv_name" value="<%=dto.getMv_title() %>">
-						
-						<input type="text" class="form-control" name="search">
-						<input type="image" src="logoimg/search1.png" style="position:absolute; width: 1.4%; height: 55%; right:9%; top: 12.5%;">
-						
 					</li>
-					<li class="nav-item">
-					
-		
-					</li>
-					</form>
 				</ul>
 			</div>
 		</nav>

@@ -22,12 +22,14 @@
 </head>
 <%
 	MovieDao dao=new MovieDao();
-	List<MovieDto> list=dao.getAllMovies();
+	List<MovieDto> list=dao.getAllMovieInfo();
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <body>
-<table class="table table-bordered" >
+<h2 align="center">관리자 페이지 영화 리스트</h2>
+<div class="container">
+<table class="table table-bordered" style="font-size: 0.8em;">
 <tr class="table-success" valign="middle" align="center">
 	
 	<th>번호</th>
@@ -67,9 +69,9 @@
 		<td><%=dto.getMv_adult() %></td>
 		<td><%=dto.getMv_teen() %></td>
 		<td><%=dto.getMv_child() %></td>
-		<td class="btn"> 
+		<td> 
 		<button type="button" class="btn btn-outline-warning" 
-		onclick="location.href='updateAdminForm.jsp?num=<%=dto.getMv_no()%>'">정보수정</button><br><br><br><hr><br><br><br>
+		onclick="location.href='updateAdminForm.jsp?num=<%=dto.getMv_no()%>'">정보수정</button><br><br>
 		<button type="button" class="btn btn-outline-danger" 
 		onclick="location.href='deleteAdmin.jsp?num=<%=dto.getMv_no() %>'">정보삭제</button>
 		</td>
@@ -77,7 +79,9 @@
 	<%}
 %>
 </table>
+<div align="center">
 <button type="button" class="btn btn-outline-success"
- onclick="location.href='insertAdminForm.jsp'">정보추가</button>
+ onclick="location.href='insertAdminForm.jsp'">정보추가</button></div>
+ </div>
 </body>
 </html>
