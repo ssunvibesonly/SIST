@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="Dto.CartDto"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="Dto.ShopDto"%>
@@ -25,7 +26,6 @@ List<HashMap<String,String>> list=dao.getCartList(myid);
 MemberDao mdao=new MemberDao();
 
 String name=mdao.getName(myid);
-String ph=mdao.getPh(myid);
 
 NumberFormat nf=NumberFormat.getCurrencyInstance();
 
@@ -91,7 +91,7 @@ int allmoney=0;
 		<tr>
 			<td colspan="5" style="text-align: center">
 				<button type="button" class="btn btn-outline-danger" id="delbtn">선택 삭제</button>
-				<button type="button" class="btn btn-outline-info">구매하기</button>
+				<button type="button" class="btn btn-outline-info" id="buybtn">구매하기</button>
 			</td>
 		</tr>
 	
@@ -150,12 +150,38 @@ $("#delbtn").click(function(){
 				
 				var cidx=$(this).val();
 				del(cidx);
-				location.reload();
+				
 			})
 			
 		}
+		
 	}
 	
+	
+})
+
+$("#buybtn").click(function(){
+	
+	var leng=$(".eachcheck:checked").length;
+	var cidx_s="";
+	
+	//alert(leng);
+	
+	$(".eachcheck:checked").each(function(idx){
+		var cidx=$(this).val(); //체크한 상품들의 시퀀스 값 받아옴
+		
+		cidx_s+=cidx+",";
+		
+	})
+	
+	cidx_s=cidx_s.substring(0,cidx_s.length-1);
+	
+	alert(cidx_s);
+	var buy=confirm(leng+"개의 상품을 구매하시겠습니까?");
+	
+	if(buy){
+		location.href="index.jsp?main=shop/payment.jsp?cidx_s="+cidx_s;
+	}
 	
 })
 
@@ -168,8 +194,7 @@ function del(cidx){
 		url:"shop/deleteMycart.jsp",
 		data:{"cidx":cidx},
 		success:function(){
-			
-			
+			location.reload();
 		}
 		
 	})

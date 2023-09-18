@@ -12,6 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 hr{
@@ -100,7 +101,74 @@ hr{
          </tr>
          <tr>
          	<td>
-         	<a href="javascript:kakaoLogin();"><img height="38px"  src="./image/kakao_login_button.png"/></a>
+         	
+         	 <a href="javascript:kakaoLogin()"><img height="38px"  src="image/kakao_login_medium_narrow.png"/></a>
+       
+         	
+         	<!-- 카카오스크립트 -->
+         	
+         	<script type="text/javascript">
+         	Kakao.init("aa8fa91006ff299919c69a3d7526fed0");
+         	console.log(Kakao.isInitialized())
+         	
+         	function kakaoLogin() {
+        	Kakao.Auth.login({
+            success: function (response) {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (response) {
+                        
+                    	 id=response.id;
+                    	 kakao_account=response.kakao_account;
+                    	 nickname=kakao_account.profile.nickname;
+                    	 email=kakao_account.email;
+                    	 gender=kakao_account.gender;
+                    	 birth=kakao_account.birthday;
+                    	 
+                    	 if(gender=="female"){
+                    		 gender="여자";
+                    	 }
+                    	 if(gender=="male"){
+                    		 gender="남자";
+                    	 }
+                    	 
+                    	 if(birth&&birth.length==4){
+                    		 birth=birth.substring(0,2)+"-"+birth.substring(2); //첫번째 substring은 0번째부터 2번째 직전까지 가져온다는 뜻 , 두번째는 substring은 2번째부터 마지막까지 출력
+                    	 }
+                    	 
+                    	/* alert(id);
+                    	alert(gender)
+              			alert(nickname);
+              			alert(email);
+              			; */
+              			
+              			 $.ajax({
+              			
+              				type:"post",
+              				dataType:"html",
+              				url:"login/kakao.jsp",
+              				data:{"id":id,"nickname":nickname,"email":email,"gender":gender,"birth":birth},
+              				success:function(){
+              					
+              					location.href="index.jsp?main=layout/main.jsp";
+              				}
+              			})  
+              			
+                    	 
+                        
+                        
+                    },
+                    fail: function (error) {
+                        alert(JSON.stringify(error))
+                    },
+                })
+            },
+            fail: function (error) {
+                alert(JSON.stringify(error))
+            },
+        })
+    }
+         	</script>
          	</td>
          </tr>
          
@@ -109,27 +177,6 @@ hr{
 
 </div>
 <hr>
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-	window.kakao.init("8a07f76bebec8cff1421aad9e6b99056");
-	
-	function kakaoLogin() {
-		window.kakao.Auth.login(){
-			scope:'profile_nickname,profile_image,account_email',
-			success: function(authObj) {
-				console.log(authObj);
-				window.Kakao.API.request({
-					url:'/v2/user/me',
-					success: res=>{
-						const kakao_account=res.kakao_account;
-						console.log(kakao_account);
-					}
-						
-				})
-			}
-		})
-		
-	}
-</script>
+
 </body>
 </html>

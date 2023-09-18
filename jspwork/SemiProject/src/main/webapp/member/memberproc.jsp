@@ -14,10 +14,10 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
+
 	
 	//데이터 읽어서 dto에 넣기
 	MemberDto dto=new MemberDto();
-	
 	String id=request.getParameter("id");
 	String pass=request.getParameter("pass");
 	String name=request.getParameter("name");
