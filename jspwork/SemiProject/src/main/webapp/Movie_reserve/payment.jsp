@@ -20,10 +20,16 @@
 <!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<style>
+button#payKakao{
+all:unset;
+cursor: pointer;
+}
 
+</style>
 <%
 	//로그인한 id를 가져옴
-	/* String id = (String)session.getAttribute("myid"); */	
+	//String id = (String)session.getAttribute("myid");	
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	int seat_no = Integer.parseInt(request.getParameter("seat_no"));
@@ -177,37 +183,40 @@ $(function(){
 </head>
 
 <body>
-
+<br><br>
 <div class="container">
-<table class="table table-bordered" style= "vertical-align: middle;" >
+<h1 style="color: white;font-weight: bold;margin-left: 40px;">결제하기</h1>
+<hr style="color: white">
+<hr style="border: 3px solid white;">
+<table class="table" style= "vertical-align: middle;" >
 	<caption align="top"><b>결제정보</b></caption>
-	<tr class="table table-danger">
-		<th>주문자명</th>
-		<th>영화</th>
-		<th>극장명</th>
-		<th>상영관</th>
-		<th>날짜</th>
-		<th>좌석</th>
-		<th>인원</th>
-		<th>총가격</th>
+	<tr class="table table-danger" style="text-align: center;">
+		<th style="background-color: #b0c4de;color: white;">&nbsp;&nbsp;&nbsp;주문자명</th>
+		<th style="background-color: #b0c4de;color: white;">영화</th>
+		<th style="background-color: #b0c4de;color: white;">극장명</th>
+		<th style="background-color: #b0c4de;color: white;">상영관</th>
+		<th style="background-color: #b0c4de;color: white;">날짜</th>
+		<th style="background-color: #b0c4de;color: white;">좌석</th>
+		<th style="background-color: #b0c4de;color: white;">인원</th>
+		<th style="background-color: #b0c4de;color: white;">총가격</th>
 	</tr>
-	<tr>
+	<tr style="text-align: center">
 		<td><%=name %></td>
 		<td>
 		<!-- <img src="upload/Oppenheimer2.jpg" style="width: 100px;"> -->
-			<%=rdto.getRev_poster() %>
-			<%=rdto.getRev_title() %>
+			<%=rdto.getRev_poster() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b><%=rdto.getRev_title() %></b>
 		</td>
-		<td><%=rdto.getRev_name() %></td>
-		<td><%=rdto.getRev_place() %></td>
-		<td><%=rdto.getRev_date() %></td>
-		<td><%=sdto.getSeat_name() %></td>
+		<td><b><%=rdto.getRev_name() %></b></td>
+		<td><b><%=rdto.getRev_place() %></b></td>
+		<td><b><%=rdto.getRev_date() %></b></td>
+		<td><b><%=sdto.getSeat_name() %></b></td>
 		<td>
-			<%=sdto.getAdultCnt()!=0?"성인:"+sdto.getAdultCnt()+"명<br>":"" %>
-			<%=sdto.getTeenCnt()!=0?"청소년:"+sdto.getTeenCnt()+"명<br>":"" %>
-			<%=sdto.getChildCnt()!=0?"아동:"+sdto.getChildCnt()+"명<br>":"" %>
+			<b><%=sdto.getAdultCnt()!=0?"성인:"+sdto.getAdultCnt()+"명<br>":"" %></b>
+			<b><%=sdto.getTeenCnt()!=0?"청소년:"+sdto.getTeenCnt()+"명<br>":"" %></b>
+			<b><%=sdto.getChildCnt()!=0?"아동:"+sdto.getChildCnt()+"명<br>":"" %></b>
 		</td>
-		<td><%=nf.format(sdto.getTotalPrice()) %></td>
+		<td><b><%=nf.format(sdto.getTotalPrice()) %></b></td>
 	</tr>
 	<tr>
 		<td colspan="8" align="center">
@@ -217,14 +226,14 @@ $(function(){
 
 	<tr>
 		<td colspan="8" align="center">
-			<input type="button" value="카카오페이" class="btn btn-outline-success" id="payKakao">
-			<input type="button" value="kG이니시스" class="btn btn-outline-success" id="kg">
+			<button type="button" id="payKakao"><img src="image/kakaopay.png"></button>
+			<input type="button" value="신용카드" class="btn btn-secondary" id="kg">
 		</td>
 	</tr>
 	
 </table>
 </div>
-
+<br><br>
 
 </body>
 </html>

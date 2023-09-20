@@ -149,6 +149,7 @@ body {
 #select_info{
 
 background-color:white;
+border-radius:20px;
 border:2px solid gray;
 top:750px;
 left:200px;
@@ -210,8 +211,8 @@ ul li{
    String occupiedSeats="";
    
    for(int i=0; i<rev_nos.size(); i++){
-	   SeatDao sdao = new SeatDao();
-	   occupiedSeats+=sdao.getSeatRev(rev_nos.get(i)).getSeat_name()+",";
+      SeatDao sdao = new SeatDao();
+      occupiedSeats+=sdao.getSeatRev(rev_nos.get(i)).getSeat_name()+",";
    }
    
    
@@ -221,19 +222,19 @@ ul li{
 <script type="text/javascript">
 $(function(){
    
-		//사전에 예매된 좌석들에 occupied 클래스 적용
-		 <%
-		    if(occupiedSeats!=""){
-		    	for(int i=0; i<seats.length; i++){
-				       %>
-				       var seat = $("#<%=seats[i]%>");
-				       if(seat){
-				          seat.addClass("occupied");
-				       }
-				       <%
-				    }
-		    }
-		 %>
+      //사전에 예매된 좌석들에 occupied 클래스 적용
+       <%
+          if(occupiedSeats!=""){
+             for(int i=0; i<seats.length; i++){
+                   %>
+                   var seat = $("#<%=seats[i]%>");
+                   if(seat){
+                      seat.addClass("occupied");
+                   }
+                   <%
+                }
+          }
+       %>
       
    
    
@@ -389,7 +390,11 @@ $(function(){
 </script>
 </head>
 <body>
-<br><hr style="color: white;"><br>
+<br><br>
+<div class="container">
+<h1 style="color: white;font-weight: bold;margin-left: 40px;">좌석 선택</h1>
+<hr style="color: white">
+<hr style="border: 3px solid white;"></div>
 <div class="movie-container">
       <label>성인:</label>
       <select id="adult">
@@ -475,15 +480,15 @@ $(function(){
 상영관&nbsp;&nbsp;<b id="mvplace"><%=dto.getRev_place() %></b><br><br>
 인원&nbsp;<b id="mvpeople">
 성인<b id="adultCnt"></b>
-청소년 <b id="teenCnt"></b>
-아동 <b id="childCnt"></b>
+청소년<b id="teenCnt"></b>
+아동<b id="childCnt"></b>
 </b><br><br>
 좌석&nbsp;&nbsp;<b id="selectedSeat"></b><br><br>
 가격&nbsp;&nbsp;<b id="totalPrice"></b>원<br>
 </div>
 
 
-<input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
+<input type="button" value="결제하기" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
 </div>
 </div>
 

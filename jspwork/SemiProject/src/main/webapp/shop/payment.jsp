@@ -55,7 +55,9 @@
 
 <br><br>
 <div class="container" style="width: 1000px;">
-<hr style="color: white;border: 3px solid white;">
+<h1 style="color: white;font-weight: bold;margin-left: 40px;">결제하기</h1>
+<hr style="color: white">
+<hr style="border: 3px solid white;">
 <table class="table table-bordered">
 	<tr>
 		<th>상품명</th>

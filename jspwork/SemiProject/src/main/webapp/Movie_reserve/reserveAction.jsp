@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = "joony";	
+	String id = (String)session.getAttribute("myid");	
 	
 	String[] mv_titles = request.getParameter("mvtitle").split(";");
 	String mvtitle = mv_titles[2];

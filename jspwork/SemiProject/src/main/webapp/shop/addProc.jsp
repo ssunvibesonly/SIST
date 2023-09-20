@@ -47,7 +47,7 @@ try{
 	dao.ShopInsert(dto);
 	
 	//페이지 이동
-	response.sendRedirect("../index.jsp?main=shop/addform.jsp");
+	response.sendRedirect("../index_admin.jsp?main=shop/addform.jsp");
 	
 }catch(Exception e){
 	System.out.println("오류메세지:"+e.getMessage());

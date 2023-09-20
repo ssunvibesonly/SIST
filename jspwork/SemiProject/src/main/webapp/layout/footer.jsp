@@ -30,29 +30,25 @@ a:hover {
 	text-decoration: none; /* 밑줄 제거 */
 }
 
-body {
-	background-color: black;
-}
-
 .contents1 {
 	margin-top: 20px;
-	font-size: 1em;
+	font-size: 0.9em;
 }
 
 .contents1>a {
 	text-decoration: none;
 	color: white;
-	font-size: 0.8em;
+
 }
 
 .contents1>h6 {
 	color: white;
-	font-size: 0.8em;
+	font-size: 1em;
+
 }
 
 .contents1>h6>a {
 	color: white;
-	font-size: 0.7em;
 }
 
 .contents1>a:hover {
@@ -63,9 +59,12 @@ body {
 	text-decoration: underline;
 }
 
-#mack {
+#foot {
+	position: relative;
+	top: -10%;
 	cursor: pointer;
-	width: 100%;
+	width: 1200px;
+	height: auto;
 }
 
 .contents1>a:hover {
@@ -78,7 +77,14 @@ body {
 
 .contents2>a{
 	font-weight: bold;
-	font-size: 0.8em;
+}
+
+.gwang-go {
+    background-color: #F5F2ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
 }
 </style>
 </head>
@@ -91,9 +97,8 @@ String root = request.getContextPath();
 	<!-- 푸터 -->
 	<div class="footer_content1">
 		<div class="gwang-go content1">
-			<img src="<%=root%>/image/mack.jpeg" name="mack" id="mack"
-				style="width: 100%; height: 450px; margin-top: 40px;"
-				onclick="location.href='https://www.mcdonalds.co.kr/kor/main.do'">
+			<img src="<%=root%>/image/footer1.png" name="foot" id="foot"
+				onclick="location.href=''">
 		</div>
 		<div class="contents1" align="center">
 			<div class="contents2">
@@ -110,7 +115,7 @@ String root = request.getContextPath();
 			<h6>
 				대표이사 : 장순녕&nbsp;사업자등록번호 : 114-02-34678&nbsp;통신판매업신고번호 :
 				2023-서울부산-1955&nbsp; <a href="https://www.youtube.com/@goyoungii"><b
-					style="font-size: 1.45em;">사업자정보확인</b></a>
+					style="font-size: 0.95em;">사업자정보확인</b></a>
 			</h6>
 			<h6>호스팅사업자: SY네트워크&nbsp; 개인정보보호 책임자 : 쌍용구&nbsp;대표이메일 :
 				gitmasterx@sy.net</h6>

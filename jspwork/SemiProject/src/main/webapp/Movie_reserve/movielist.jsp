@@ -18,8 +18,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>영화예매</title>
-<style>
+<%
+String loginok=(String)session.getAttribute("loginok");
+String myid=(String)session.getAttribute("myid");
 
+%>
+<style>
 #mv_name{
 float:left;
 border:2px solid gray;
@@ -27,7 +31,7 @@ width:350px;
 height:500px;
 overflow: scroll;
 margin-bottom:20px;
-background-color:#f8f8ff ;
+background-color:#fffafa ;
 
 }
 #mv_theater{
@@ -37,7 +41,7 @@ border:2px solid gray;
 width:340px;
 height:500px;
 margin-bottom:20px;
-background-color:#f8f8ff;
+background-color:#fffafa;
 
 }
 
@@ -48,7 +52,7 @@ float:left;
 width:195px;
 height:500px;
 margin-bottom:20px;
-background-color:#f8f8ff;
+background-color:#fffafa;
 
 }
 #mv_time{
@@ -57,7 +61,7 @@ float:left;
 width:340px;
 height:500px;
 margin-bottom:20px;
-background-color:#f8f8ff;
+background-color:#fffafa;
 
 }
 
@@ -71,9 +75,10 @@ width:1225px;
 
 div#select_info{
 
-width:1225px;
+width:1240px;
 height:300px;
-background-color:white;
+background-color:#f8f8ff;
+border-radius: 20px;
 }
 
 li{list-style: none;}
@@ -86,10 +91,10 @@ div.daycon{
 }
 li.date{
 margin-left:50px;
-margin-top:-30px;
+margin-top:-28px;
 font-size:15pt;
 text-align: justify;
-cursor: pointer;
+
 }
 
 li.mvname{
@@ -122,7 +127,19 @@ float: left;
 
 .clickcolor{
 
-background-color: lightgray;
+background-color: #faebd7;
+font-weight: bold;
+margin-right: 50px;
+
+}
+.thclick{
+background-color: #808080;
+color: white;
+
+}
+.clickli{
+
+background-color: #faebd7;
 font-weight: bold;
 
 }
@@ -143,8 +160,10 @@ List<MovieDto> list=dao.getAllMovieInfo();
       $(".loc").hide();
       
       $("th.local").click(function(){
-         
-    	  $(this).hover();
+    	  
+    	  $(this).css("background-color","#faebd7");
+    	  $(".local").not(this).css("background-color","#f5f5f5");
+    	  
     	  var name=$(this).attr("value");
          //alert(name);
          $(".loc").hide();
@@ -152,24 +171,7 @@ List<MovieDto> list=dao.getAllMovieInfo();
          
       });
       
-      $(".btn").hide();
-      
-      $(".datelabel").click(function(){
-   
-         $(".btn").hide();
-         
-         var date=$(this).text();
-         
-         if(date!=null){
-            $(".btn").show();
-            
-            return;
-         }
 
-      
-      });
-      
-      
       //영화제목과 포스터출력
       $(".mvname").click(function(){
             
@@ -190,26 +192,32 @@ List<MovieDto> list=dao.getAllMovieInfo();
       $(".loca").click(function(){
           var locname=$(this).text();
           
-          $(".loca").removeClass("clickcolor");
-		  $(this).addClass("clickcolor");
+		  $(this).css("background-color","#faebd7");
+		  $(".loca").not(this).css("background-color","")
 		  
 		  
           //alert(locname);
           $("#mvcinema").html(locname);
        })
+       
+ 		$("div#licss").click(function () {
+    		 // 클릭한 div 안의 모든 요소에 clickli 클래스를 추가합니다.
+    		 $(this).addClass("clickli");
 
+    		 // 다른 div 안의 요소들에서 clickli 클래스를 제거합니다.
+    		 $("div#licss").not(this).removeClass("clickli");
+    });
+       
    //날짜 합치기
    var date="";
    var day="";
          
    //날짜 클릭시 시간이 뜸
    $("li.date").click(function(){
+  
         date = $(this).val();//날짜
         day = $(this).attr("day");//요일
         
-        $("li.date").removeClass("clickcolor");
-		  $(this).addClass("clickcolor");
-		  
         //alert(date);
         //alert(day);
         $.ajax({
@@ -227,21 +235,21 @@ List<MovieDto> list=dao.getAllMovieInfo();
                  var timeSplit=timeString.split(':');
                  
                  if(timeSplit[0]>=12){
-                    after+="&nbsp;&nbsp;<button type='button' class='btn btn-warning time' value='"+item.time+"'>"+item.time+"</button>";
+                    after+="<div style='margin-left:10px;float:left;margin-bottom:10px;margin-top:10px;'><button type='button' class='btn btn-warning time' value='"+item.time+"'>"+item.time+"</button></div>";
                  }else{
-                    morning+="&nbsp;&nbsp;<button type='button' class='btn btn-warning time'  value='"+item.time+"'>"+item.time+"</button>";
+                    morning+="<div style='margin-left:10px;float:left;margin-bottom:10px;margin-top:10px;'><button type='button' class='btn btn-warning time'  value='"+item.time+"'>"+item.time+"</button></div>";
                  }
               });
               
               
               if(morning!=""){
-                 result+="<br><b>&nbsp;&nbsp;오전</b><br>"
+                 result+="<br><b>&nbsp;&nbsp;오전</b>&nbsp;<img src='image/sun.png' style='width:25px;'><br>"
                     result+=morning
-                    result+="<hr>"
+                    result+="<hr style='clear:both;'>"
               }
               
               if(after!=""){
-                 result+="&nbsp;&nbsp;<b>오후</b><br>"
+                 result+="&nbsp;&nbsp;<b>오후</b>&nbsp;<img src='image/moon.png' style='width:25px;'><br>"
                      result+=after
               }
               
@@ -290,6 +298,12 @@ List<MovieDto> list=dao.getAllMovieInfo();
    //좌석선택버튼 클릭시 예약정보 DB에 넣고 좌석선택 페이지로 이동
    /* $(document).on("click","#seatBtn",function(){ */
       $("#seatBtn").click(function(){
+    	
+    	  var loginok="<%=loginok%>";
+    	  var myid="<%=myid%>";
+    	  
+    	 if(loginok!=null && myid!=null){
+      
          var poster = $("#poster").html();
          var mvtitle =$("#mvtitle").html();
          var mvage =$("#mvage").attr("src");
@@ -309,10 +323,15 @@ List<MovieDto> list=dao.getAllMovieInfo();
                location.href=url;
             }
          }); 
+    	 }else{
+    		  var y=confirm("로그인이 필요한 페이지 입니다.\n 로그인 창으로 이동하시겠습니까?");
+    		  if(y){
+    			  location.href="index.jsp?main=login/loginform.jsp";
+    		  }
+    	  }
       
       });
-   
-   
+
       
    })
       
@@ -320,14 +339,17 @@ List<MovieDto> list=dao.getAllMovieInfo();
 
 </head>
 <body>
-<div style="border-top: 1px solid silver; width: 100%;"></div>
+<br><br>
 <div class="container" style="height: 950px;"><br>
-<table class="table table-bordered" style="width:1225px;"align="center">
+<h1 style="color: white;font-weight: bold;margin-left: 40px;">영화 예매</h1>
+<hr style="color: white">
+<hr style="border: 3px solid white;">
+<table class="table" style="width:1225px;background-color: #708090;"align="center">
    <tr>
-      <th style="width:280px;background-color: #fff0f5;">영화</th>
-      <th style="width:280px;background-color: #fff0f5;">극장</th>
-      <th style="width:150px;background-color: #fff0f5;">날짜</th>
-      <th style="width:280px;background-color: #fff0f5;">시간</th>
+      <th style="width:280px;background-color: #a9a9a9 ;color: white;">영화</th>
+      <th style="width:280px;background-color: #a9a9a9 ;color: white;">극장</th>
+      <th style="width:150px;background-color: #a9a9a9 ;color: white;">날짜</th>
+      <th style="width:280px;background-color: #a9a9a9 ;color: white;">시간</th>
    </tr>
 </table>
 
@@ -462,6 +484,7 @@ for(int jeon=0;jeon<jeonla.length;jeon++){%>
 </div>
 <div id="mv_day" class="container daycon">
 <ul>
+
    <li style="color: gray; margin-top: 10px;margin-left: 35px;"><b>2023</b></li>
    <li><b style="font-size: 40pt;text-align: center;margin-left: 35px;">9</b></li>
 <%
@@ -479,10 +502,11 @@ for(int i=1;i<=30;i++){
    case 0:dayOfweek="목";break;
    
    }%>
-  <br><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" ><%=dayOfweek%></li>
-   <lable class="datelabel"><li style='color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;' class='date' value=<%=i %> day='<%=dayOfweek %>'>
-         <b ><%= i%></b></li>
-      </lable>
+   
+  <br>
+  <div id="licss">
+  <li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;cursor:pointer;" class="day" ><%=dayOfweek%></li>
+  <li style='color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;cursor:pointer;' class="date" value="<%=i %>" day="<%=dayOfweek %>"><%= i%></li></div>
    
 
 <% 
@@ -497,7 +521,7 @@ for(int i=1;i<=30;i++){
 </div>
 
 <div class="container">
-<div id="select_info" class="container" style="clear: both;">
+<div id="select_info" class="container" style="clear: both; margin-bottom: 20px;">
 
 <div class="poster" id="poster" style="float: left;"></div>
 
@@ -515,10 +539,11 @@ for(int i=1;i<=30;i++){
 인원&nbsp;&nbsp;<b>인원</b>
 </div>
 
-
+ 
 <input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
 </div>
 </div>
 </div>
+<br><br><br><br><br>
 </body>
 </html>

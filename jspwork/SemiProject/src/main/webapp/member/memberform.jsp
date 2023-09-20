@@ -8,6 +8,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+
+<style>
+input::placeholder{
+font-size: 10px;
+}
+
+
+</style>
 <script type="text/javascript">
    $(function() {
    
@@ -39,15 +47,16 @@
 <div class="container">
    <div style="margin: 60px 400px; width:100% ; height:600px;">
       <form action="memberproc.jsp" method="post" class="form-inline" id="mfrm">
-         <table class="table table-bordered" style="width: 500px; position: absolute; border-radius: 30px;">
-            <caption align="top" style="color: white;font-size: 20pt;text-align: center;"><b>회원가입</b></caption>
+         <table class="table table-dark table-striped table-hover" style="width: 500px; position: absolute;">
+            <caption align="top" style="color: white; font-size: 20px; border-bottom: 1px solid white; margin-bottom: 50px;">회원가입</caption>
             <tr>
                <td style="width: 100px;" valign="middle" align="center">아이디</td>
                <td>
-               <input type="text" name="id" style="width: 160px;"
+               <input type="text" name="id" style="width: 150px; border-radius: 10px;"
                readonly="readonly" required="required" id="mid">&nbsp;&nbsp;
-               <button type="button" class="btn btn-danger btn-sm"
-               onclick="openId()" style="width: 90px;">아이디확인</button>
+               <button style="background-color: #F54C4C; width: 100px; border-radius: 10px; cursor: pointer; margin-left: -12px; margin-bottom: 4px; color: white;
+               font-size: 0.85em; padding: 3px;" valign="middle" onclick="openId()">중복확인</button>
+               <!-- <img src="./image/idcheckbutton.png" onclick="openId()" style="width: 90px; border-radius: 10px; cursor: pointer; margin-bottom: 4px;"> -->
                </td>
             </tr>
             
@@ -55,16 +64,16 @@
                  <td style="width: 100px;" valign="middle" align="center">비밀번호</td>
                  <td>
                  <input type="password" name="pass" placeholder="비밀번호"
-                 required="required" style="width: 120px;" class="form-group">
+                 required="required" style="width: 150px; border-radius: 10px;">
                  <input type="password" name="pass2" placeholder="비밀번호확인"
-                 required="required" style="width: 120px;" class="form-group">         
+                 required="required" style="width: 150px; border-radius: 10px;">         
                  </td>
               </tr>
             
             <tr>
-               <td style="width: 100px;" valign="middle" align="center">이름</td>
+               <td style="width: 100px; height: 10px;" valign="middle" align="center">이름</td>
                <td>
-                  <input type="text" class="form-control" style="width: 200px;"
+                  <input type="text" style="width: 150px; border-radius: 10px; height: 29px;"
                   name="name" required="required">
                </td>
             </tr>
@@ -78,20 +87,20 @@
             <tr>
                <td style="width: 100px;" valign="middle" align="center">생년월일</td>
                <td>
-               <input type="date" name="birth" class="form-control" style="width: 200px">
+               <input type="date" name="birth" style="width: 200px; height: 29px;">
                </td>
             </tr>
             <tr>
                <td style="width: 100px;" valign="middle" align="center">전화번호</td>
                <td>
-               <select name="phone1" id="phone1">
+               <select name="phone1" id="phone1" style="border-radius: 10px; height: 29   px;">
                 <option>010</option>
                 <option>011</option>
                 <option>017</option>
                 <option>02</option>
                </select>
                 <b>-</b>          
-                  <input type="text" name="phone2" id="phone2" style="width:50px;">
+                  <input type="text" name="phone2" id="phone2" style="width:70px; border-radius: 10px;">
                 <b>-</b>
                
                 <script>
@@ -104,17 +113,17 @@
                })
                </script>
                
-                  <input type="text" name="phone3" id="phone3" style="width:50px;" maxlength="4">
+                  <input type="text" name="phone3" id="phone3" style="width:70px; border-radius: 10px;" maxlength="4">
                </td>
             </tr>
             <tr>
                <td style="width: 100px;" valign="middle" align="center">이메일</td>
                <td>
-                  <input type="text" name="email1" class="form-group"
-                    required="required" style="width: 120px;">
+                  <input type="text" name="email1" 
+                    required="required" style="width: 120px; border-radius: 10px;">
                     <b>@</b>
-                    <input type="text" name="email2"  id="email2" class="form-group"
-                    required="required" style="width: 120px;">
+                    <input type="text" name="email2"  id="email2" 
+                    required="required" style="width: 120px; border-radius: 10px;">
                     <select id="selemail" class="form-group">
                        <option value="-">직접입력</option>
                        <option value="naver.com">네이버</option>
@@ -127,27 +136,27 @@
             <tr>
                <td style="width: 100px;" valign="middle" align="center">주소</td>
                <td>               
-               <input type="text" id="sample6_postcode" placeholder="우편번호" name="postnum">
+               <input type="text" id="sample6_postcode" placeholder="우편번호" name="postnum" style="border-radius: 10px; width: 150px;">
                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-               <input type="text" id="sample6_address" placeholder="주소" name="addr1"><br>
-               <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr2">
-               <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr3">
+               <input type="text" id="sample6_address" placeholder="주소" name="addr1" style="border-radius: 10px; width: 150px;"><br>
+               <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr2" style="border-radius: 10px; width: 150px;">
+               <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr3" style="border-radius: 10px; width: 150px;">
                </td>
             </tr>
             <tr>
                <td colspan="2" align="center">
-                  <button type="submit" class="btn btn-outline-success" 
-                  style="width: 100px;" onclick="location.href='../member/gaipsuccess.jsp'">회원가입</button>
-                  <button type="reset" class="btn btn-outline-danger" 
-                  style="width: 100px;">초기화</button>
+                  <button type="submit" 
+                  style="width: 100px; background: skyblue; border-radius: 10px; color: white; font-size: 0.85em; padding: 3px;" onclick="location.href='../member/gaipsuccess.jsp'">회원가입</button>
+                  <button type="reset" class="btn1" 
+                  style="width: 100px; background-color: #F54C4C; border-radius: 10px; color: white; font-size: 0.85em; padding: 3px;">초기화</button>
                </td>
             </tr>
          </table>
       </form>
    </div>
-   </div>
+   
    <script type="text/javascript">
-      function openId() {
+      function openId() {   
          
          window.open("member/idcheck.jsp","e","left=400px; top=100px,width=260px,height=185px");
       }   
@@ -204,5 +213,6 @@
         }).open();
     }
 </script>
+</div>
 </body>
 </html>

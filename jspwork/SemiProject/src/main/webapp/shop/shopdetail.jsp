@@ -59,6 +59,8 @@ ShopDto sdto=sdao.getData(shopnum);
 
 NumberFormat nf=NumberFormat.getCurrencyInstance();
 
+
+String pk=request.getParameter("package");
 %>
 
 <form id="frm">
@@ -109,7 +111,7 @@ NumberFormat nf=NumberFormat.getCurrencyInstance();
 </div>
 </div>
 </form>
-<br><br>
+<br><br><br><br>
 <script>
 $(function(){
 	$(".basket").click(function(){

@@ -23,8 +23,6 @@
 %>
 </head>
 <style type="text/css">
-.layout{
-}
 
 .header{
 	width: 100%;
@@ -39,10 +37,9 @@
 .footer{
 	width: 100%;
 	height: 100%;
-	
 }
 </style>
-<body background="color: black;">
+<body style="background-color: black; overflow-x: hidden">
 	
 	<div class="layout header">
 		<jsp:include page="layout/header.jsp"/>
@@ -52,9 +49,8 @@
 		<jsp:include page="<%=mainPage %>"/>
 	</div>
 	
-	<footer>
 	<div class="layout footer">
 		<jsp:include page="layout/footer.jsp"/>
-	</div></footer>
+	</div>
 </body>
 </html>

@@ -90,8 +90,11 @@ function funceachdel(number){
 <body>
 <br><br>
 <div class="container">
+<h1 style="color: white;font-weight: bold;text-align: center;">상품 목록</h1>
+<hr style="color: white">
+<hr style="border: 3px solid white;">
 <table class="table table-bordered" style="width:1300px;">
-<tr>
+<tr align="center">
 	<th><input type="checkbox" class="allselect" ></th>
 	<th>카테고리</th>
 	<th>상품 사진</th>
@@ -114,17 +117,15 @@ function funceachdel(number){
 		<td name="price"><%=nf.format(dto.getShop_price()) %></td>
 		<td><%=sdf.format(dto.getShop_ipgoday()) %></td>
 		<td>
-			<button type="button" value="<%=dto.getShop_num() %>" class="btn btn-warning mod" data-bs-target="#myModal" 
-			data-bs-toggle="modal" name="mod">수정</button>
 			<input type="button" value="삭제" class="btn btn-danger eachdel" onclick="funceachdel(<%=dto.getShop_num()%>)">
 		</td>
 		</tr>
 	<%};
 	%>
 	<tr>
-		<td colspan="7" align="center">
-			<input type="button" onclick="index.jsp?main=shop/addform.jsp" value="상품 등록" class="btn btn-success">
-			<input type="button" onclick="index.jsp?main=shop/addform.jsp" value="상품 삭제" class="btn btn-danger" id="delbutton">
+		<td colspan="8" align="center">
+			<input type="button" onclick="location.href='index_admin.jsp?main=shop/addform.jsp'" value="상품 등록" class="btn btn-success">
+			<input type="button" value="상품 삭제" class="btn btn-danger" id="delbutton">
 		</td>
 	</tr>
 

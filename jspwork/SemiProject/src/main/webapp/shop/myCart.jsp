@@ -20,6 +20,7 @@
 </head>
 <%
 String myid=(String)session.getAttribute("myid"); //연결된 아이디 session 가져오기(로그인 했을 때만 장바구니 담을 수 있음)
+String loginok=(String)session.getAttribute("loginok");
 ShopDao dao=new ShopDao();
 
 List<HashMap<String,String>> list=dao.getCartList(myid);
@@ -35,8 +36,10 @@ int allmoney=0;
 <body>
 <br><br>
 <div class="container" style="width: 1000px;">
-<h1 style="color: white;"><%=name %>님의 장바구니</h1>
-<hr style="color: white;border: 3px solid white;">
+<%
+if(loginok!=null && myid!=null){%>
+	<h1 style="color: white;"><%=name %>님의 장바구니</h1>
+	<hr style="color: white;border: 3px solid white;">
 <table class="table table-bordered">
 	<tr>
 		<th><input type="checkbox" id="allcheck"></th>
@@ -61,14 +64,6 @@ int allmoney=0;
 			allmoney+=eachtotal;
 			
 			%>
-			<%-- <script>
-			$(function(){
-				var all=<%=allmoney%>
-				$("#all").text(all);
-			})
-			
-			
-			</script> --%>
 			<tr>
 				<td><input type="checkbox" idx=<%=map.get("idx") %> class="eachcheck" id="eachclick" price=<%=eachtotal %>
 				name="cidx" value=<%=map.get("idx") %>></td>
@@ -97,6 +92,16 @@ int allmoney=0;
 	
 </table>
 </div>
+<%}else{%>
+	<div class="container">
+	<h1 style="color: white;font-weight: bold;margin-left: 40px;">비회원님의 장바구니</h1>
+	<hr style="color: white"><br>
+	<div style="width: 950px;height: 100px;color: white;text-align: center;font-size: 20pt;margin-top: 30px;">
+	<b style="vertical-align: middle;">로그인을 해주세요</b></div>
+	<hr style="color: white">
+	</div>
+<%}%>
+
 <script>
 	
 	$("#allcheck").click(function() {
@@ -202,6 +207,6 @@ function del(cidx){
 	
 }
 </script>
-
+<br><br><br>
 </body>
 </html>

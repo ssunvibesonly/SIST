@@ -41,11 +41,11 @@
   
 %>
 <body>
-<div style="margin: 80px 444px;">
+<div  style="margin: 100px 500px;  height:600px;">
       <form action="updateproc.jsp" method="post" class="form-inline" id="mfrm">
          <input type="hidden" name="num" value="<%=num%>">
          <table class="table table-bordered" style="width: 500px; position: absolute;">
-            <caption align="top">회원정보수정</caption>
+            <caption align="top" style="color: silver; font-weight: bold;"><h2 style="text-align: center;">회원정보수정</h2></caption>
             <tr>
                <td style="width: 100px;" valign="middle" align="center">아이디</td>
                <td>
@@ -128,13 +128,13 @@
             </tr>
             <tr>
                <td style="width: 100px;" valign="middle" align="center">주소</td>
-               <td>					
-					<input type="text" id="sample6_postcode" placeholder="우편번호" name="postnum" value="<%=postnum%>">
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="sample6_address" placeholder="주소" name="addr1" value="<%=addr1%>"><br>
-					<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr2" value="<%=addr2%>">
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr3" value="<%=addr3%>">
-					</td>
+               <td>               
+               <input type="text" id="sample6_postcode" placeholder="우편번호" name="postnum" value="<%=postnum%>">
+               <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+               <input type="text" id="sample6_address" placeholder="주소" name="addr1" value="<%=addr1%>"><br>
+               <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr2" value="<%=addr2%>">
+               <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr3" value="<%=addr3%>">
+               </td>
             </tr>
             <tr>
                <td colspan="2" align="center">
@@ -145,17 +145,18 @@
                </td>
             </tr>
          </table>
-      </form>
+         </div>
+     
    </div>
    <script type="text/javascript">
-		function openId() {
-			
-			window.open("idcheck.jsp","e","left=400px; top=100px,width=260px,height=185px");
-		}	
-	</script>
-	
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
+      function openId() {
+         
+         window.open("idcheck.jsp","e","left=400px; top=100px,width=260px,height=185px");
+      }   
+   </script>
+   
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   
    <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({

@@ -23,7 +23,7 @@ for(String n:nums){
 	
 }
 
-response.sendRedirect("../index.jsp?main=shop/adminlist.jsp");
+response.sendRedirect("../index_admin.jsp?main=shop/adminlist.jsp");
 
 %>
 </body>
