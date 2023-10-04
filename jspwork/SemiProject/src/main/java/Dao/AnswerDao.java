@@ -11,6 +11,7 @@ import java.util.Vector;
 import Dto.AnswerDto;
 import mysql.db.DBConnect_2;
 
+
 	public class AnswerDao {
 
 	   DBConnect_2 db=new DBConnect_2();
@@ -30,7 +31,7 @@ import mysql.db.DBConnect_2;
 	         pstmt.setString(1, dto.getNum());
 	         pstmt.setString(2, dto.getMyid());
 	         pstmt.setString(3, dto.getContent());
-	         pstmt.setInt(4, dto.getStar());
+	         pstmt.setString(4, dto.getStar());
 	         pstmt.setString(5, now);
 	        
 	         pstmt.execute();
@@ -131,8 +132,102 @@ import mysql.db.DBConnect_2;
 	            dto.setNum(rs.getString("num"));
 	            dto.setMyid(rs.getString("myid"));
 	            dto.setContent(rs.getString("content"));
-	            dto.setStar(rs.getInt("star"));
+	            dto.setStar(rs.getString("star"));
 	            dto.setWriteday(rs.getTimestamp("writeday"));
+	            dto.setChu(rs.getInt("chu"));
+	            dto.setBchu(rs.getInt("bchu"));
+	            
+	            list.add(dto);
+	         }
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return list;
+	      
+	   }
+	   
+	   //페이지에서 필요한 만큼만 리턴 추천높은순
+	   public List<AnswerDto> getListChu(String num,int start,int perpage)
+	   {
+	      List<AnswerDto> list=new Vector<AnswerDto>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from answer where num=? order by chu desc limit ?,?";
+	      
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, num);
+	         pstmt.setInt(2, start);
+	         pstmt.setInt(3, perpage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next())
+	         {
+	            AnswerDto dto=new AnswerDto();
+	            
+	            dto.setIdx(rs.getString("idx"));
+	            dto.setNum(rs.getString("num"));
+	            dto.setMyid(rs.getString("myid"));
+	            dto.setContent(rs.getString("content"));
+	            dto.setStar(rs.getString("star"));
+	            dto.setWriteday(rs.getTimestamp("writeday"));
+	            dto.setChu(rs.getInt("chu"));
+	            dto.setBchu(rs.getInt("bchu"));
+	            
+	            list.add(dto);
+	         }
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return list;
+	      
+	   }
+	   
+	   //페이지에서 필요한 만큼만 리턴 오래된날짜순
+	   public List<AnswerDto> getListIdx(String num,int start,int perpage)
+	   {
+	      List<AnswerDto> list=new Vector<AnswerDto>();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from answer where num=? order by writeday limit ?,?";
+	      
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, num);
+	         pstmt.setInt(2, start);
+	         pstmt.setInt(3, perpage);
+	         
+	         rs=pstmt.executeQuery();
+	         
+	         while(rs.next())
+	         {
+	            AnswerDto dto=new AnswerDto();
+	            
+	            dto.setIdx(rs.getString("idx"));
+	            dto.setNum(rs.getString("num"));
+	            dto.setMyid(rs.getString("myid"));
+	            dto.setContent(rs.getString("content"));
+	            dto.setStar(rs.getString("star"));
+	            dto.setWriteday(rs.getTimestamp("writeday"));
+	            dto.setChu(rs.getInt("chu"));
+	            dto.setBchu(rs.getInt("bchu"));
 	            
 	            list.add(dto);
 	         }
@@ -170,8 +265,10 @@ import mysql.db.DBConnect_2;
 		         dto.setNum(rs.getString("num"));
 		         dto.setMyid(rs.getString("myid"));	
 		         dto.setContent(rs.getString("content"));
-		         dto.setStar(rs.getInt("star"));
+		         dto.setStar(rs.getString("star"));
 		         dto.setWriteday(rs.getTimestamp("writeday"));
+		         dto.setChu(rs.getInt("chu"));
+		         dto.setBchu(rs.getInt("bchu"));
 	         }
 	         
 	      } catch (SQLException e) {
@@ -182,8 +279,40 @@ import mysql.db.DBConnect_2;
 	      return dto;
 	   }
 	   
-	   
-	 //수정시 모달창에서 전에작성한 내용가져옴
+	   //mv_no에 해당 dto 반환
+	   public AnswerDto getMvData(String num)
+	   {
+	      AnswerDto dto=new AnswerDto();
+	      
+	      Connection conn=db.getConnection();
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      
+	      String sql="select * from answer where num=?";
+	      
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, num);
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next())
+	         {
+	        	 dto.setIdx(rs.getString("idx"));
+		         dto.setNum(rs.getString("num"));
+		         dto.setMyid(rs.getString("myid"));	
+		         dto.setContent(rs.getString("content"));
+		         dto.setStar(rs.getString("star"));
+		         dto.setWriteday(rs.getTimestamp("writeday"));
+	         }
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      return dto;
+	   }
+	   //수정시 모달창에서 전에작성한 내용가져옴
 	   public String getContent(String idx)
 	   {
 	      String content="";
@@ -227,9 +356,9 @@ import mysql.db.DBConnect_2;
 	         pstmt=conn.prepareStatement(sql);
 	        
 	         pstmt.setString(1, dto.getContent());
-	         pstmt.setInt(2, dto.getStar());
-	         pstmt.setString(3, dto.getIdx());
-	         pstmt.setString(4, now);
+	         pstmt.setString(2, dto.getStar());
+	         pstmt.setString(3, now);
+	         pstmt.setString(4, dto.getIdx());
 	         
 
 	         pstmt.execute();
@@ -287,7 +416,7 @@ import mysql.db.DBConnect_2;
 	            dto.setNum(rs.getString("num"));
 	            dto.setMyid(rs.getString("myid"));
 	            dto.setContent(rs.getString("content"));
-	            dto.setStar(rs.getInt("star"));
+	            dto.setStar(rs.getString("star"));
 	            dto.setWriteday(rs.getTimestamp("writeday"));
 	            
 	            list.add(dto);
@@ -304,4 +433,43 @@ import mysql.db.DBConnect_2;
 
 	   }
 	   
+	   //추천수 증가
+		public void updateChu(String idx)
+		{
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			String sql="update answer set chu=chu+1 where idx=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, idx);
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				db.dbClose(pstmt, conn);
+			}
+		}
+		
+		 //추천수 증가
+		public void updateBchu(String idx)
+		{
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			String sql="update answer set bchu=bchu+1 where idx=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, idx);
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				db.dbClose(pstmt, conn);
+			}
+		}
 	}

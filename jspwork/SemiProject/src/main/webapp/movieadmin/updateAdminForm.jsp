@@ -36,8 +36,7 @@
       <tr valign="middle">
          <th>포스터</th>
          <td>
-            <input type="file" name="poster" style="width: 300px;"
-             required="required" class="form form-control" value="<%=dto.getMv_poster()%>"> 
+            <input type="file" name="poster" style="width: 300px;"class="form form-control" required="required"> <!-- file타입에는 value값 설정 불가능 (보안상 문제로) --> 
          </td>
       </tr>
       <tr valign="middle">
@@ -117,18 +116,19 @@
              value="<%=dto.getMv_child()%>"> 
          </td>
       </tr>
-      
-      
       <tr>
          <td colspan="2" align="center">
-            <button type="submit" class="btn btn-outline-success">수정</button>
+            <input type="submit" class="btn btn-outline-success" value="수정">
             <button type="button" class="btn btn-outline-primary"
             onclick="location.href = 'index_admin.jsp?main=movieadmin/listAdmin.jsp'">목록</button>
          </td>
       </tr>
-   </table>
-</form>
-</div>
+        </table>
+ </form>   
 
+      	
+
+   </div>
+<br><br>
 </body>
 </html>

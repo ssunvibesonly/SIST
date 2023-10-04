@@ -49,7 +49,8 @@
 		<jsp:include page="<%=mainPage %>"/>
 	</div>
 	
-	<div class="layout footer">
+	<div class
+	="layout footer">
 		<jsp:include page="layout/footer.jsp"/>
 	</div>
 </body>

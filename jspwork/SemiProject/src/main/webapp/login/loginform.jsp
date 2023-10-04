@@ -137,11 +137,11 @@ hr{
         	Kakao.Auth.login({
             success: function (response) {
                 Kakao.API.request({
-                    url: '/v2/user/me',
+                    url: '/v2/user/me', //로그인 시 카카오에서 정보를 제공하는 url
                     success: function (response) {
                         
                     	 id=response.id;
-                    	 kakao_account=response.kakao_account;
+                    	 kakao_account=response.kakao_account; //카카오 정보 호출 변수
                     	 nickname=kakao_account.profile.nickname;
                     	 email=kakao_account.email;
                     	 gender=kakao_account.gender;
@@ -158,10 +158,10 @@ hr{
                     		 birth=birth.substring(0,2)+"-"+birth.substring(2); //첫번째 substring은 0번째부터 2번째 직전까지 가져온다는 뜻 , 두번째는 substring은 2번째부터 마지막까지 출력
                     	 }
                     	 
-                    	alert(id);
-                    	alert(gender)
-              			alert(nickname);
-              			alert(email);
+                    	//alert(id);
+                    	//alert(gender)
+              			//alert(nickname);
+              			//alert(email);
               			
               			
               			 $.ajax({
@@ -172,6 +172,7 @@ hr{
               				data:{"id":id,"nickname":nickname,"email":email,"gender":gender,"birth":birth},
               				success:function(res){
               					
+              					alert("카카오 로그인 성공");
               					location.href="index.jsp?main=layout/main.jsp";
               				}
               			})  

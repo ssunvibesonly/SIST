@@ -8,8 +8,10 @@ public class AnswerDto {
 	private String num; //특정영화별 댓글이랑 연결하려고 movie_table의 mv_no랑 연결함
 	private String myid; //member_table의 myid랑 연결
 	private String content; //댓글 내용
-	private int star;  //1~5점까지의 별점
+	private String star;  //1~5점까지의 별점
 	private Timestamp writeday; //작성일
+	private int chu;
+	private int bchu;
 	
 	public String getIdx() {
 		return idx;
@@ -35,10 +37,10 @@ public class AnswerDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getStar() {
+	public String getStar() {
 		return star;
 	}
-	public void setStar(int star) {
+	public void setStar(String star) {
 		this.star = star;
 	}
 	public Timestamp getWriteday() {
@@ -47,7 +49,18 @@ public class AnswerDto {
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
 	}
-	
+	public int getChu() {
+		return chu;
+	}
+	public void setChu(int chu) {
+		this.chu = chu;
+	}
+	public int getBchu() {
+		return bchu;
+	}
+	public void setBchu(int bchu) {
+		this.bchu = bchu;
+	}
 	
 	
 }

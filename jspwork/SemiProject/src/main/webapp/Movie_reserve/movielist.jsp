@@ -302,8 +302,11 @@ List<MovieDto> list=dao.getAllMovieInfo();
     	  var loginok="<%=loginok%>";
     	  var myid="<%=myid%>";
     	  
-    	 if(loginok!=null && myid!=null){
+    	 if(loginok!="null" && myid!="null"){
       
+    	//alert(loginok);
+    	//alert(myid);
+    		 
          var poster = $("#poster").html();
          var mvtitle =$("#mvtitle").html();
          var mvage =$("#mvage").attr("src");
@@ -322,7 +325,7 @@ List<MovieDto> list=dao.getAllMovieInfo();
                url="index.jsp?main=Movie_reserve/mvSeat.jsp";
                location.href=url;
             }
-         }); 
+         })
     	 }else{
     		  var y=confirm("로그인이 필요한 페이지 입니다.\n 로그인 창으로 이동하시겠습니까?");
     		  if(y){
@@ -539,8 +542,11 @@ for(int i=1;i<=30;i++){
 인원&nbsp;&nbsp;<b>인원</b>
 </div>
 
- 
+
 <input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
+
+
+
 </div>
 </div>
 </div>

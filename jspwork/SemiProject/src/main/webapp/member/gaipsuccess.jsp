@@ -17,11 +17,11 @@
      //아이디에 대한 이름 얻기
      String name=dao.getName(id);
 %>
-   <div style="margin: 200px 200px;">
-      <b><%=name %>님의 회원가입을 축하합니다</b>
+   <div style="margin: 200px 600px;">
+      <b style="font-size: 1.5em; color: white;"><%=name %>님의 회원가입을 축하합니다</b>
       <br><br>
-      <button type="button" class="btn btn-outline-info" onclick="location.href='../login/loginmain.jsp'">로그인</button>
-      <button type="button" class="btn btn-outline-success" onclick="location.href='index.jsp'">메인</button>
+      <button type="button" class="btn btn-info" onclick="location.href='index.jsp?main=login/loginmain.jsp'">로그인</button>
+      <button type="button" class="btn btn-success" onclick="location.href='index.jsp'">메인</button>
    </div>
    
 </body>

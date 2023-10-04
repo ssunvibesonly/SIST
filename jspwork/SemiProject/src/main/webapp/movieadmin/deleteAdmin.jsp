@@ -6,5 +6,5 @@
    String num=request.getParameter("num");
    dao.deleteMovie(num);
    
-   response.sendRedirect("listAdmin.jsp");
+   response.sendRedirect("../index_admin.jsp?main=movieadmin/listAdmin.jsp");
 %>

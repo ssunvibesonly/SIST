@@ -62,7 +62,7 @@
       <td><%=dto.getMv_title() %></td>
 
       
-      <td><img src="./<%=dto.getMv_poster() %>" width="100px" height="auto"></td>
+      <td><img src="<%=dto.getMv_poster() %>" width="100px" height="auto"></td>
       <td><%=dto.getMv_director() %></td>
       <td><%=dto.getMv_st() %></td>
       <td><%=dto.getMv_trailer() %></td>
@@ -78,7 +78,7 @@
       <button type="button" class="btn btn-outline-warning" 
       onclick="location.href='index_admin.jsp?main=movieadmin/updateAdminForm.jsp?num=<%=dto.getMv_no()%>'">정보수정</button><br><br><br><hr><br><br><br>
       <button type="button" class="btn btn-outline-danger" 
-      onclick="location.href='index_admin.jsp?main=movieadmin/deleteAdmin.jsp?num=<%=dto.getMv_no() %>'">정보삭제</button>
+      onclick="location.href='movieadmin/deleteAdmin.jsp?num=<%=dto.getMv_no() %>'">정보삭제</button>
       </td>
    </tr>   
    <%}

@@ -20,7 +20,7 @@ System.out.println(uploadPath);
 
 int uploadSize=1024*1024*5; //약 5MB
 
-MultipartRequest multi=null;
+MultipartRequest multi=null; //파일시스템 구현으로 인한 Multipart 
 
 try{
 	multi=new MultipartRequest(request,uploadPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
@@ -43,11 +43,11 @@ try{
 	//dao호출
 	ShopDao dao=new ShopDao();
 	
-	//db에 적용
-	dao.ShopInsert(dto);
+	//db에 insert 적용 
+	dao.ShopInsert(dto); 
 	
 	//페이지 이동
-	response.sendRedirect("../index_admin.jsp?main=shop/addform.jsp");
+	response.sendRedirect("../index_admin.jsp?main=shop/adminlist.jsp");
 	
 }catch(Exception e){
 	System.out.println("오류메세지:"+e.getMessage());

@@ -35,18 +35,19 @@ font-size: 10px;
    if(f.pass.value!=f.pass2.value)
       {
       alert("비밀번호가 다릅니다");
-      f.pass.value("");
+      f.pass.value="";
       f.pass2.value="";
       
       return false; //action이 호출되지 않는다
       }
+      return true; //비밀번호 일치시 회원가입
    }
 </script>
 </head>
 <body>
 <div class="container">
    <div style="margin: 60px 400px; width:100% ; height:600px;">
-      <form action="memberproc.jsp" method="post" class="form-inline" id="mfrm">
+      <form action="member/memberproc.jsp" method="post" class="form-inline" id="mfrm" onsubmit="return check(this)">
          <table class="table table-dark table-striped table-hover" style="width: 500px; position: absolute;">
             <caption align="top" style="color: white; font-size: 20px; border-bottom: 1px solid white; margin-bottom: 50px;">회원가입</caption>
             <tr>
@@ -146,7 +147,7 @@ font-size: 10px;
             <tr>
                <td colspan="2" align="center">
                   <button type="submit" 
-                  style="width: 100px; background: skyblue; border-radius: 10px; color: white; font-size: 0.85em; padding: 3px;" onclick="location.href='../member/gaipsuccess.jsp'">회원가입</button>
+                  style="width: 100px; background: skyblue; border-radius: 10px; color: white; font-size: 0.85em; padding: 3px;">회원가입</button>
                   <button type="reset" class="btn1" 
                   style="width: 100px; background-color: #F54C4C; border-radius: 10px; color: white; font-size: 0.85em; padding: 3px;">초기화</button>
                </td>

@@ -50,7 +50,7 @@ String loginok=(String)session.getAttribute("loginok");
 //로그인 아이디 가져오기
 String myid=(String)session.getAttribute("myid");
 
-//사용자 ID로 로그인 시 멤버의 시퀀스 가져오기
+//사용자 ID로 로그인 시 멤버의 시퀀스 가져오기(사용자 구분을 시퀀스로 함)
 MemberDao mdao=new MemberDao();
 String num=mdao.getNum(myid);
 
@@ -114,48 +114,47 @@ String pk=request.getParameter("package");
 <br><br><br><br>
 <script>
 $(function(){
+	
+	//장바구니 버튼 클릭
 	$(".basket").click(function(){
 		
-		var loginstatus="<%=loginok%>";
+		loginstatus="<%=loginok%>"; //로그인 상태 확인
+		mem_no="<%=num%>";
+		console.log(mem_no);
 		
-		
-		if(loginstatus==null){
+		//로그아웃 상태에서 콘솔로그에 mem_no 찍어보니 공백값이 들어감
+		//사용자 구분을 mem_no으로 하고있기 때문에 id말고 mem_no로 조건을 줘야됌
+		if(loginstatus!=null && mem_no!=""){ 
 			
-			var logingo=confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
-			
-			if(logingo){
-				location.href="index.jsp?main=login/loginform.jsp";
-			
-			}
-			return;
+			var frm=$("#frm").serialize(); //serilaize()를 통해 <input>에 있는 name(속성)들을 모두 받아온다.
+			//alert(frm);
+				$.ajax({
+					
+					type:"post",
+					dataType:"html",
+					url:"shop/cartProc.jsp",
+					data:frm,
+					success:function(){
+						
+						
+							var cart=confirm("장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?");
+							
+							if(cart)
+								location.href="index.jsp?main=shop/myCart.jsp"
 		}
-		
-		
-		var frm=$("#frm").serialize(); //serilaize()를 통해 <input>에 있는 name들을 모두 받아온다.
-		//alert(frm);
-			$.ajax({
-				
-				type:"post",
-				dataType:"html",
-				url:"shop/cartProc.jsp",
-				data:frm,
-				success:function(){
-					
-					var cart=confirm("장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?");
-					
-					if(cart){
-						location.href="index.jsp?main=shop/myCart.jsp"
-					}
-					
-				}
-				
-				
-			})
-		
-		
 	})
-	
+
+		}else{
+				var logingo=confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+				
+				if(logingo)
+					location.href="index.jsp?main=login/loginform.jsp";
+
+}		
+
+	})
 })
+
         // 숫자 입력 필드의 값이 변경될 때 호출되는 함수
         function updateTotalPrice() {
 	
@@ -165,13 +164,13 @@ $(function(){
 			});
 	
 	
-            // 입력 필드에서 숫자 값을 가져옴
+            // 입력 필드에서 숫자 값을 가져옴(상품 갯수)
             var cntValue = parseInt(document.getElementById('cnt').value);
             
             // 상품 가격 가져오기
             var shopPrice = parseFloat('<%=sdto.getShop_price()%>');
             
-            // 총 구매금액 계산
+            // 총 구매금액 계산(갯수*가격)
             var totalPrice = cntValue * shopPrice;
             
             // 결과를 총 구매금액 요소에 업데이트

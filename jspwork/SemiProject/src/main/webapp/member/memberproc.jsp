@@ -39,7 +39,7 @@
 	MemberDao dao=new MemberDao();
 	dao.insertMember(dto);
 	
-	response.sendRedirect("gaipsuccess.jsp?id="+id);
+	response.sendRedirect("../index.jsp?main=member/gaipsuccess.jsp?id="+id);
 %>
 </body>
 </html>

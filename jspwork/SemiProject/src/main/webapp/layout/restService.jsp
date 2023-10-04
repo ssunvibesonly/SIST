@@ -105,6 +105,8 @@
     HashMap<String,Object> codeResult=mapper.readValue(codeResponse, HashMap.class);
     
     request.setAttribute("codeResult", codeResult);
+    
+    
 %>
 
 <table class="table table-dark table-striped table-hover" style="width: 67.8%; height: 800px; text-align: center; vertical-align: middle;">

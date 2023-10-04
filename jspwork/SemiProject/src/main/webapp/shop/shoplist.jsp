@@ -29,14 +29,11 @@ List<ShopDto> list = dao.getAllData();
 <script>
 	$(function() {
 
-		$("a.detailpage")
-				.click(
-						function() {
+		$("a.detailpage").click(function() {
 
-							var num = $(this).attr("shopnum");
-							//alert(a);
-							location.href = "index.jsp?main=shop/shopdetail.jsp?shopnum="
-									+ num;
+				var num = $(this).attr("shopnum");
+				//alert(num);
+				location.href = "index.jsp?main=shop/shopdetail.jsp?shopnum="+ num;
 						})
 
 	})

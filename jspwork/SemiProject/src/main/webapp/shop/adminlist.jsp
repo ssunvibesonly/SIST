@@ -58,7 +58,7 @@ $(function(){
 				$(".eachcheck:checked").each(function(idx){
 					num+=$(this).val()+",";
 				})
-				num=num.substring(0,num.length-1);
+				num=num.substring(0,num.length-1); //num길이의 직전까지 substring(마지막= ,)
 				
 				console.log(num);
 				
@@ -95,22 +95,22 @@ function funceachdel(number){
 <hr style="border: 3px solid white;">
 <table class="table table-bordered" style="width:1300px;">
 <tr align="center">
-	<th><input type="checkbox" class="allselect" ></th>
-	<th>카테고리</th>
-	<th>상품 사진</th>
-	<th>상품명</th>
-	<th>상품 상세 설명</th>
-	<th>가격</th>
-	<th>등록일</th>
-	<th></th>
+	<th style="background-color: lightgray;"><input type="checkbox" class="allselect" ></th>
+	<th style="background-color: lightgray;">카테고리</th>
+	<th style="background-color: lightgray;">상품 사진</th>
+	<th style="background-color: lightgray;">상품명</th>
+	<th style="background-color: lightgray;">상품 상세 설명</th>
+	<th style="background-color: lightgray;">가격</th>
+	<th style="background-color: lightgray;">등록일</th>
+	<th style="background-color: lightgray;"></th>
 </tr>
 
 	<% for(int i=0;i<list.size();i++){
 		ShopDto dto=list.get(i);
 	%>
-		<tr>
-		<td><input type="checkbox" value=<%=dto.getShop_num() %> class="eachcheck"></td>
-		<td name="category"><%=dto.getShop_category() %></td>
+		<tr style="text-align: center;">
+		<td><input type="checkbox" value=<%=dto.getShop_num() %> class="eachcheck" ></td>
+		<td name="category" style="font-weight: bold;"><%=dto.getShop_category() %></td>
 		<td align="center"><img src="shopimg/<%=dto.getShop_photo() %>" style="width:100px;text-align: center;"name="photo"></td>
 		<td name="sang"><%=dto.getShop_sangpum() %></td>
 		<td name="detail"><%=dto.getShop_detail() %></td>
@@ -123,6 +123,7 @@ function funceachdel(number){
 	<%};
 	%>
 	<tr>
+	
 		<td colspan="8" align="center">
 			<input type="button" onclick="location.href='index_admin.jsp?main=shop/addform.jsp'" value="상품 등록" class="btn btn-success">
 			<input type="button" value="상품 삭제" class="btn btn-danger" id="delbutton">

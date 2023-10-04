@@ -12,7 +12,7 @@
 </head>
 <body>
 <div align="center">
-<form action="insertAdminAction.jsp" method="post" enctype="multipart/form-data">
+<form action="movieadmin/insertAdminAction.jsp" method="post" enctype="multipart/form-data">
 		
 		<br>
 		<h1>영화정보추가</h1>

@@ -265,6 +265,7 @@ public class MovieDao {
      	//update
      	public void updateMovie(MovieDto dto)
      	{
+     		
      		Connection conn=db.getConnection();
      		PreparedStatement pstmt=null;
      		
@@ -273,23 +274,24 @@ public class MovieDao {
 
      		try {
      			pstmt=conn.prepareStatement(sql);
+     			
      			//바인딩
      			pstmt.setString(1, dto.getMv_title());
      			pstmt.setString(2, dto.getMv_poster());
      			pstmt.setString(3, dto.getMv_director());
      			pstmt.setString(4, dto.getMv_st());
      			pstmt.setString(5, dto.getMv_trailer());
-
      			pstmt.setString(6, dto.getMv_opendate());
      			pstmt.setString(7, dto.getMv_info());
+     			
      			pstmt.setString(8, dto.getMv_genre());
      			pstmt.setString(9, dto.getMv_name());
      			pstmt.setInt(10, dto.getMv_adult());
      			pstmt.setInt(11, dto.getMv_teen());
      			pstmt.setInt(12, dto.getMv_child());
      			pstmt.setString(13, dto.getMv_no());
-     			
      			pstmt.execute();
+     			
      		} catch (SQLException e) {
      			// TODO Auto-generated catch block
      			e.printStackTrace();

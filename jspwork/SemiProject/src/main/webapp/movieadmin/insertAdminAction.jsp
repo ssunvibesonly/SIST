@@ -47,13 +47,13 @@
 	//포스터
 	String poster=multi.getFilesystemName("poster");
 	
-	dto.setMv_poster("/upload/"+poster); //사진선택한경우
+	dto.setMv_poster("upload/"+poster); //사진선택한경우
 	
 	//db에 insert    
 	dao.insertMovie(dto);
 	
 	//성공후 이동
-	response.sendRedirect("listAdmin.jsp");
+	response.sendRedirect("../index_admin.jsp?main=movieadmin/listAdmin.jsp");
 	}catch(Exception e){
 		e.printStackTrace();
 	}

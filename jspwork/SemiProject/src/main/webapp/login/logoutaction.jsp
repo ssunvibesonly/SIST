@@ -13,6 +13,7 @@
    <%
       //세션제거(loginok)
       session.removeAttribute("loginok");
+        session.removeAttribute("myid");
       
       //loginmain으로이동
       response.sendRedirect("../index.jsp?main=login/loginform.jsp");

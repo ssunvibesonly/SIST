@@ -30,6 +30,7 @@
 	//로그인한 id를 가져옴
 	String id = (String)session.getAttribute("myid");
 
+	//상품을 여러개 선택 시 split(,)기준으로 시퀀스 번호 구분
 	String cidx=request.getParameter("cidx_s");
 	
 	int totalPrice = 0;
@@ -38,6 +39,7 @@
 	
 	ShopDao dao=new ShopDao();
 	
+	//리스트가 몇개가 출력될지 모르니까 list를 생성해주고 하나씩 읽는 getCart Dao 호출 후 list로 담아줌
 	List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 	
 	for(int i=0; i<cidxs.length; i++){
@@ -187,6 +189,6 @@
 	});
 	
 </script>
-
+<br><br>
 </body>
 </html>
