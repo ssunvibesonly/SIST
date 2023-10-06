@@ -18,4 +18,5 @@ public class Myinfo {
 		return "Myinfo[name="+name+", age="+age+", addr="+addr+"]";
 	}
 	
+	
 }
