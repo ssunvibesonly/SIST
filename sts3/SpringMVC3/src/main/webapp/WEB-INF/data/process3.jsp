@@ -12,12 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
+<h2>3번 폼으로부터 입력_map</h2>
+<div class="alert alert-info">
+<b>${data }</b>
 </div>
-
 </body>
 </html>

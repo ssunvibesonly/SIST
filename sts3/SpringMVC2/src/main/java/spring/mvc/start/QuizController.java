@@ -28,7 +28,7 @@ public class QuizController {
 	}
 	
 	@GetMapping("/happy.do")
-	public String msg2(Model model ) {
+	public String msg2(Model model) {
 		
 		model.addAttribute("name", "Àå¼ø¿µ");
 		model.addAttribute("age", "28");

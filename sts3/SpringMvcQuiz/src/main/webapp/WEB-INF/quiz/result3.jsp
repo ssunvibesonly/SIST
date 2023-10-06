@@ -12,12 +12,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
-</div>
-
+<table class="table table-bordered">
+	<tr>
+		<th>카테고리</th>
+		<td>${dto.category }</td>
+	</tr>
+	<tr>
+		<th>상품명</th>
+		<td>${dto.sang }</td>
+	</tr>
+	<tr>
+		<th>가격</th>
+		<td>${dto.price }</td>
+	</tr>
+	<tr>
+		<th>색상</th>
+		<td>${dto.color }</td>
+	</tr>
+</table>
 </body>
 </html>

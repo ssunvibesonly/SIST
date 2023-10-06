@@ -12,12 +12,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
-</div>
-
+<table>
+	<tr>
+		<th>
+		만화캐릭터:${title }
+		</th>
+	</tr>
+	<tr>
+		<td>
+		<img alt="" src="../res/13.png">
+		</td>
+	</tr>
+</table>
 </body>
 </html>

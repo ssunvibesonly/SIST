@@ -14,7 +14,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	 <!-- encoding -->
+	<!-- encoding -->
 
     <filter>
       <filter-name>encodingFilter</filter-name>

@@ -12,12 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
-</div>
-
+<h2>1번 폼으로부터 입력한 값_get</h2>
+<b>이름:${name }</b><br>
+<b>나이:${age }</b><br>
+<b>${msg }</b>
 </body>
 </html>

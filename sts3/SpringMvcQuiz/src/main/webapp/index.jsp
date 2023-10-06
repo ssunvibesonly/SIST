@@ -12,12 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
-</div>
-
+<button onclick="location.href='ilike/movie'" class="btn btn-outline-info">제목을 메세지로 받아서 출력하고 그 아래 이미지_result1</button><br>
+<button onclick="location.href='school/myinfo'" class="btn btn-outline-success">get방식(이름,학교,학년,학교주소)_테이블출력_result2</button><br>
+<button onclick="location.href='shop/ipgo'" class="btn btn-outline-danger">post방식(카테고리,상품명,가격,색상)_dto_테이블출력_result3</button><br>
+<button onclick="location.href='myshinsang'" class="btn btn-outline-warning">post방식_map(이름,나이,혈액형,주소)_출력_result4</button><br>
 </body>
 </html>

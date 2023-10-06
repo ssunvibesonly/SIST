@@ -12,12 +12,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>msg값 전달 아래 이미지 출력</h2>
-<div>
-	<b>이름:${name }</b><br>
-	<b>나이:${age }</b><br>
-	<img alt="" src="res/증명사진.jpg">
-</div>
+<br>
+<table class="table table-bordered">
+	<tr>
+		<th>이름</th>
+		<td>${name }</td>
+	</tr>
+	<tr>
+		<th>학교</th>
+		<td>${school }</td>
+	</tr>
+	<tr>
+		<th>학년</th>
+		<td>${grade }</td>
+	</tr>
+	<tr>
+		<th>학교주소</th>
+		<td>${addr }</td>
+	</tr>
 
+</table>
 </body>
 </html>
