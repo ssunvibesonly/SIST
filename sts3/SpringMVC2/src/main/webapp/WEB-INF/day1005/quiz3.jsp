@@ -12,6 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div>
+이름:<b>${name }</b><br>
+나이:<b>${age }</b><br>
+주소:<b>${addr }</b>
+</div>
 </body>
 </html>

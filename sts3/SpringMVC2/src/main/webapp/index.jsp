@@ -16,7 +16,7 @@
 	<ul>
 		<li><a href="happy">resource에 이미지 출력</a></li>
 		<li><a href="hello">msg값 전달..그 아래 이미지 출력</a></li>
-		<li><a href="happy.do">msg값</a></li>
+		<li><a href="hello.do">msg값</a></li>
 		<li><a href="nice/hi">name,age,addr 자기 정보 전달</a></li>
 	</ul>
 </body>

@@ -13,7 +13,7 @@ public class QuizController {
 
 		return "quiz1";
 	}
-	
+
 	@GetMapping("/hello")
 	public ModelAndView msg() {
 		ModelAndView mvc1=new ModelAndView();
@@ -36,7 +36,7 @@ public class QuizController {
 		return "msg2";
 	}
 	
-	@GetMapping("nice/hi")
+	@GetMapping("/nice/hi")
 	public ModelAndView myInfo() {
 		
 		ModelAndView mvc2=new ModelAndView();
@@ -45,6 +45,9 @@ public class QuizController {
 		mvc2.addObject("age", "28");
 		mvc2.addObject("addr", "경기도 수원시");
 		
+		mvc2.setViewName("quiz3");
+		
 		return mvc2;
 	}
+	
 }
