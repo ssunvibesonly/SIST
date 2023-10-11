@@ -20,7 +20,9 @@
 	<button type="button" class="btn btn-info" style="width:200px; margin-bottom: 10px;"
 	onclick="location.href='naver/form3'">MAP으로 읽기</button><br>
 	<button type="button" class="btn btn-info" style="width:200px; margin-bottom: 10px;"
-	onclick="location.href='naver/form4'">이미지 업로드</button><br>
+	onclick="location.href='naver/form4'">이미지 업로드_1개</button><br>
+	<button type="button" class="btn btn-info" style="width:200px; margin-bottom: 10px;"
+	onclick="location.href='naver/uploadform5'">이미지 업로드_여러개</button><br>
 
 </div>
 </body>
