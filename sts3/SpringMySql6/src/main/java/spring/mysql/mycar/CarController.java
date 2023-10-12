@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//dispatcher servlet이 controller로 보내주기 때문에, 논리적주소와 연결이 되야한다.
 @Controller //빈에 등록
 public class CarController {
 	
@@ -68,7 +69,7 @@ public class CarController {
 	}
 	
 	@PostMapping("/kakao/update")
-	public String update(MyCarDto dto) {
+	public String update(@ModelAttribute MyCarDto dto) {
 		
 		dao.updateMyCar(dto);
 		
