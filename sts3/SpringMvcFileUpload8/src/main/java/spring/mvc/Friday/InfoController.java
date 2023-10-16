@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,12 +26,22 @@ public class InfoController {
 	InfoDao dao;
 	
 	@GetMapping("/info/list")
-	public String selectTotalCount(Model model) {
+	public String selectTotalCount(Model model,@RequestParam(defaultValue = "name") String title, 
+			@RequestParam(required = false) String search) {
 		
-		List<InfoDto> list=dao.getAllInfos();
+		//List<InfoDto> list=dao.getAllInfos();
 		
 		int totalCount=dao.selectTotalCount();
 		model.addAttribute("totalCount", totalCount);
+		
+		
+		System.out.println(title+","+search);
+		
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("search", search);
+		map.put("title", title);
+		
+		List<InfoDto> list=dao.getAllIfInfoDtos(map); // map에 담아서 파라메터값으로 넘겨줬기 때문에 굳이 model에 담지 않아도 넘어간다
 		model.addAttribute("list", list);
 		
 		return "info/infolist";
@@ -112,7 +124,7 @@ public class InfoController {
 	
 	@PostMapping("/info/update")
 	public String update(@ModelAttribute InfoDto dto,
-			@RequestParam MultipartFile upload,
+			@RequestParam MultipartFile upload, @RequestParam String num,
 			HttpSession session) {
 		
 		String path=session.getServletContext().getRealPath("/resources/image");
@@ -121,6 +133,7 @@ public class InfoController {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		String photoname; //dto에 담을 변수
+		String photo=dao.getData(num).getPhoto();;
 		
 		//사진 선택안할경우 null
 		if(upload.getOriginalFilename().equals(""))
@@ -128,6 +141,11 @@ public class InfoController {
 		else {
 			photoname=upload.getOriginalFilename();
 			photoname=sdf.format(new Date())+"_"+photoname;
+			
+				
+				File file=new File(path+"\\"+photo);
+				file.delete();
+			
 			//업로드
 			try {
 				upload.transferTo(new File(path+"\\"+photoname));

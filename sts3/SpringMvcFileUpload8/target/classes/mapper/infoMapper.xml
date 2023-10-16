@@ -10,9 +10,9 @@
 	<insert id="insertOfMyInfo" parameterType="indto">
 		insert into myinfo (name,driver,addr,photo,gaipday) values(#{name},#{driver},#{addr},#{photo},now())
 	</insert>
-	<select id="selectAllOfMyInfo" resultType="indto">
+	<!-- <select id="selectAllOfMyInfo" resultType="indto">
 		select * from myinfo order by num
-	</select>
+	</select> -->
 	<delete id="deleteOfMyInfo" parameterType="String">
 		delete from myinfo where num=#{num}
 	</delete>
@@ -27,5 +27,12 @@
 		</if>
 		where num=#{num}
 	</update>
-	
+	<!-- 검색 리스트 -->
+	<select id="selectAllOfMyInfo" resultType="indto" parameterType="map"> <!-- 넘겨줘야 할 값이 두개 이상일땐 map으로 넘겨준다. -->
+		select * from myinfo
+		<if test="search!=null">
+		 where ${title} like concat ('%',#{search},'%')<!-- 여기서 ${title}은 table의 column(name,addr..)을 의미 -->
+		</if>											
+		order by num asc
+	</select>
 </mapper>

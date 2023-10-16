@@ -66,6 +66,19 @@
       </c:forEach>
    </tr>
 </table>
+<div style="width: 900px;text-align: center;">
+	<form action="list" class="d-inline-flex">
+		<select name="title" class="form-control" style="width:120px;">
+			<option value="name" ${title=='name'?"seleceted":"" }>이름</option> <!-- name 속성값 -->
+			<option value="addr" ${title=='addr'?"seleceted":"" }>주소</option>
+			<option value="driver" ${title=='driver'?"seleceted":"" }>운전면허</option>
+		</select>
+		<input type="text" name="search" class="form-control"
+		placeholder="검색 단어" style="width: 150px;" value="${search }">
+		
+		<button type="submit" class="btn btn-success">검색</button>
+	</form>
+</div>
 
 </body>
 </html>
