@@ -13,19 +13,19 @@
 </head>
 <body>
 <div style="margin: 200px 200px;">
- <form action="updatepass" method="post">
+ <form action="delepass" method="post">
  	<input type="hidden" name="num" value="${num }">
  	<input type="hidden" name="currentPage" value="${currentPage }">
  	
- 	<div class="alert alert-info" style="width:300px;font-size:1.3em" >
+ 	<div class="alert alert-danger" style="width:300px;font-size:1.3em" >
  		<b>비밀번호를 입력해주세요</b>
  	</div>
  	<div class="d-inline-flex">
  		<input type="password" name="pass" class="form-control"
  		style="width:120px" required="required">&nbsp;&nbsp;
  		
- 		<button type="submit" class="btn btn-outline-info">수정하기</button>&nbsp;
- 		<button type="button" class="btn btn-outline-info"
+ 		<button type="submit" class="btn btn-outline-danger">삭제하기</button>&nbsp;
+ 		<button type="button" class="btn btn-outline-danger"
  		onclick="history.back()">이전으로</button> <!-- 이전으로 갈 때 오히려 location.href를 써주면 안간다. history,back()을 바로 해줘야함 -->
  	</div>
  </form>

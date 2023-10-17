@@ -24,7 +24,7 @@ public class BoardListController {
 	BoardDao dao;
 	
 	@GetMapping("board/list")
-	public ModelAndView boardlist(@RequestParam(value = "currengPage",defaultValue = "1") int currentPage){
+	public ModelAndView boardlist(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage){
 		
 		ModelAndView model=new ModelAndView();
 
@@ -58,12 +58,12 @@ public class BoardListController {
 		   //각 페이지에서 보여질 시작 번호
 		   //1페이지: 0, 2페이지:5, 3페이지:10...		   
 		   startNum=(currentPage-1)*perPage;
-
+		   System.out.println(currentPage+","+startNum+","+perPage);
 		   //각페이지에서 필요한 게시긃 가져오기
 		   List<BoardDto> list=dao.getPagingList(startNum, perPage);
 		   
 		   //각 페이지에 출력할 시작번호
-		   int no=totalCount+(currentPage-1)*perPage;
+		   int no=totalCount-(currentPage-1)*perPage;
 		
 		model.addObject("totalCount", totalCount);
 		model.addObject("list", list);

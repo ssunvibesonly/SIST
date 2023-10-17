@@ -19,4 +19,5 @@ public interface InfoInter {
 	public void updateMyInfo(InfoDto dto);
 	//search
 	public List<InfoDto> getAllIfInfoDtos(Map<String, String> map);
+	
 }

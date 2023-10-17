@@ -133,7 +133,7 @@ public class InfoController {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		String photoname; //dto에 담을 변수
-		String photo=dao.getData(num).getPhoto();;
+		String photo=dao.getData(num).getPhoto();
 		
 		//사진 선택안할경우 null
 		if(upload.getOriginalFilename().equals(""))

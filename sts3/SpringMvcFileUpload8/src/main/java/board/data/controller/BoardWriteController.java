@@ -27,6 +27,8 @@ public class BoardWriteController {
 	@Autowired
 	BoardDao dao;
 	
+	
+	//writeform으로 넘어가기 전에 hidden으로 먼저 받아와야함
 	@GetMapping("board/writeform")
 	public ModelAndView writeform(@RequestParam Map<String, String> map) {
 		
@@ -39,7 +41,8 @@ public class BoardWriteController {
 		String restep=map.get("restep");
 		String relevel=map.get("relevel");
 		
-		System.out.println(currentPage+","+num);
+		
+		//System.out.println(currentPage+","+num);
 		
 		//입력폼에 hidden으로 넣어줘야함.. 답글일 때 대비 
 		model.addObject("currentPage", currentPage==null?"1":currentPage);
@@ -55,16 +58,15 @@ public class BoardWriteController {
 		return model;
 	}
 	
-	@PostMapping("board/insert")
-	public ModelAndView insert(@ModelAttribute BoardDto dto,
-			@RequestParam ArrayList<MultipartFile> uimage,
+	@PostMapping("/board/insert")
+	public String insert(@ModelAttribute BoardDto dto,
+			@RequestParam ArrayList<MultipartFile> uimage, @RequestParam int currentPage,
 			HttpSession session) {
 		
-		ModelAndView model=new ModelAndView();
-		
+		System.out.println(currentPage+"cur");
 		//realpath(실제경로)
-		String path=session.getServletContext().getRealPath("/WEB-INF/photo");
-		System.out.println(path);
+		String path=session.getServletContext().getRealPath("/WEB-INF/photo/");
+		//System.out.println(path);
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
 		
@@ -75,7 +77,7 @@ public class BoardWriteController {
 		}else {
 			for(MultipartFile f:uimage) {
 				String fName=sdf.format(new Date())+"_"+f.getOriginalFilename();	
-				photo=fName+",";
+				photo+=fName+",";
 				
 				try {
 					f.transferTo(new File(path+"\\"+fName));
@@ -97,8 +99,9 @@ public class BoardWriteController {
 		//insert
 		dao.insertReboard(dto);
 		
-		model.setViewName("redirect:list"); //content 일단 없으니까 목록으로 
+		int num=dao.getMaxNum();
+		System.out.println(num);
 		
-		return model;
+		return "redirect:list";
 	}
 }

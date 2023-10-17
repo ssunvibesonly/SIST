@@ -81,4 +81,41 @@ public class BoardDao implements BoardDaoInter {
 		return session.selectList("SelectPagingOfReboard", map);
 	}
 
+	@Override
+	public BoardDto getData(int num) {
+		// TODO Auto-generated method stub
+		return session.selectOne("getDataOfReboard", num); //@RequestgetParam으로 넘어가는 num /jsp에서 name속성도 컨트롤러로 넘어간다.
+	}
+
+	@Override
+	public void readCountOfReboard(int num) {
+		// TODO Auto-generated method stub
+		 session.update("updateReadCountOfReboard", num);
+	}
+
+	@Override
+	public int getCheckPass(int num, int pass) {
+		// TODO Auto-generated method stub
+		
+		HashMap<String, Integer> map=new HashMap<String, Integer>(); //key값은 String만 된다(문자열로 넘기기 때문에). Object 안됌
+		
+		map.put("num", num);
+		map.put("pass", pass);
+		
+		return session.selectOne("checkpassEqualOfReboard", map);
+	}
+
+	@Override
+	public void update(BoardDto dto) {
+		// TODO Auto-generated method stub
+		session.update("updateOfReboard", dto);
+	}
+
+	@Override
+	public void delete(int num) {
+		// TODO Auto-generated method stub
+
+		session.delete("deleteOfReboard",num);
+	}
+
 }
