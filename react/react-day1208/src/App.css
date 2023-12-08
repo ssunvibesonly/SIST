@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.number{
+ font-size: 60px;
+ color: red;
+ font-weight: bold;
+ margin-left: 50px;
+ margin-bottom: 10px;
+}
+
+.box{
+ width: 200px;
+ height: 100px;
+}
