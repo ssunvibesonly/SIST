@@ -7,6 +7,7 @@ function SixApp(props) {
 
     const [names,setNames]=useState(['강연주','최진평','진현규','박희찬','이민규']);
     const [irum,setIrum]=useState('');
+    const [number,setNumber]=useState(10);
 
     //추가버튼 이벤트
     const btnInsert=()=>{
