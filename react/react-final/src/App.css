@@ -50,3 +50,17 @@ a:hover{
   color: gray;
   text-decoration: none;
 }
+
+img.small{
+  width: 100px;
+  height: 100px;
+  border: 1px solid gray;
+  margin-right: 10px;
+}
+img.large{
+  width: 300px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 1px solid gray;
+
+}
